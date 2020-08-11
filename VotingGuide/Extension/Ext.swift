@@ -10,10 +10,10 @@ import UIKit
 
 extension UITabBarItem{
     
-    func configImage(named : String){
-        title = ""
+    func configNameAndImage(title : String, named : String){
+//        self.title = title
         image = UIImage(named: named)
-        imageInsets = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
+//        imageInsets = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
     }
     
 }

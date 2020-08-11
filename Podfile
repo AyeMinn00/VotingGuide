@@ -9,5 +9,8 @@ target 'VotingGuide' do
   pod 'RxSwift', '~> 5'
   pod 'RxCocoa', '~> 5'
   pod 'Kingfisher', '~> 5.0'
+  
+  pod 'MaterialComponents/BottomNavigation'
+  pod 'MaterialComponents/AppBar'
 
 end

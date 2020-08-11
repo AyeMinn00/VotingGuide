@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1E2404F6040A495CD3BAB1C3 /* Pods_VotingGuide.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98013217765F2EA00C00CDB1 /* Pods_VotingGuide.framework */; };
+		D52AF42324E2F7B9003C9874 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52AF42224E2F7B9003C9874 /* MainViewController.swift */; };
 		D5A308AE24DC83C0005274B0 /* Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A308AD24DC83C0005274B0 /* Ext.swift */; };
 		D5B47BEA24D58CD3002348E7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B47BE924D58CD3002348E7 /* AppDelegate.swift */; };
 		D5B47BEC24D58CD3002348E7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B47BEB24D58CD3002348E7 /* SceneDelegate.swift */; };
@@ -23,6 +24,7 @@
 		2C84F8EEF46363D18DE42336 /* Pods-VotingGuideTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VotingGuideTests.debug.xcconfig"; path = "Target Support Files/Pods-VotingGuideTests/Pods-VotingGuideTests.debug.xcconfig"; sourceTree = "<group>"; };
 		98013217765F2EA00C00CDB1 /* Pods_VotingGuide.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VotingGuide.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC70F9CAE517A91796B80237 /* Pods-VotingGuide.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VotingGuide.debug.xcconfig"; path = "Target Support Files/Pods-VotingGuide/Pods-VotingGuide.debug.xcconfig"; sourceTree = "<group>"; };
+		D52AF42224E2F7B9003C9874 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		D5A308AD24DC83C0005274B0 /* Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ext.swift; sourceTree = "<group>"; };
 		D5B47BE624D58CD3002348E7 /* VotingGuide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VotingGuide.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5B47BE924D58CD3002348E7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				D5B47BED24D58CD3002348E7 /* ViewController.swift */,
+				D52AF42224E2F7B9003C9874 /* MainViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -293,6 +296,7 @@
 				D5A308AE24DC83C0005274B0 /* Ext.swift in Sources */,
 				D5B47BEA24D58CD3002348E7 /* AppDelegate.swift in Sources */,
 				D5B47BEC24D58CD3002348E7 /* SceneDelegate.swift in Sources */,
+				D52AF42324E2F7B9003C9874 /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

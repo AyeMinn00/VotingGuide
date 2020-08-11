@@ -3,6 +3,107 @@ PODS:
   - Kingfisher (5.14.1):
     - Kingfisher/Core (= 5.14.1)
   - Kingfisher/Core (5.14.1)
+  - MaterialComponents/AnimationTiming (112.0.1)
+  - MaterialComponents/AppBar (112.0.1):
+    - MaterialComponents/FlexibleHeader
+    - MaterialComponents/HeaderStackView
+    - MaterialComponents/NavigationBar
+    - MaterialComponents/private/Application
+    - MaterialComponents/private/Icons/ic_arrow_back
+    - MaterialComponents/private/UIMetrics
+    - MaterialComponents/ShadowElevations
+    - MaterialComponents/ShadowLayer
+    - MaterialComponents/Typography
+    - MDFInternationalization
+  - MaterialComponents/Availability (112.0.1)
+  - MaterialComponents/BottomNavigation (112.0.1):
+    - MaterialComponents/Availability
+    - MaterialComponents/Elevation
+    - MaterialComponents/Ink
+    - MaterialComponents/Palettes
+    - MaterialComponents/private/Math
+    - MaterialComponents/Ripple
+    - MaterialComponents/ShadowElevations
+    - MaterialComponents/ShadowLayer
+    - MaterialComponents/Typography
+    - MDFInternationalization
+  - MaterialComponents/ButtonBar (112.0.1):
+    - MaterialComponents/Buttons
+    - MaterialComponents/private/Application
+    - MDFInternationalization
+  - MaterialComponents/Buttons (112.0.1):
+    - MaterialComponents/Elevation
+    - MaterialComponents/Ink
+    - MaterialComponents/private/Math
+    - MaterialComponents/Ripple
+    - MaterialComponents/ShadowElevations
+    - MaterialComponents/ShadowLayer
+    - MaterialComponents/ShapeLibrary
+    - MaterialComponents/Shapes
+    - MaterialComponents/Typography
+    - MDFInternationalization
+    - MDFTextAccessibility
+  - MaterialComponents/Elevation (112.0.1):
+    - MaterialComponents/Availability
+    - MaterialComponents/private/Color
+    - MaterialComponents/private/Math
+  - MaterialComponents/FlexibleHeader (112.0.1):
+    - MaterialComponents/Availability
+    - MaterialComponents/Elevation
+    - "MaterialComponents/FlexibleHeader+ShiftBehavior"
+    - "MaterialComponents/FlexibleHeader+ShiftBehaviorEnabledWithStatusBar"
+    - MaterialComponents/private/Application
+    - MaterialComponents/private/Math
+    - MaterialComponents/private/UIMetrics
+    - MaterialComponents/ShadowElevations
+    - MaterialComponents/ShadowLayer
+    - MDFTextAccessibility
+  - "MaterialComponents/FlexibleHeader+ShiftBehavior (112.0.1)"
+  - "MaterialComponents/FlexibleHeader+ShiftBehaviorEnabledWithStatusBar (112.0.1)":
+    - "MaterialComponents/FlexibleHeader+ShiftBehavior"
+  - MaterialComponents/HeaderStackView (112.0.1)
+  - MaterialComponents/Ink (112.0.1):
+    - MaterialComponents/Availability
+    - MaterialComponents/private/Color
+    - MaterialComponents/private/Math
+  - MaterialComponents/NavigationBar (112.0.1):
+    - MaterialComponents/ButtonBar
+    - MaterialComponents/Elevation
+    - MaterialComponents/private/Math
+    - MaterialComponents/Typography
+    - MDFInternationalization
+    - MDFTextAccessibility
+  - MaterialComponents/Palettes (112.0.1)
+  - MaterialComponents/private/Application (112.0.1)
+  - MaterialComponents/private/Color (112.0.1):
+    - MaterialComponents/Availability
+  - MaterialComponents/private/Icons/Base (112.0.1)
+  - MaterialComponents/private/Icons/ic_arrow_back (112.0.1):
+    - MaterialComponents/private/Icons/Base
+  - MaterialComponents/private/Math (112.0.1)
+  - MaterialComponents/private/UIMetrics (112.0.1):
+    - MaterialComponents/private/Application
+  - MaterialComponents/Ripple (112.0.1):
+    - MaterialComponents/AnimationTiming
+    - MaterialComponents/Availability
+    - MaterialComponents/private/Color
+    - MaterialComponents/private/Math
+  - MaterialComponents/ShadowElevations (112.0.1)
+  - MaterialComponents/ShadowLayer (112.0.1):
+    - MaterialComponents/ShadowElevations
+  - MaterialComponents/ShapeLibrary (112.0.1):
+    - MaterialComponents/private/Math
+    - MaterialComponents/Shapes
+  - MaterialComponents/Shapes (112.0.1):
+    - MaterialComponents/private/Color
+    - MaterialComponents/private/Math
+    - MaterialComponents/ShadowLayer
+  - MaterialComponents/Typography (112.0.1):
+    - MaterialComponents/private/Application
+    - MaterialComponents/private/Math
+    - MDFTextAccessibility
+  - MDFInternationalization (2.0.0)
+  - MDFTextAccessibility (2.0.0)
   - RxCocoa (5.1.1):
     - RxRelay (~> 5)
     - RxSwift (~> 5)
@@ -13,6 +114,8 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 5.2)
   - Kingfisher (~> 5.0)
+  - MaterialComponents/AppBar
+  - MaterialComponents/BottomNavigation
   - RxCocoa (~> 5)
   - RxSwift (~> 5)
 
@@ -20,6 +123,9 @@ SPEC REPOS:
   trunk:
     - Alamofire
     - Kingfisher
+    - MaterialComponents
+    - MDFInternationalization
+    - MDFTextAccessibility
     - RxCocoa
     - RxRelay
     - RxSwift
@@ -27,10 +133,13 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: 814429acc853c6c54ff123fc3d2ef66803823ce0
   Kingfisher: 8050bc6f7f68cbf3908bd04df7ccbac188f6d6d6
+  MaterialComponents: 5be6bf8c20183474a84c9852b5b45703ad49cf3a
+  MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
+  MDFTextAccessibility: 85c09a1bd9c321f494348e632a25063bcda35a53
   RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
   RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
 
-PODFILE CHECKSUM: 8b2a0494b49cea79c52fd6cd01bdf3c6448a2366
+PODFILE CHECKSUM: d626ce541d19a145cc01d2372faece3bf3a5c34f
 
 COCOAPODS: 1.9.3

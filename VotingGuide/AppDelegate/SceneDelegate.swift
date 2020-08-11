@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MaterialComponents.MaterialAppBar
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
@@ -20,25 +21,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         window = UIWindow(frame: UIScreen.main.bounds)
 
-        let homeVc = HomeViewController()
-        let homeTabBar = UITabBarItem()
-        homeTabBar.configImage(named: "home")
-        homeVc.tabBarItem = homeTabBar
         
-        let galleryVc = GalleryViewController()
-        let galleryTabBar = UITabBarItem()
-        galleryTabBar.configImage(named: "gallery")
-        galleryVc.tabBarItem = galleryTabBar
-        
-        let settingVc = SettingViewController()
-        let settingTabBar = UITabBarItem()
-        settingTabBar.configImage(named: "settings")
-        settingVc.tabBarItem = settingTabBar
-        
-        let tabBarVc = UITabBarController()
-        tabBarVc.viewControllers = [homeVc , galleryVc, settingVc]
-        
-        let rootViewController = UINavigationController(rootViewController: tabBarVc)
+        let rootViewController = MDCAppBarNavigationController(rootViewController: MainViewController())
+        rootViewController.delegate = self
         window?.rootViewController = rootViewController
         window?.makeKeyAndVisible()
         window?.windowScene = windowScene
@@ -71,4 +56,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
+}
+
+extension SceneDelegate : MDCAppBarNavigationControllerDelegate{
+    
+    func appBarNavigationController(_ navigationController: MDCAppBarNavigationController, willAdd appBarViewController: MDCAppBarViewController, asChildOf viewController: UIViewController) {
+        print("config appbar")
+        appBarViewController.headerView.backgroundColor = .white
+        appBarViewController.navigationBar.backgroundColor = .white
+        appBarViewController.navigationBar.titleTextColor = .darkGray
+        appBarViewController.navigationBar.titleAlignment = .leading
+        appBarViewController.navigationBar.leadingBarItemsTintColor = .black
+        appBarViewController.navigationBar.titleFont = UIFont.systemFont(ofSize: 10)
+    }
+    
 }
