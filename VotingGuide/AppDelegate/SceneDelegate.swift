@@ -64,7 +64,7 @@ extension SceneDelegate : MDCAppBarNavigationControllerDelegate{
         print("config appbar")
         appBarViewController.headerView.backgroundColor = .white
         appBarViewController.navigationBar.backgroundColor = .white
-        appBarViewController.navigationBar.titleTextColor = .darkGray
+        appBarViewController.navigationBar.titleTextColor = .black
         appBarViewController.navigationBar.titleAlignment = .leading
         appBarViewController.navigationBar.leadingBarItemsTintColor = .black
         appBarViewController.navigationBar.titleFont = UIFont.systemFont(ofSize: 10)

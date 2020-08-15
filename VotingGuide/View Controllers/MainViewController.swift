@@ -10,7 +10,9 @@ import MaterialComponents.MaterialBottomNavigation
 import UIKit
 
 class MainViewController: UIViewController {
+    
     weak var bottomNavBar: MDCBottomNavigationBar!
+    weak var containerView: UIView!
     let appBarViewController = MDCAppBarViewController()
 
     let bar: MDCBottomNavigationBar = {
@@ -21,13 +23,33 @@ class MainViewController: UIViewController {
         return bar
     }()
 
+    /*
+     container view , selected view will be added to this container
+     */
+    let _containerView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .systemGray6
+        return view
+    }()
+
+    let h = HomeViewController()
+    let g = GalleryViewController()
+    let s = SettingViewController()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemGray6
         title = "Home"
         configAppBarViewController()
         layoutBottomNavBar()
+        configContainerView()
         configTabBarToBottomNavigation()
+        initHomeViewController()
+
+//        for child in children {
+//            debugPrint("child \(child)")
+//        }
     }
 
     private func configAppBarViewController() {
@@ -51,6 +73,15 @@ class MainViewController: UIViewController {
         bottomNavBar.delegate = self
     }
 
+    private func configContainerView() {
+        containerView = _containerView
+        view.addSubview(containerView)
+        containerView.topAnchor.constraint(equalTo: appBarViewController.view.bottomAnchor).isActive = true
+        containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        containerView.bottomAnchor.constraint(equalTo: bottomNavBar.topAnchor).isActive = true
+    }
+
     private func configTabBarToBottomNavigation() {
         let homeTabBar = UITabBarItem()
         homeTabBar.tag = 0
@@ -68,6 +99,10 @@ class MainViewController: UIViewController {
         bottomNavBar.titleVisibility = .never
         bottomNavBar.selectedItem = homeTabBar
     }
+
+    private func initHomeViewController() {
+        add(h, containerView: containerView)
+    }
 }
 
 extension MainViewController: MDCBottomNavigationBarDelegate {
@@ -75,12 +110,22 @@ extension MainViewController: MDCBottomNavigationBarDelegate {
         switch item.tag {
         case 0:
             title = "Home"
+            g.remove()
+            s.remove()
+            add(h, containerView: containerView)
         case 1:
             title = "Gallery"
+            h.remove()
+            s.remove()
+            add(g, containerView: containerView)
         case 2:
             title = "Settings"
+            h.remove()
+            g.remove()
+            add(s , containerView: containerView)
         default:
             title = "Home"
         }
     }
 }
+

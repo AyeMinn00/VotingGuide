@@ -17,3 +17,11 @@ extension UITabBarItem{
     }
     
 }
+
+extension NSObject{
+    
+    func log(msg : String){
+        let target = String(describing: self)
+        debugPrint("\(target) ==> \(msg)")
+    }
+}

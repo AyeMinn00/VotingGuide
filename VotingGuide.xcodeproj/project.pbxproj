@@ -8,7 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		1E2404F6040A495CD3BAB1C3 /* Pods_VotingGuide.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98013217765F2EA00C00CDB1 /* Pods_VotingGuide.framework */; };
+		D529A07124E7D35000D88294 /* ViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D529A07024E7D35000D88294 /* ViewControllerExt.swift */; };
 		D52AF42324E2F7B9003C9874 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52AF42224E2F7B9003C9874 /* MainViewController.swift */; };
+		D556213424E8352F0081655D /* BaseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D556213324E8352F0081655D /* BaseRequest.swift */; };
+		D556213724E835650081655D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D556213624E835650081655D /* Constants.swift */; };
+		D556213924E837B10081655D /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D556213824E837B10081655D /* RequestManager.swift */; };
+		D556213B24E837DA0081655D /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D556213A24E837DA0081655D /* ApiService.swift */; };
+		D556213E24E838860081655D /* ResponseImageSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D556213D24E838860081655D /* ResponseImageSet.swift */; };
+		D556214024E839720081655D /* ResponseLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D556213F24E839720081655D /* ResponseLanguage.swift */; };
+		D556214224E83C480081655D /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = D556214124E83C480081655D /* List.swift */; };
+		D556214624E8409D0081655D /* VotingGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D556214524E8409D0081655D /* VotingGuideViewController.swift */; };
+		D556214824E840B90081655D /* InfiniteCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D556214724E840B90081655D /* InfiniteCollectionViewController.swift */; };
+		D556214A24E840E60081655D /* InfiniteListDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D556214924E840E60081655D /* InfiniteListDelegate.swift */; };
+		D556214F24E841B20081655D /* LoadingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D556214C24E841B20081655D /* LoadingCell.swift */; };
+		D556215024E841B20081655D /* EndCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D556214D24E841B20081655D /* EndCell.swift */; };
+		D556215124E841B20081655D /* ErrorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D556214E24E841B20081655D /* ErrorCell.swift */; };
+		D556215324E8426F0081655D /* InfiniteListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D556215224E8426F0081655D /* InfiniteListViewModel.swift */; };
+		D556215524E842850081655D /* Paging.swift in Sources */ = {isa = PBXBuildFile; fileRef = D556215424E842850081655D /* Paging.swift */; };
+		D556215724E843280081655D /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D556215624E843280081655D /* GalleryViewController.swift */; };
+		D556215A24E8442F0081655D /* ImageSetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D556215924E8442F0081655D /* ImageSetCell.swift */; };
+		D556215C24E8456B0081655D /* GalleryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D556215B24E8456B0081655D /* GalleryViewModel.swift */; };
 		D5A308AE24DC83C0005274B0 /* Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A308AD24DC83C0005274B0 /* Ext.swift */; };
 		D5B47BEA24D58CD3002348E7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B47BE924D58CD3002348E7 /* AppDelegate.swift */; };
 		D5B47BEC24D58CD3002348E7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B47BEB24D58CD3002348E7 /* SceneDelegate.swift */; };
@@ -24,7 +43,26 @@
 		2C84F8EEF46363D18DE42336 /* Pods-VotingGuideTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VotingGuideTests.debug.xcconfig"; path = "Target Support Files/Pods-VotingGuideTests/Pods-VotingGuideTests.debug.xcconfig"; sourceTree = "<group>"; };
 		98013217765F2EA00C00CDB1 /* Pods_VotingGuide.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VotingGuide.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC70F9CAE517A91796B80237 /* Pods-VotingGuide.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VotingGuide.debug.xcconfig"; path = "Target Support Files/Pods-VotingGuide/Pods-VotingGuide.debug.xcconfig"; sourceTree = "<group>"; };
+		D529A07024E7D35000D88294 /* ViewControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExt.swift; sourceTree = "<group>"; };
 		D52AF42224E2F7B9003C9874 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		D556213324E8352F0081655D /* BaseRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRequest.swift; sourceTree = "<group>"; };
+		D556213624E835650081655D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		D556213824E837B10081655D /* RequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
+		D556213A24E837DA0081655D /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
+		D556213D24E838860081655D /* ResponseImageSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseImageSet.swift; sourceTree = "<group>"; };
+		D556213F24E839720081655D /* ResponseLanguage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseLanguage.swift; sourceTree = "<group>"; };
+		D556214124E83C480081655D /* List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
+		D556214524E8409D0081655D /* VotingGuideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingGuideViewController.swift; sourceTree = "<group>"; };
+		D556214724E840B90081655D /* InfiniteCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteCollectionViewController.swift; sourceTree = "<group>"; };
+		D556214924E840E60081655D /* InfiniteListDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteListDelegate.swift; sourceTree = "<group>"; };
+		D556214C24E841B20081655D /* LoadingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingCell.swift; sourceTree = "<group>"; };
+		D556214D24E841B20081655D /* EndCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndCell.swift; sourceTree = "<group>"; };
+		D556214E24E841B20081655D /* ErrorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorCell.swift; sourceTree = "<group>"; };
+		D556215224E8426F0081655D /* InfiniteListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteListViewModel.swift; sourceTree = "<group>"; };
+		D556215424E842850081655D /* Paging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Paging.swift; sourceTree = "<group>"; };
+		D556215624E843280081655D /* GalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
+		D556215924E8442F0081655D /* ImageSetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSetCell.swift; sourceTree = "<group>"; };
+		D556215B24E8456B0081655D /* GalleryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewModel.swift; sourceTree = "<group>"; };
 		D5A308AD24DC83C0005274B0 /* Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ext.swift; sourceTree = "<group>"; };
 		D5B47BE624D58CD3002348E7 /* VotingGuide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VotingGuide.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5B47BE924D58CD3002348E7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -67,6 +105,73 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		D556213224E834D90081655D /* Remote */ = {
+			isa = PBXGroup;
+			children = (
+				D556213324E8352F0081655D /* BaseRequest.swift */,
+				D556213824E837B10081655D /* RequestManager.swift */,
+				D556213A24E837DA0081655D /* ApiService.swift */,
+			);
+			path = Remote;
+			sourceTree = "<group>";
+		};
+		D556213524E8354D0081655D /* AppConstants + Endpoints */ = {
+			isa = PBXGroup;
+			children = (
+				D556213624E835650081655D /* Constants.swift */,
+			);
+			path = "AppConstants + Endpoints";
+			sourceTree = "<group>";
+		};
+		D556213C24E838760081655D /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				D556213D24E838860081655D /* ResponseImageSet.swift */,
+				D556213F24E839720081655D /* ResponseLanguage.swift */,
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
+		D556214324E840680081655D /* UIViews */ = {
+			isa = PBXGroup;
+			children = (
+				D556214424E8407E0081655D /* Base */,
+				D556214B24E8414A0081655D /* Cells */,
+			);
+			path = UIViews;
+			sourceTree = "<group>";
+		};
+		D556214424E8407E0081655D /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				D556214724E840B90081655D /* InfiniteCollectionViewController.swift */,
+				D556214924E840E60081655D /* InfiniteListDelegate.swift */,
+				D556215224E8426F0081655D /* InfiniteListViewModel.swift */,
+				D556214524E8409D0081655D /* VotingGuideViewController.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		D556214B24E8414A0081655D /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				D556214D24E841B20081655D /* EndCell.swift */,
+				D556214E24E841B20081655D /* ErrorCell.swift */,
+				D556214C24E841B20081655D /* LoadingCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		D556215824E843C80081655D /* Gallery */ = {
+			isa = PBXGroup;
+			children = (
+				D556215624E843280081655D /* GalleryViewController.swift */,
+				D556215B24E8456B0081655D /* GalleryViewModel.swift */,
+				D556215924E8442F0081655D /* ImageSetCell.swift */,
+			);
+			path = Gallery;
+			sourceTree = "<group>";
+		};
 		D5B47BDD24D58CD3002348E7 = {
 			isa = PBXGroup;
 			children = (
@@ -90,11 +195,14 @@
 		D5B47BE824D58CD3002348E7 /* VotingGuide */ = {
 			isa = PBXGroup;
 			children = (
+				D556213524E8354D0081655D /* AppConstants + Endpoints */,
 				D5B47C1D24D596B0002348E7 /* AppDelegate */,
 				D5B47C1B24D5968C002348E7 /* Extension */,
 				D5B47C1C24D5969C002348E7 /* Model */,
+				D556213224E834D90081655D /* Remote */,
 				D5B47C1924D59673002348E7 /* Resource */,
 				D5B47C1E24D596D2002348E7 /* Storyboards */,
+				D556214324E840680081655D /* UIViews */,
 				D5B47C1A24D5967E002348E7 /* View Controllers */,
 			);
 			path = VotingGuide;
@@ -131,6 +239,7 @@
 		D5B47C1A24D5967E002348E7 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				D556215824E843C80081655D /* Gallery */,
 				D5B47BED24D58CD3002348E7 /* ViewController.swift */,
 				D52AF42224E2F7B9003C9874 /* MainViewController.swift */,
 			);
@@ -141,6 +250,7 @@
 			isa = PBXGroup;
 			children = (
 				D5A308AD24DC83C0005274B0 /* Ext.swift */,
+				D529A07024E7D35000D88294 /* ViewControllerExt.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -148,6 +258,9 @@
 		D5B47C1C24D5969C002348E7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D556214124E83C480081655D /* List.swift */,
+				D556215424E842850081655D /* Paging.swift */,
+				D556213C24E838760081655D /* Response */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -292,11 +405,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D556214024E839720081655D /* ResponseLanguage.swift in Sources */,
+				D529A07124E7D35000D88294 /* ViewControllerExt.swift in Sources */,
+				D556214A24E840E60081655D /* InfiniteListDelegate.swift in Sources */,
+				D556214824E840B90081655D /* InfiniteCollectionViewController.swift in Sources */,
 				D5B47BEE24D58CD3002348E7 /* ViewController.swift in Sources */,
 				D5A308AE24DC83C0005274B0 /* Ext.swift in Sources */,
+				D556215124E841B20081655D /* ErrorCell.swift in Sources */,
+				D556215A24E8442F0081655D /* ImageSetCell.swift in Sources */,
+				D556215724E843280081655D /* GalleryViewController.swift in Sources */,
+				D556214624E8409D0081655D /* VotingGuideViewController.swift in Sources */,
+				D556215024E841B20081655D /* EndCell.swift in Sources */,
+				D556214224E83C480081655D /* List.swift in Sources */,
+				D556213424E8352F0081655D /* BaseRequest.swift in Sources */,
+				D556215C24E8456B0081655D /* GalleryViewModel.swift in Sources */,
 				D5B47BEA24D58CD3002348E7 /* AppDelegate.swift in Sources */,
 				D5B47BEC24D58CD3002348E7 /* SceneDelegate.swift in Sources */,
+				D556214F24E841B20081655D /* LoadingCell.swift in Sources */,
+				D556213B24E837DA0081655D /* ApiService.swift in Sources */,
+				D556213924E837B10081655D /* RequestManager.swift in Sources */,
+				D556215324E8426F0081655D /* InfiniteListViewModel.swift in Sources */,
 				D52AF42324E2F7B9003C9874 /* MainViewController.swift in Sources */,
+				D556215524E842850081655D /* Paging.swift in Sources */,
+				D556213724E835650081655D /* Constants.swift in Sources */,
+				D556213E24E838860081655D /* ResponseImageSet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,7 +572,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.amo.vg.VotingGuide;
+				PRODUCT_BUNDLE_IDENTIFIER = com.amo.vg.VotingGuide2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -459,7 +591,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.amo.vg.VotingGuide;
+				PRODUCT_BUNDLE_IDENTIFIER = com.amo.vg.VotingGuide2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

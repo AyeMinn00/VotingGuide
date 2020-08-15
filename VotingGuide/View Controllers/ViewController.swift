@@ -8,11 +8,11 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+class HomeViewController: VotingGuideViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = .systemGray6
 //        title = "Home Vc"
         // Do any additional setup after loading the view.
         let label = UILabel()
@@ -26,7 +26,7 @@ class HomeViewController: UIViewController {
         button.setTitle("Go Detail", for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.addTarget(self, action: #selector(tap), for: .touchUpInside)
-        button.backgroundColor = .systemGray6
+        button.backgroundColor = .systemGray3
         self.view.addSubview(button)
         
         label.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
@@ -47,9 +47,9 @@ class HomeViewDetailController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = .systemGray6
         title = "Home Detail"
-        // Do any additional setup after loading the view.
+        
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 22)
         label.text = "Home Detail"
@@ -62,30 +62,7 @@ class HomeViewDetailController: UIViewController {
     }
 }
 
-
-
-class GalleryViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.view.backgroundColor = .white
-//        title = "Gallery"
-        // Do any additional setup after loading the view.
-        let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 20)
-        label.text = "Gallery"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        self.view.addSubview(label)
-        
-        label.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        label.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
-        
-    }
-
-
-}
-
-class SettingViewController: UIViewController {
+class SettingViewController: VotingGuideViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
