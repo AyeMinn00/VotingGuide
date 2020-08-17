@@ -14,9 +14,9 @@ struct BaseRequest: URLRequestConvertible {
     let encoder = JSONParameterEncoder.default
     let method: HTTPMethod
     let path: String
-    let query: [String: Any]?
+    let query: [String: String]
 
-    init(path: String, query: [String: Any] = [:], method: HTTPMethod = .get) {
+    init(path: String, query: [String: String] = [:], method: HTTPMethod = .get) {
         self.path = path
         self.query = query
         self.method = method
@@ -28,10 +28,10 @@ struct BaseRequest: URLRequestConvertible {
             fatalError("Base url cannot be resolved")
         }
 
-        if let qp = query {
+        if query.count > 0 {
             var queryItems = [URLQueryItem]()
-            for item in qp {
-                queryItems.append(URLQueryItem(name: item.key, value: item.value as? String))
+            for item in query {
+                queryItems.append(URLQueryItem(name: item.key, value: item.value))
             }
             components.queryItems = queryItems
         }

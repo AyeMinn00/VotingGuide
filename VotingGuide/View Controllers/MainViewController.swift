@@ -33,7 +33,7 @@ class MainViewController: UIViewController {
         return view
     }()
 
-    let h = HomeViewController()
+    let h = ContentViewController()
     let g = GalleryViewController()
     let s = SettingViewController()
 

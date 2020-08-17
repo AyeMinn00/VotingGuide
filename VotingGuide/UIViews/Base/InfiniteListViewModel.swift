@@ -47,7 +47,6 @@ class InfiniteListViewModel<DataType: CollectionItem>: NSObject {
     }
 
     func loadData() {
-         log(msg: "loadData")
         if isFirstRequest {
             isFirstRequest = false
             dataSet.append(DataType(state: .loading))

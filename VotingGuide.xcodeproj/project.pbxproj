@@ -10,6 +10,11 @@
 		1E2404F6040A495CD3BAB1C3 /* Pods_VotingGuide.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98013217765F2EA00C00CDB1 /* Pods_VotingGuide.framework */; };
 		D529A07124E7D35000D88294 /* ViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D529A07024E7D35000D88294 /* ViewControllerExt.swift */; };
 		D52AF42324E2F7B9003C9874 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52AF42224E2F7B9003C9874 /* MainViewController.swift */; };
+		D546866124EACFCD00CADCE0 /* ResponseContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D546866024EACFCD00CADCE0 /* ResponseContent.swift */; };
+		D546866424EAD31F00CADCE0 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = D546866324EAD31F00CADCE0 /* Request.swift */; };
+		D546866724EAD4D400CADCE0 /* ContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D546866624EAD4D400CADCE0 /* ContentCell.swift */; };
+		D546866924EAE78900CADCE0 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D546866824EAE78900CADCE0 /* ContentViewModel.swift */; };
+		D546866B24EAE82B00CADCE0 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D546866A24EAE82B00CADCE0 /* ContentViewController.swift */; };
 		D556213424E8352F0081655D /* BaseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D556213324E8352F0081655D /* BaseRequest.swift */; };
 		D556213724E835650081655D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D556213624E835650081655D /* Constants.swift */; };
 		D556213924E837B10081655D /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D556213824E837B10081655D /* RequestManager.swift */; };
@@ -45,6 +50,11 @@
 		CC70F9CAE517A91796B80237 /* Pods-VotingGuide.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VotingGuide.debug.xcconfig"; path = "Target Support Files/Pods-VotingGuide/Pods-VotingGuide.debug.xcconfig"; sourceTree = "<group>"; };
 		D529A07024E7D35000D88294 /* ViewControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExt.swift; sourceTree = "<group>"; };
 		D52AF42224E2F7B9003C9874 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		D546866024EACFCD00CADCE0 /* ResponseContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseContent.swift; sourceTree = "<group>"; };
+		D546866324EAD31F00CADCE0 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		D546866624EAD4D400CADCE0 /* ContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentCell.swift; sourceTree = "<group>"; };
+		D546866824EAE78900CADCE0 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
+		D546866A24EAE82B00CADCE0 /* ContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
 		D556213324E8352F0081655D /* BaseRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRequest.swift; sourceTree = "<group>"; };
 		D556213624E835650081655D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D556213824E837B10081655D /* RequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
@@ -105,6 +115,24 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		D546866224EAD31100CADCE0 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				D546866324EAD31F00CADCE0 /* Request.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		D546866524EAD4B300CADCE0 /* Content */ = {
+			isa = PBXGroup;
+			children = (
+				D546866624EAD4D400CADCE0 /* ContentCell.swift */,
+				D546866A24EAE82B00CADCE0 /* ContentViewController.swift */,
+				D546866824EAE78900CADCE0 /* ContentViewModel.swift */,
+			);
+			path = Content;
+			sourceTree = "<group>";
+		};
 		D556213224E834D90081655D /* Remote */ = {
 			isa = PBXGroup;
 			children = (
@@ -128,6 +156,7 @@
 			children = (
 				D556213D24E838860081655D /* ResponseImageSet.swift */,
 				D556213F24E839720081655D /* ResponseLanguage.swift */,
+				D546866024EACFCD00CADCE0 /* ResponseContent.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -239,6 +268,7 @@
 		D5B47C1A24D5967E002348E7 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				D546866524EAD4B300CADCE0 /* Content */,
 				D556215824E843C80081655D /* Gallery */,
 				D5B47BED24D58CD3002348E7 /* ViewController.swift */,
 				D52AF42224E2F7B9003C9874 /* MainViewController.swift */,
@@ -260,6 +290,7 @@
 			children = (
 				D556214124E83C480081655D /* List.swift */,
 				D556215424E842850081655D /* Paging.swift */,
+				D546866224EAD31100CADCE0 /* Request */,
 				D556213C24E838760081655D /* Response */,
 			);
 			path = Model;
@@ -406,6 +437,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D556214024E839720081655D /* ResponseLanguage.swift in Sources */,
+				D546866424EAD31F00CADCE0 /* Request.swift in Sources */,
 				D529A07124E7D35000D88294 /* ViewControllerExt.swift in Sources */,
 				D556214A24E840E60081655D /* InfiniteListDelegate.swift in Sources */,
 				D556214824E840B90081655D /* InfiniteCollectionViewController.swift in Sources */,
@@ -423,10 +455,14 @@
 				D5B47BEC24D58CD3002348E7 /* SceneDelegate.swift in Sources */,
 				D556214F24E841B20081655D /* LoadingCell.swift in Sources */,
 				D556213B24E837DA0081655D /* ApiService.swift in Sources */,
+				D546866124EACFCD00CADCE0 /* ResponseContent.swift in Sources */,
 				D556213924E837B10081655D /* RequestManager.swift in Sources */,
+				D546866724EAD4D400CADCE0 /* ContentCell.swift in Sources */,
 				D556215324E8426F0081655D /* InfiniteListViewModel.swift in Sources */,
 				D52AF42324E2F7B9003C9874 /* MainViewController.swift in Sources */,
+				D546866924EAE78900CADCE0 /* ContentViewModel.swift in Sources */,
 				D556215524E842850081655D /* Paging.swift in Sources */,
+				D546866B24EAE82B00CADCE0 /* ContentViewController.swift in Sources */,
 				D556213724E835650081655D /* Constants.swift in Sources */,
 				D556213E24E838860081655D /* ResponseImageSet.swift in Sources */,
 			);
@@ -572,7 +608,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.amo.vg.VotingGuide2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.amo.vg.VotingGuide3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -591,7 +627,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.amo.vg.VotingGuide2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.amo.vg.VotingGuide3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

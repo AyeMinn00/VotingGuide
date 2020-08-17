@@ -10,7 +10,6 @@ import RxSwift
 import UIKit
 
 class InfiniteCollectionViewController<ItemIdentifier>: VotingGuideViewController, UICollectionViewDelegate where ItemIdentifier: CollectionItem {
-    
     weak var infiniteListDelegate: InfiniteListDelegate?
     weak var collectionView: UICollectionView!
     weak var scrollView: UIScrollView?
@@ -90,16 +89,10 @@ class InfiniteCollectionViewController<ItemIdentifier>: VotingGuideViewControlle
     }
 
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        log(msg: "scrollViewDidScroll")
         self.scrollView = scrollView
-        log(msg: "scrollview content offset y \(scrollView.contentOffset.y)")
-        log(msg: "scrollview frame height \(scrollView.frame.size.height)")
         let bottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height
-        log(msg: "bottomEdge \(bottomEdge)")
-        log(msg: "scrollview height \(scrollView.contentSize.height)")
         if bottomEdge + CGFloat(offset) >= scrollView.contentSize.height {
             if let delegate = infiniteListDelegate {
-                log(msg: "scrollViewDidScroll allow loaddata")
                 delegate.loadData()
             }
         }
@@ -120,6 +113,4 @@ class InfiniteCollectionViewController<ItemIdentifier>: VotingGuideViewControlle
             cell.contentView.backgroundColor = nil
         }
     }
-
 }
-

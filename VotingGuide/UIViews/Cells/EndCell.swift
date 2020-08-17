@@ -14,7 +14,7 @@ class EndCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         isUserInteractionEnabled = false 
-        backgroundColor = .white
+        backgroundColor = .systemGray6
         let line = UIView()
         line.backgroundColor = .systemGray5
         line.translatesAutoresizingMaskIntoConstraints = false

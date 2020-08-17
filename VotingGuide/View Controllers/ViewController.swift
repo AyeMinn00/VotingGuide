@@ -66,7 +66,7 @@ class SettingViewController: VotingGuideViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = .systemGray6
 //        title = "Setting"
         // Do any additional setup after loading the view.
         let label = UILabel()

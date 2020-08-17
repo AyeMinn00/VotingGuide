@@ -54,28 +54,16 @@ class ImageSetCell: UICollectionViewCell {
     private func congfigTitle() {
         title = _title
         addSubview(title)
-//        title.topAnchor.constraint(equalTo: topAnchor, constant: 8).isActive = true
-//        title.leadingAnchor.constraint(equalTo: leadingAnchor,constant: 16 ).isActive = true
-//        title.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16).isActive = true
     }
 
     private func configImage() {
         image = _image
         addSubview(image)
-//        image.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 8).isActive = true
-//        image.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16).isActive = true
-//        image.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16).isActive = true
-//        image.heightAnchor.constraint(equalToConstant: 100).isActive = true
     }
 
     private func configLine() {
         line = _line
         addSubview(line)
-//        line.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 8).isActive = true
-//        line.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16).isActive = true
-//        line.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16).isActive = true
-//        line.heightAnchor.constraint(equalToConstant: 2).isActive = true
-//        line.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 8).isActive = true
     }
 
     private func configConstraint() {
