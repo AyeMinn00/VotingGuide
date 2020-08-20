@@ -125,6 +125,7 @@ DEPENDENCIES:
   - MaterialComponents/ActivityIndicator
   - MaterialComponents/AppBar
   - MaterialComponents/BottomNavigation
+  - MaterialComponents/Typography
   - RxCocoa (~> 5)
   - RxSwift (~> 5)
 
@@ -153,6 +154,6 @@ SPEC CHECKSUMS:
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
   RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
 
-PODFILE CHECKSUM: 5047ec32def3de77a4f2fc3f3c55c65287402fc7
+PODFILE CHECKSUM: a1a019737cb1ef3184d625fef32b5040dc1539d4
 
 COCOAPODS: 1.9.3

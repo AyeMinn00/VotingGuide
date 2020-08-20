@@ -16,7 +16,7 @@ class LoadingCell: UICollectionViewCell {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .systemGray6
+        backgroundColor = .white
         isUserInteractionEnabled = false
         let loading = MDCActivityIndicator()
         loading.cycleColors = [.blue]

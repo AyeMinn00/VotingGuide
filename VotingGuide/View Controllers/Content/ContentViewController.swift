@@ -6,10 +6,12 @@
 //  Copyright © 2020 Ko Ko Aye. All rights reserved.
 //
 
+import MaterialComponents.MaterialBottomNavigation
 import RxSwift
 import UIKit
 
 class ContentViewController: InfiniteCollectionViewController<ContentItem> {
+    
     private let vm = ContentViewModel()
 
     override func loadView() {
@@ -20,8 +22,14 @@ class ContentViewController: InfiniteCollectionViewController<ContentItem> {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpCollectionView()
-        collectionView.backgroundColor = .systemGray6
-        loadData()
+        collectionView.backgroundColor = .white
+        configAppBarViewController()
+        appBarViewController.headerView.trackingScrollView = collectionView
+        setTitle("Content")
+    }
+
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        navigationController?.pushViewController(HomeViewDetailController(), animated: true)
     }
 }
 
@@ -40,7 +48,7 @@ extension ContentViewController: InfiniteListDelegate {
 
     func makeDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section,
-        ContentItem>(collectionView: collectionView, cellProvider: { [weak self] (collectionView, indexPath, item) -> UICollectionViewCell? in
+            ContentItem>(collectionView: collectionView, cellProvider: { [weak self] (collectionView, indexPath, item) -> UICollectionViewCell? in
             switch item.state {
             case .main:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ContentCell.name, for: indexPath) as? ContentCell
@@ -59,7 +67,6 @@ extension ContentViewController: InfiniteListDelegate {
     }
 
     func createCollectionLayout() -> UICollectionViewLayout {
-
         let layoutSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(100))
         let item = NSCollectionLayoutItem(layoutSize: layoutSize)
 
@@ -82,5 +89,6 @@ extension ContentViewController: InfiniteListDelegate {
 // Mark
 extension ContentViewController: ErrorCellClickable {
     func didTapRetryButton() {
+        loadData()
     }
 }

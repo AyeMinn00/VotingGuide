@@ -25,7 +25,7 @@ class ErrorCell: UICollectionViewCell {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .systemGray6
+        backgroundColor = .white
         contentView.isUserInteractionEnabled = false
         let button = MDCButton()
         button.translatesAutoresizingMaskIntoConstraints = false

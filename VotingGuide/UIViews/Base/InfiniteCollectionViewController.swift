@@ -9,7 +9,7 @@
 import RxSwift
 import UIKit
 
-class InfiniteCollectionViewController<ItemIdentifier>: VotingGuideViewController, UICollectionViewDelegate where ItemIdentifier: CollectionItem {
+class InfiniteCollectionViewController<ItemIdentifier>: BaseChildViewController, UICollectionViewDelegate where ItemIdentifier: CollectionItem {
     weak var infiniteListDelegate: InfiniteListDelegate?
     weak var collectionView: UICollectionView!
     weak var scrollView: UIScrollView?
@@ -100,9 +100,11 @@ class InfiniteCollectionViewController<ItemIdentifier>: VotingGuideViewControlle
 
     // set public and override to let override subclass
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
     }
 
     func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
+//        log(msg: "didHighlightItemAt \(indexPath.row)")
         if let cell = collectionView.cellForItem(at: indexPath) {
             cell.contentView.backgroundColor = .systemGray6
         }

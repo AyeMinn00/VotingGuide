@@ -14,5 +14,6 @@ target 'VotingGuide' do
   pod 'MaterialComponents/BottomNavigation'
   pod 'MaterialComponents/AppBar'
   pod 'MaterialComponents/ActivityIndicator'
+  pod 'MaterialComponents/Typography'
 
 end

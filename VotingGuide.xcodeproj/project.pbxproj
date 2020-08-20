@@ -33,6 +33,7 @@
 		D556215724E843280081655D /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D556215624E843280081655D /* GalleryViewController.swift */; };
 		D556215A24E8442F0081655D /* ImageSetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D556215924E8442F0081655D /* ImageSetCell.swift */; };
 		D556215C24E8456B0081655D /* GalleryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D556215B24E8456B0081655D /* GalleryViewModel.swift */; };
+		D56AD06224ED8268009D59FA /* BaseChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56AD06124ED8268009D59FA /* BaseChildViewController.swift */; };
 		D5A308AE24DC83C0005274B0 /* Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A308AD24DC83C0005274B0 /* Ext.swift */; };
 		D5B47BEA24D58CD3002348E7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B47BE924D58CD3002348E7 /* AppDelegate.swift */; };
 		D5B47BEC24D58CD3002348E7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B47BEB24D58CD3002348E7 /* SceneDelegate.swift */; };
@@ -73,6 +74,7 @@
 		D556215624E843280081655D /* GalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 		D556215924E8442F0081655D /* ImageSetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSetCell.swift; sourceTree = "<group>"; };
 		D556215B24E8456B0081655D /* GalleryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewModel.swift; sourceTree = "<group>"; };
+		D56AD06124ED8268009D59FA /* BaseChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseChildViewController.swift; sourceTree = "<group>"; };
 		D5A308AD24DC83C0005274B0 /* Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ext.swift; sourceTree = "<group>"; };
 		D5B47BE624D58CD3002348E7 /* VotingGuide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VotingGuide.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5B47BE924D58CD3002348E7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 				D556214924E840E60081655D /* InfiniteListDelegate.swift */,
 				D556215224E8426F0081655D /* InfiniteListViewModel.swift */,
 				D556214524E8409D0081655D /* VotingGuideViewController.swift */,
+				D56AD06124ED8268009D59FA /* BaseChildViewController.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -446,6 +449,7 @@
 				D556215124E841B20081655D /* ErrorCell.swift in Sources */,
 				D556215A24E8442F0081655D /* ImageSetCell.swift in Sources */,
 				D556215724E843280081655D /* GalleryViewController.swift in Sources */,
+				D56AD06224ED8268009D59FA /* BaseChildViewController.swift in Sources */,
 				D556214624E8409D0081655D /* VotingGuideViewController.swift in Sources */,
 				D556215024E841B20081655D /* EndCell.swift in Sources */,
 				D556214224E83C480081655D /* List.swift in Sources */,
@@ -608,7 +612,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.amo.vg.VotingGuide3;
+				PRODUCT_BUNDLE_IDENTIFIER = com.amo.vg.VotingGuide4;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -627,7 +631,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.amo.vg.VotingGuide3;
+				PRODUCT_BUNDLE_IDENTIFIER = com.amo.vg.VotingGuide4;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

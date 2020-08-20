@@ -9,15 +9,14 @@
 import MaterialComponents.MaterialBottomNavigation
 import UIKit
 
-class MainViewController: UIViewController {
-    
+class MainViewController: VotingGuideViewController, UIScrollViewDelegate {
     weak var bottomNavBar: MDCBottomNavigationBar!
     weak var containerView: UIView!
-    let appBarViewController = MDCAppBarViewController()
 
     let bar: MDCBottomNavigationBar = {
         let bar = MDCBottomNavigationBar()
         bar.translatesAutoresizingMaskIntoConstraints = false
+        bar.elevation = ShadowElevation(.zero)
         bar.titleVisibility = .selected
         bar.alignment = .centered
         return bar
@@ -39,47 +38,31 @@ class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemGray6
+        view.backgroundColor = .white
         title = "Home"
-        configAppBarViewController()
-        layoutBottomNavBar()
-        configContainerView()
+        configBottomNavBar()
         configTabBarToBottomNavigation()
+        configContainerView()
         initHomeViewController()
-
-//        for child in children {
-//            debugPrint("child \(child)")
-//        }
-    }
-
-    private func configAppBarViewController() {
-        addChild(appBarViewController)
-        view.addSubview(appBarViewController.view)
-        appBarViewController.didMove(toParent: self)
-        appBarViewController.navigationBar.title = "Home"
-        appBarViewController.navigationBar.titleFont = UIFont.boldSystemFont(ofSize: 10)
-        appBarViewController.navigationBar.titleTextColor = .black
-        appBarViewController.navigationBar.titleAlignment = .leading
-        appBarViewController.navigationBar.backgroundColor = .white
-        appBarViewController.headerView.backgroundColor = .white
-    }
-
-    private func layoutBottomNavBar() {
-        bottomNavBar = bar
-        view.addSubview(bottomNavBar)
-        bottomNavBar.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        bottomNavBar.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        bottomNavBar.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        bottomNavBar.delegate = self
     }
 
     private func configContainerView() {
         containerView = _containerView
         view.addSubview(containerView)
-        containerView.topAnchor.constraint(equalTo: appBarViewController.view.bottomAnchor).isActive = true
+        containerView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         containerView.bottomAnchor.constraint(equalTo: bottomNavBar.topAnchor).isActive = true
+    }
+
+    private func configBottomNavBar() {
+        bottomNavBar = bar
+        view.addSubview(bottomNavBar)
+        bottomNavBar.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        bottomNavBar.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        bottomNavBar.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        bottomNavBar.delegate = self
+//        bottomNavBar.shadowColor
     }
 
     private func configTabBarToBottomNavigation() {
@@ -122,10 +105,9 @@ extension MainViewController: MDCBottomNavigationBarDelegate {
             title = "Settings"
             h.remove()
             g.remove()
-            add(s , containerView: containerView)
+            add(s, containerView: containerView)
         default:
             title = "Home"
         }
     }
 }
-

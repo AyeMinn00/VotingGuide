@@ -39,7 +39,7 @@ class HomeViewController: VotingGuideViewController {
     }
     
     @objc func tap(_ sender: Any){
-        navigationController?.pushViewController(HomeViewDetailController(), animated: true)
+        navigationController?.pushViewController(ContentViewController(), animated: true)
     }
 }
 
@@ -62,7 +62,7 @@ class HomeViewDetailController: UIViewController {
     }
 }
 
-class SettingViewController: VotingGuideViewController {
+class SettingViewController: BaseChildViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,6 +77,8 @@ class SettingViewController: VotingGuideViewController {
         
         label.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         label.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+        configAppBarViewController()
+        setTitle("Menu")
         
     }
 

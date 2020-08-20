@@ -67,7 +67,7 @@ extension SceneDelegate : MDCAppBarNavigationControllerDelegate{
         appBarViewController.navigationBar.titleTextColor = .black
         appBarViewController.navigationBar.titleAlignment = .leading
         appBarViewController.navigationBar.leadingBarItemsTintColor = .black
-        appBarViewController.navigationBar.titleFont = UIFont.systemFont(ofSize: 10)
+        appBarViewController.navigationBar.titleFont = UIFont.systemFont(ofSize: 20)
     }
     
 }

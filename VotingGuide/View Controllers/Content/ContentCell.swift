@@ -12,22 +12,22 @@ import UIKit
 class ContentCell: UICollectionViewCell {
     static let name = "ContentCell"
 
-    static let titleFontSize = CGFloat(22)
+    static let titleFontSize = CGFloat(20)
     static let dateFontSize = CGFloat(12.0)
-    static let imageCountFontSize = CGFloat(10.0)
+    static let imageCountFontSize = CGFloat(12.0)
 
     weak var title: UILabel!
     weak var date: UILabel!
     weak var imageCount: UILabel!
     weak var photo: UIImageView!
-    weak var stackView: UIStackView!
+    weak var line : UIView!
 
     let _title: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 3
-        label.font = UIFont.boldSystemFont(ofSize: 22)
-        label.textColor = .systemGray
+        label.font = UIFont.boldSystemFont(ofSize: titleFontSize)
+        label.textColor = UIColor(named: "Grey_800")
         return label
     }()
 
@@ -35,8 +35,8 @@ class ContentCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 1
-        label.font = UIFont.systemFont(ofSize: dateFontSize)
-        label.textColor = .systemGray2
+        label.font = UIFont.boldSystemFont(ofSize: dateFontSize)
+        label.textColor = UIColor(named: "Grey_500")
         return label
     }()
 
@@ -45,7 +45,7 @@ class ContentCell: UICollectionViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 1
         label.font = UIFont.systemFont(ofSize: imageCountFontSize)
-        label.textColor = .systemGray3
+        label.textColor = UIColor(named: "Grey_400")
         return label
     }()
 
@@ -53,23 +53,22 @@ class ContentCell: UICollectionViewCell {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.clipsToBounds = true
+        image.contentMode = .scaleAspectFit
+        image.backgroundColor = UIColor(named: "Grey_200")
         return image
     }()
 
-    let _stackView: UIStackView = {
-        let view = UIStackView()
+    let _line: UIView = {
+        let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.axis = .horizontal
-        view.spacing = 8
-        view.alignment = .leading
-        view.distribution = .fill
+        view.backgroundColor = UIColor(named: "Grey_300")
+        view.layer.cornerRadius = 2
         return view
     }()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configStackView()
-        configLabels()
+        configUIViews()
         configConstraints()
     }
 
@@ -77,58 +76,52 @@ class ContentCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    private func configStackView() {
+    private func configUIViews() {
         title = _title
         photo = _photo
-        configPhotoConstraint()
-        stackView = _stackView
-        stackView.addArrangedSubview(title)
-        stackView.addArrangedSubview(photo)
-        addSubview(stackView)
-    }
-
-    private func configLabels() {
         date = _date
         imageCount = _imageCount
+        line = _line
+        addSubview(title)
+        addSubview(photo)
         addSubview(date)
         addSubview(imageCount)
-    }
-
-    private func configPhotoConstraint() {
-        photo.widthAnchor.constraint(equalToConstant: 160).isActive = true
-        photo.heightAnchor.constraint(equalToConstant: 90).isActive = true
+        addSubview(line)
     }
 
     private func configConstraints() {
-        var viewDict: [String: Any] = [:]
-        viewDict["stackView"] = stackView
-        viewDict["date"] = date
-        viewDict["imageCount"] = imageCount
-
+        
         var constraints = [NSLayoutConstraint]()
-//        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-16-[stackView]-16-|", options: [], metrics: nil, views: viewDict)
         constraints += [
-            stackView.topAnchor.constraint(equalTo: topAnchor, constant: 16),
-            stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            date.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 8),
+            photo.widthAnchor.constraint(lessThanOrEqualToConstant: 160),
+            photo.heightAnchor.constraint(equalTo: photo.widthAnchor, multiplier: 0.75),
+            photo.topAnchor.constraint(equalTo: topAnchor, constant: 16),
+            photo.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            title.topAnchor.constraint(equalTo: photo.topAnchor),
+            title.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            title.trailingAnchor.constraint(equalTo: photo.leadingAnchor),
+            title.bottomAnchor.constraint(equalTo: photo.bottomAnchor),
+            date.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 8),
             date.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            date.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
-            imageCount.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 4),
-            imageCount.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-//            contentView.bottomAnchor.constraint(equalTo: date.bottomAnchor, constant: 16)
+            imageCount.topAnchor.constraint(equalTo: photo.bottomAnchor, constant: 8),
+            imageCount.leadingAnchor.constraint(equalTo: photo.leadingAnchor),
+            line.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            line.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            line.topAnchor.constraint(equalTo: date.bottomAnchor, constant: 26),
+            line.heightAnchor.constraint(equalToConstant: 1),
+            line.bottomAnchor.constraint(equalTo: bottomAnchor)
         ]
 
         NSLayoutConstraint.activate(constraints)
     }
 
     private func fetchImage(_ url: String?) {
-        let processor = DownsamplingImageProcessor(size: CGSize(width: 256, height: 256))
+        let processor = DownsamplingImageProcessor(size: CGSize(width: 256, height: 192))
         if url == nil {
             photo.image = UIImage(named: "sample1")
         } else {
             let url = URL(string: IMG_MEDIUM_URL + url!)
-            photo.kf.setImage(with: url, placeholder: UIImage(named: "sample1"), options: [
+            photo.kf.setImage(with: url, options: [
                 .processor(processor),
                 .cacheOriginalImage])
         }
