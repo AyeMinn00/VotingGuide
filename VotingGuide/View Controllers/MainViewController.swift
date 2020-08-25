@@ -80,6 +80,8 @@ class MainViewController: VotingGuideViewController, UIScrollViewDelegate {
 
         bottomNavBar.items = [homeTabBar, galleryTabBar, settingTabBar]
         bottomNavBar.titleVisibility = .never
+        
+        
         bottomNavBar.selectedItem = homeTabBar
     }
 
