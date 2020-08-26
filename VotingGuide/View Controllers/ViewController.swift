@@ -66,7 +66,7 @@ class SettingViewController: BaseChildViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .systemGray6
+        self.view.backgroundColor = .white
 //        title = "Setting"
         // Do any additional setup after loading the view.
         let label = UILabel()

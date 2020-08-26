@@ -16,7 +16,7 @@ class EndCell: UICollectionViewCell {
         isUserInteractionEnabled = false 
         backgroundColor = .white
         let line = UIView()
-        line.backgroundColor = .systemGray5
+        line.backgroundColor = UIColor(named: "Grey_300")
         line.translatesAutoresizingMaskIntoConstraints = false
         line.layer.cornerRadius = 2
         addSubview(line)

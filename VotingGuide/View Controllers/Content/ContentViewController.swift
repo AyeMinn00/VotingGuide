@@ -11,7 +11,6 @@ import RxSwift
 import UIKit
 
 class ContentViewController: InfiniteCollectionViewController<ContentItem> {
-    
     private let vm = ContentViewModel()
 
     override func loadView() {
@@ -29,7 +28,14 @@ class ContentViewController: InfiniteCollectionViewController<ContentItem> {
     }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        navigationController?.pushViewController(HomeViewDetailController(), animated: true)
+        let model = dataSource.snapshot().itemIdentifiers[indexPath.row]
+        if let value = model.value {
+            let vc = ContentDetailViewController()
+            vc.contentTitle = value.title
+            vc.contentDate = value.date
+            vc.contentBody = value.body
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
 }
 

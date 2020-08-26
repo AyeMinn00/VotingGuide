@@ -26,9 +26,9 @@ class InfiniteCollectionViewController<ItemIdentifier>: BaseChildViewController,
 
     private func initCollectionView() {
         if let delegate = infiniteListDelegate {
-            log(msg: "init collection view")
             let collectionView = UICollectionView(frame: .zero, collectionViewLayout: delegate.createCollectionLayout())
             collectionView.translatesAutoresizingMaskIntoConstraints = false
+            collectionView.automaticallyAdjustsScrollIndicatorInsets = false 
             view.addSubview(collectionView)
             NSLayoutConstraint.activate([
                 collectionView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -36,7 +36,7 @@ class InfiniteCollectionViewController<ItemIdentifier>: BaseChildViewController,
                 collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
                 collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             ])
-
+            collectionView.contentInsetAdjustmentBehavior = .never
             self.collectionView = collectionView
             self.collectionView.delegate = self
         }
@@ -55,7 +55,6 @@ class InfiniteCollectionViewController<ItemIdentifier>: BaseChildViewController,
     }
 
     func setUpCollectionView() {
-        log(msg: "setUpCollectionView")
         initCollectionView()
         configCollectionView()
         if let delegate = infiniteListDelegate {
@@ -66,7 +65,6 @@ class InfiniteCollectionViewController<ItemIdentifier>: BaseChildViewController,
     }
 
     func applySnapshot(items: [ItemIdentifier], _ animatingDifferences: Bool = true) {
-        log(msg: "apply snapshot with items \(items.count)")
         var snapshot = NSDiffableDataSourceSnapshot<Section, ItemIdentifier>()
         snapshot.appendSections([.main])
         snapshot.appendItems(items)
@@ -106,7 +104,7 @@ class InfiniteCollectionViewController<ItemIdentifier>: BaseChildViewController,
     func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
 //        log(msg: "didHighlightItemAt \(indexPath.row)")
         if let cell = collectionView.cellForItem(at: indexPath) {
-            cell.contentView.backgroundColor = .systemGray6
+            cell.contentView.backgroundColor = UIColor(named: "Grey_200")
         }
     }
 

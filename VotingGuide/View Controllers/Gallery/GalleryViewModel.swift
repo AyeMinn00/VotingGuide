@@ -8,16 +8,34 @@
 
 import Foundation
 import RxSwift
+import RxCocoa
 
-class GalleryViewModel: InfiniteListViewModel<ImageSetItem>, InfiniteListViewModelDelegate {
+class GalleryViewModel : NSObject{
     
-    override init() {
-        super.init()
-        requestDelegate = self
+    let disposeBag = DisposeBag()
+    var dataSet : [ImageSetItem]  = []
+    let responses : PublishRelay<[ImageSetItem]> = PublishRelay()
+    
+    func loadData(){
+        dataSet.append(ImageSetItem(state: .loading))
+        responses.accept(dataSet)
+        requestDataList()
+    }
+    
+    private func onDataListResult(_ response: [ImageSetItem]){
+        dataSet.removeAll()
+        dataSet += response
+        dataSet.append(ImageSetItem(state: .finished))
+        self.responses.accept(dataSet)
+    }
+    
+    private func onDataListError(_ error : Error){
+        dataSet.removeAll()
+        dataSet.append(ImageSetItem(state: .error))
+        self.responses.accept(dataSet)
     }
 
     func requestDataList() {
-        log(msg: "requestDataList")
         ApiService.default.getAllImageSets()
             .observeOn(MainScheduler.instance)
             .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))

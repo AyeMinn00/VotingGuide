@@ -8,13 +8,13 @@
 
 import Foundation
 
-struct Content: Codable, Hashable {
-    let id: String
-    let title: String?
+class Content: Codable, Hashable {
+    let id: String?
+    var title: String?
     let images: [String?]
     let body: String?
     let langId: String
-    let date : String
+    let date: String
 
     enum CodingKeys: String, CodingKey {
         case id = "_id"
@@ -24,16 +24,23 @@ struct Content: Codable, Hashable {
         case langId = "lang"
         case date = "created_at"
     }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+
+    static func == (lhs: Content, rhs: Content) -> Bool {
+        return lhs.id == rhs.id
+    }
 }
 
 // for parsing
-struct Contents2 : Codable{
-    var contents : [Content]
+struct Contents2: Codable {
+    var contents: [Content]
 }
 
 struct Contents: Codable {
-    
-    var payload : Contents2
+    var payload: Contents2
 
     func isEmpty() -> Bool {
         return payload.contents.count == 0
@@ -43,6 +50,11 @@ struct Contents: Codable {
         var cells: [ContentItem] = []
         for index in 0 ..< payload.contents.count {
             let imageSet = payload.contents[index]
+//            if index % 2 != 0 {
+//                imageSet.title! = "This is title trailing and number of 3 lines."
+//            } else {
+//                imageSet.title! = "သီဟိုဠ်မှ ဉာဏ်ကြီးရှင်သည် "
+//            }
             cells.append(ContentItem(value: imageSet))
         }
         return cells

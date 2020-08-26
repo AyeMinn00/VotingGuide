@@ -12,10 +12,12 @@ import UIKit
 class MainViewController: VotingGuideViewController, UIScrollViewDelegate {
     weak var bottomNavBar: MDCBottomNavigationBar!
     weak var containerView: UIView!
+    weak var line : UIView!
 
     let bar: MDCBottomNavigationBar = {
         let bar = MDCBottomNavigationBar()
         bar.translatesAutoresizingMaskIntoConstraints = false
+        bar.backgroundColor = UIColor(named: "Grey_100")
         bar.elevation = ShadowElevation(.zero)
         bar.titleVisibility = .selected
         bar.alignment = .centered
@@ -32,6 +34,13 @@ class MainViewController: VotingGuideViewController, UIScrollViewDelegate {
         return view
     }()
 
+    let _line: UIView = {
+        let line = UIView()
+        line.translatesAutoresizingMaskIntoConstraints = false
+        line.backgroundColor = UIColor(named: "Grey_400")
+        return line
+    }()
+
     let h = ContentViewController()
     let g = GalleryViewController()
     let s = SettingViewController()
@@ -46,15 +55,6 @@ class MainViewController: VotingGuideViewController, UIScrollViewDelegate {
         initHomeViewController()
     }
 
-    private func configContainerView() {
-        containerView = _containerView
-        view.addSubview(containerView)
-        containerView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        containerView.bottomAnchor.constraint(equalTo: bottomNavBar.topAnchor).isActive = true
-    }
-
     private func configBottomNavBar() {
         bottomNavBar = bar
         view.addSubview(bottomNavBar)
@@ -62,7 +62,21 @@ class MainViewController: VotingGuideViewController, UIScrollViewDelegate {
         bottomNavBar.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         bottomNavBar.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         bottomNavBar.delegate = self
-//        bottomNavBar.shadowColor
+        line = _line
+        view.addSubview(line)
+        line.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        line.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        line.bottomAnchor.constraint(equalTo: bottomNavBar.topAnchor).isActive = true
+        line.heightAnchor.constraint(equalToConstant: 0.5).isActive = true
+    }
+    
+    private func configContainerView() {
+        containerView = _containerView
+        view.addSubview(containerView)
+        containerView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        containerView.bottomAnchor.constraint(equalTo: line.topAnchor).isActive = true
     }
 
     private func configTabBarToBottomNavigation() {

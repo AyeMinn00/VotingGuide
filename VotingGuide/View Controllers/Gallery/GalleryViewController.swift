@@ -6,42 +6,74 @@
 //  Copyright © 2020 Ko Ko Aye. All rights reserved.
 //
 
-import UIKit
 import RxSwift
+import UIKit
 
-class GalleryViewController: InfiniteCollectionViewController<ImageSetItem> {
+class GalleryViewController: BaseChildViewController, UICollectionViewDelegate {
+    private weak var collectionView: UICollectionView!
+    private let disposeBag = DisposeBag()
+    private var dataSource: UICollectionViewDiffableDataSource<Section, ImageSetItem>!
     private let vm = GalleryViewModel()
 
     override func loadView() {
         super.loadView()
-        infiniteListDelegate = self
+        view.backgroundColor = .white
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpCollectionView()
-        collectionView.backgroundColor = .systemGray6
+        configAppBarViewController()
+        appBarViewController.headerView.trackingScrollView = collectionView
+        setTitle("Gallery")
+        watchData()
         loadData()
     }
-    
-}
 
-extension GalleryViewController: InfiniteListDelegate {
-    func registerCell() {
+    private func setUpCollectionView() {
+        initCollectionView()
+        configCollectionView()
+        makeDataSource()
+    }
+
+    private func initCollectionView() {
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createCollectionLayout())
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.backgroundColor = .white
+        view.addSubview(collectionView)
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+        ])
+        collectionView.contentInsetAdjustmentBehavior = .never
+
+        self.collectionView = collectionView
+        self.collectionView.delegate = self
+    }
+
+    private func configCollectionView() {
+        // register loading cell as footer in collection view
+        collectionView.register(LoadingCell.self, forCellWithReuseIdentifier: LoadingCell.name)
+        collectionView.register(ErrorCell.self, forCellWithReuseIdentifier: ErrorCell.name)
+        collectionView.register(EndCell.self, forCellWithReuseIdentifier: EndCell.name)
         collectionView.register(ImageSetCell.self, forCellWithReuseIdentifier: ImageSetCell.name)
     }
 
-    func getOffSet() -> Int {
-        return 300
+    private func createCollectionLayout() -> UICollectionViewLayout {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(200))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(200))
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
+
+        let section = NSCollectionLayoutSection(group: group)
+        let layout = UICollectionViewCompositionalLayout(section: section)
+        return layout
     }
 
-    func loadData() {
-        log(msg: "loadData()")
-        vm.loadData()
-    }
-
-    func makeDataSource() {
-        log(msg: "makeDataSource")
+    private func makeDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, ImageSetItem>(collectionView: collectionView, cellProvider: { [weak self] (collectionView, indexPath, item) -> UICollectionViewCell? in
             switch item.state {
             case .main:
@@ -60,24 +92,23 @@ extension GalleryViewController: InfiniteListDelegate {
         })
     }
 
-    func createCollectionLayout() -> UICollectionViewLayout {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(200))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(200))
-        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
-
-        let section = NSCollectionLayoutSection(group: group)
-        let layout = UICollectionViewCompositionalLayout(section: section)
-        return layout
+    private func loadData() {
+        vm.loadData()
     }
 
-    func watchData() {
+    private func applySnapshot(items: [ImageSetItem], _ animatingDifferences: Bool = true) {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, ImageSetItem>()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(items)
+        dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
+    }
+
+    private func watchData() {
         vm.responses.subscribeOn(MainScheduler.instance)
-        .observeOn(MainScheduler.instance)
-        .subscribe(onNext: { [weak self] imageSets in
-            self?.applySnapshot(items: imageSets)
-        }).disposed(by: disposeBag)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] imageSets in
+                self?.applySnapshot(items: imageSets)
+            }).disposed(by: disposeBag)
     }
 }
 

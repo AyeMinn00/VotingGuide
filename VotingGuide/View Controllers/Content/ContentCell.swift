@@ -20,7 +20,18 @@ class ContentCell: UICollectionViewCell {
     weak var date: UILabel!
     weak var imageCount: UILabel!
     weak var photo: UIImageView!
-    weak var line : UIView!
+    weak var line: UIView!
+    weak var titleAndPhoto: UIStackView!
+
+    let _titleAndPhoto: UIStackView = {
+        let view = UIStackView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.axis = .horizontal
+        view.spacing = 8
+        view.alignment = .top
+        view.distribution = .fill
+        return view
+    }()
 
     let _title: UILabel = {
         let label = UILabel()
@@ -53,7 +64,10 @@ class ContentCell: UICollectionViewCell {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.clipsToBounds = true
-        image.contentMode = .scaleAspectFit
+        image.layer.cornerRadius = 4.0
+        image.layer.borderWidth = 1
+        image.layer.borderColor = UIColor(named: "Grey_100")?.cgColor
+        image.contentMode = .scaleAspectFill
         image.backgroundColor = UIColor(named: "Grey_200")
         return image
     }()
@@ -62,12 +76,12 @@ class ContentCell: UICollectionViewCell {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = UIColor(named: "Grey_300")
-        view.layer.cornerRadius = 2
         return view
     }()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        backgroundColor = .white
         configUIViews()
         configConstraints()
     }
@@ -79,37 +93,37 @@ class ContentCell: UICollectionViewCell {
     private func configUIViews() {
         title = _title
         photo = _photo
+        titleAndPhoto = _titleAndPhoto
+        titleAndPhoto.addArrangedSubview(title)
+        titleAndPhoto.addArrangedSubview(photo)
+        addSubview(_titleAndPhoto)
         date = _date
         imageCount = _imageCount
         line = _line
-        addSubview(title)
-        addSubview(photo)
         addSubview(date)
         addSubview(imageCount)
         addSubview(line)
     }
 
     private func configConstraints() {
-        
         var constraints = [NSLayoutConstraint]()
         constraints += [
-            photo.widthAnchor.constraint(lessThanOrEqualToConstant: 160),
+            titleAndPhoto.topAnchor.constraint(equalTo: topAnchor, constant: 26),
+            titleAndPhoto.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            titleAndPhoto.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            photo.widthAnchor.constraint(lessThanOrEqualToConstant: 130),
             photo.heightAnchor.constraint(equalTo: photo.widthAnchor, multiplier: 0.75),
-            photo.topAnchor.constraint(equalTo: topAnchor, constant: 16),
-            photo.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            title.topAnchor.constraint(equalTo: photo.topAnchor),
-            title.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            title.trailingAnchor.constraint(equalTo: photo.leadingAnchor),
-            title.bottomAnchor.constraint(equalTo: photo.bottomAnchor),
-            date.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 8),
+            date.topAnchor.constraint(equalTo: titleAndPhoto.bottomAnchor, constant: 8),
             date.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            imageCount.topAnchor.constraint(equalTo: photo.bottomAnchor, constant: 8),
+            date.trailingAnchor.constraint(equalTo: photo.leadingAnchor, constant: 8),
+            imageCount.topAnchor.constraint(equalTo: _titleAndPhoto.bottomAnchor, constant: 8),
             imageCount.leadingAnchor.constraint(equalTo: photo.leadingAnchor),
+            imageCount.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             line.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             line.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             line.topAnchor.constraint(equalTo: date.bottomAnchor, constant: 26),
             line.heightAnchor.constraint(equalToConstant: 1),
-            line.bottomAnchor.constraint(equalTo: bottomAnchor)
+            line.bottomAnchor.constraint(equalTo: bottomAnchor),
         ]
 
         NSLayoutConstraint.activate(constraints)

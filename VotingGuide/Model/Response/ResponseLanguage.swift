@@ -8,14 +8,20 @@
 
 import Foundation
 
-struct Language : Codable, Hashable{
-    
-    let id : String
-    let lang : String
-    
-    enum CodingKeys : String , CodingKey{
+class Language: Codable, Hashable {
+    let id: String
+    let lang: String
+
+    enum CodingKeys: String, CodingKey {
         case id = "_id"
-        case lang 
+        case lang
     }
-    
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+
+    static func == (lhs: Language, rhs: Language) -> Bool {
+        return lhs.id == rhs.id
+    }
 }

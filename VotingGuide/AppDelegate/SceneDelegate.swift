@@ -18,12 +18,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
 
         guard let windowScene = (scene as? UIWindowScene) else { return }
-
+        
         window = UIWindow(frame: UIScreen.main.bounds)
 
         
         let rootViewController = MDCAppBarNavigationController(rootViewController: MainViewController())
         rootViewController.delegate = self
+        
+//        let rootViewController = CDViewController()
         window?.rootViewController = rootViewController
         window?.makeKeyAndVisible()
         window?.windowScene = windowScene
@@ -61,13 +63,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 extension SceneDelegate : MDCAppBarNavigationControllerDelegate{
     
     func appBarNavigationController(_ navigationController: MDCAppBarNavigationController, willAdd appBarViewController: MDCAppBarViewController, asChildOf viewController: UIViewController) {
-        print("config appbar")
-        appBarViewController.headerView.backgroundColor = .white
-        appBarViewController.navigationBar.backgroundColor = .white
+        
+        appBarViewController.headerView.backgroundColor = UIColor(named: "Grey_100")
+        appBarViewController.navigationBar.backgroundColor = UIColor(named: "Grey_100")
         appBarViewController.navigationBar.titleTextColor = .black
         appBarViewController.navigationBar.titleAlignment = .leading
         appBarViewController.navigationBar.leadingBarItemsTintColor = .black
         appBarViewController.navigationBar.titleFont = UIFont.systemFont(ofSize: 20)
+        appBarViewController.headerView.shadowLayer = CAGradientLayer()
+        appBarViewController.headerView.canOverExtend = false
+        appBarViewController.headerView.visibleShadowOpacity = 0.15
     }
     
 }
