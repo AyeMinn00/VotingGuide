@@ -28,18 +28,15 @@ class ContentViewController: InfiniteCollectionViewController<ContentItem> {
     }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-<<<<<<< HEAD
         let model = dataSource.snapshot().itemIdentifiers[indexPath.row]
-        if let value = model.value {
+        if let content = model.value {
             let vc = ContentDetailViewController()
-            vc.contentTitle = value.title
-            vc.contentDate = value.date
-            vc.contentBody = value.body
+            vc.contentTitle = content.title
+            vc.contentDate = content.date
+            vc.contentBody = content.body
+            vc.contentImages = content.contentImages
             navigationController?.pushViewController(vc, animated: true)
         }
-=======
-        navigationController?.pushViewController(ScrollViewTestViewController(), animated: true)
->>>>>>> from imac
     }
 }
 

@@ -11,7 +11,7 @@ import Foundation
 class Content: Codable, Hashable {
     let id: String?
     var title: String?
-    let images: [String?]
+    var contentImages: [String?]
     let body: String?
     let langId: String
     let date: String
@@ -19,7 +19,7 @@ class Content: Codable, Hashable {
     enum CodingKeys: String, CodingKey {
         case id = "_id"
         case title
-        case images
+        case contentImages = "images"
         case body
         case langId = "lang"
         case date = "created_at"
@@ -50,6 +50,8 @@ struct Contents: Codable {
         var cells: [ContentItem] = []
         for index in 0 ..< payload.contents.count {
             let imageSet = payload.contents[index]
+            imageSet.contentImages.append("2020_08_09_5_06_22.jpeg")
+            imageSet.contentImages.append("2020_08_09_5_09_45.jpeg")
 //            if index % 2 != 0 {
 //                imageSet.title! = "This is title trailing and number of 3 lines."
 //            } else {

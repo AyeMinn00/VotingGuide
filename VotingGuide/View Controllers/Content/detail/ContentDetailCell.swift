@@ -19,6 +19,10 @@ class ContentDetailCell : UICollectionViewCell{
        let photo = UIImageView()
         photo.translatesAutoresizingMaskIntoConstraints = false
         photo.contentMode = .scaleAspectFill
+        photo.clipsToBounds = true
+        photo.layer.cornerRadius = 4
+        photo.layer.borderWidth = 0.5
+        photo.layer.borderColor = UIColor(named: "Grey_500")?.cgColor
         photo.backgroundColor = UIColor(named: "Grey_300")
         return photo
     }()
@@ -47,6 +51,10 @@ class ContentDetailCell : UICollectionViewCell{
                 .processor(processor),
                 .cacheOriginalImage])
         }
+    }
+    
+    func bind(_ str: String?){
+        fetchImage(str)
     }
     
 }

@@ -17,7 +17,7 @@ class MainViewController: VotingGuideViewController, UIScrollViewDelegate {
     let bar: MDCBottomNavigationBar = {
         let bar = MDCBottomNavigationBar()
         bar.translatesAutoresizingMaskIntoConstraints = false
-        bar.backgroundColor = UIColor(named: "Grey_100")
+        bar.backgroundColor = UIColor(named: "color_primary")
         bar.elevation = ShadowElevation(.zero)
         bar.titleVisibility = .selected
         bar.alignment = .centered
@@ -47,7 +47,7 @@ class MainViewController: VotingGuideViewController, UIScrollViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(named: "color_primary")
         title = "Home"
         configBottomNavBar()
         configTabBarToBottomNavigation()

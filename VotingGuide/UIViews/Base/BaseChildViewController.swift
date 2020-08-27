@@ -22,12 +22,13 @@ class BaseChildViewController : VotingGuideViewController{
         appBarViewController.navigationBar.titleFont = MDCTypography.boldFont(from: UIFont.systemFont(ofSize: 24))
         appBarViewController.navigationBar.titleTextColor = .black
         let layer = CAGradientLayer()
+        layer.colors = [UIColor(named: "Grey_800")!]
         appBarViewController.headerView.canOverExtend = false 
         appBarViewController.headerView.shadowLayer = layer
-        appBarViewController.headerView.visibleShadowOpacity = 0.15
+        appBarViewController.headerView.visibleShadowOpacity = 0.2
         appBarViewController.navigationBar.titleAlignment = .leading
-        appBarViewController.navigationBar.backgroundColor = UIColor(named: "Grey_100")
-        appBarViewController.headerView.backgroundColor = UIColor(named: "Grey_100")
+        appBarViewController.navigationBar.backgroundColor = UIColor(named: "color_primary")
+        appBarViewController.headerView.backgroundColor = UIColor(named: "color_primary")
     }
     
     func setTitle(_ title : String){

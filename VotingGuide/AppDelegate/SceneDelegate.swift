@@ -6,8 +6,8 @@
 //  Copyright © 2020 Ko Ko Aye. All rights reserved.
 //
 
-import UIKit
 import MaterialComponents.MaterialAppBar
+import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
@@ -18,15 +18,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
 
         guard let windowScene = (scene as? UIWindowScene) else { return }
-        
+
         window = UIWindow(frame: UIScreen.main.bounds)
 
-        
-        let rootViewController = MDCAppBarNavigationController(rootViewController: MainViewController())
-        rootViewController.delegate = self
-        
-//        let rootViewController = CDViewController()
-        window?.rootViewController = rootViewController
+        if UserDefaultManager.shared.getSelectedLanguage() == nil {
+            window?.rootViewController = LanguageSelectionViewController()
+        } else {
+            let rootViewController = MDCAppBarNavigationController(rootViewController: MainViewController())
+            rootViewController.delegate = self
+
+            window?.rootViewController = rootViewController
+        }
+
         window?.makeKeyAndVisible()
         window?.windowScene = windowScene
     }
@@ -60,22 +63,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 }
 
-extension SceneDelegate : MDCAppBarNavigationControllerDelegate{
-    
+extension SceneDelegate: MDCAppBarNavigationControllerDelegate {
     func appBarNavigationController(_ navigationController: MDCAppBarNavigationController, willAdd appBarViewController: MDCAppBarViewController, asChildOf viewController: UIViewController) {
-        
-        appBarViewController.headerView.backgroundColor = UIColor(named: "Grey_100")
-        appBarViewController.navigationBar.backgroundColor = UIColor(named: "Grey_100")
+        appBarViewController.headerView.backgroundColor = UIColor(named: "color_primary")
+        appBarViewController.navigationBar.backgroundColor = UIColor(named: "color_primary")
         appBarViewController.navigationBar.titleTextColor = .black
         appBarViewController.navigationBar.titleAlignment = .leading
         let layer = CAGradientLayer()
-        layer.colors = [UIColor(named: "Grey_200")]
+        layer.colors = [UIColor(named: "Grey_200")!]
         appBarViewController.headerView.shadowLayer = layer
         appBarViewController.navigationBar.leadingBarItemsTintColor = .black
         appBarViewController.navigationBar.titleFont = UIFont.systemFont(ofSize: 20)
         appBarViewController.headerView.shadowLayer = CAGradientLayer()
         appBarViewController.headerView.canOverExtend = false
-        appBarViewController.headerView.visibleShadowOpacity = 0.15
+        appBarViewController.headerView.visibleShadowOpacity = 0.2
     }
-    
 }
