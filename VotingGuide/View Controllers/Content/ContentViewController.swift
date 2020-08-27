@@ -28,6 +28,7 @@ class ContentViewController: InfiniteCollectionViewController<ContentItem> {
     }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+<<<<<<< HEAD
         let model = dataSource.snapshot().itemIdentifiers[indexPath.row]
         if let value = model.value {
             let vc = ContentDetailViewController()
@@ -36,6 +37,9 @@ class ContentViewController: InfiniteCollectionViewController<ContentItem> {
             vc.contentBody = value.body
             navigationController?.pushViewController(vc, animated: true)
         }
+=======
+        navigationController?.pushViewController(ScrollViewTestViewController(), animated: true)
+>>>>>>> from imac
     }
 }
 
