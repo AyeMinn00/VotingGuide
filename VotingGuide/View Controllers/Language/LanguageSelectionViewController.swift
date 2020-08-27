@@ -33,6 +33,7 @@ class LanguageSelectionViewController: VotingGuideViewController {
         let sv = UIScrollView()
         sv.backgroundColor = .white
         sv.translatesAutoresizingMaskIntoConstraints = false
+        sv.showsVerticalScrollIndicator = false 
         return sv
     }()
 
@@ -63,14 +64,14 @@ class LanguageSelectionViewController: VotingGuideViewController {
         message = _message
         containerView.addSubview(message)
         NSLayoutConstraint.activate([
-            message.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 16),
+            message.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 46),
             message.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.9),
         ])
        
     }
 
     private func bind() {
-        message.text = "Select Your language to use bar nadlfkasjd;lf ka;dfkj aoskdja osidfjpaosdifj dfj; When you set values like that, they become permanent – you can quit the app then re-launch and they'll still be there, so it's the ideal way to store app configuration data. As an advance warning, you might find some old tutorials recommend calling the synchronize() method to force your data to save, but Apple has asked us not to do that for some years now."
+        message.text = "Select Your language to use bar nadlfkasjd;lf ka;dfkj aoskdja osidfjpaosdifj dfj; When you set values like that, they become permanent – you can quit the app then re-launch and they'll still be there, so it's the ideal way to store app configuration data. As an advance warning, you might find some old tutorials recommend calling the synchronize() method to force your data to save, but Apple has asked us not to do that for some years now. The central notion of a UIScrollView object (or, simply, a scroll view) is that it is a view whose origin is adjustable over the content view. It clips the content to its frame, which generally (but not necessarily) coincides with that of the application’s main window. A scroll view tracks the movements of fingers and adjusts the origin accordingly. The view that is showing its content “through” the scroll view draws that portion of itself based on the new origin, which is pinned to an offset in the content view. The scroll view itself does no drawing except for displaying vertical and horizontal scroll indicators. The scroll view must know the size of the content view so it knows when to stop scrolling; by default, it “bounces” back when scrolling exceeds the bounds of the content.The object that manages the drawing of content displayed in a scroll view should tile the content’s subviews so that no view exceeds the size of the screen. As users scroll in the scroll view, this object should add and remove subviews as necessary.Because a scroll view has no scroll bars, it must know whether a touch signals an intent to scroll versus an intent to track a subview in the content. To make this determination, it temporarily intercepts a touch-down event by starting a timer and, before the timer fires, seeing if the touching finger makes any movement."
         setScrollViewContentSize()
     }
     
@@ -81,7 +82,7 @@ class LanguageSelectionViewController: VotingGuideViewController {
     }
     
     private func setScrollViewContentSize(){
-        containerView.bottomAnchor.constraint(equalTo: message.bottomAnchor, constant: 16).isActive = true
+        containerView.bottomAnchor.constraint(equalTo: message.bottomAnchor, constant: 26).isActive = true
         containerView.layoutIfNeeded()
         let width = containerView.bounds.width
         let height = containerView.bounds.height
