@@ -25,6 +25,7 @@
 #import "MaterialAvailability.h"
 #import "MDCBottomNavigationBarDelegate.h"
 #import "MaterialPalettes.h"
+#import "MaterialRipple.h"
 #import "MaterialShadowElevations.h"
 #import "MaterialShadowLayer.h"
 #import "MaterialTypography.h"
@@ -40,7 +41,7 @@ static const CGFloat kMinItemWidth = 80;
 static const CGFloat kPreferredItemWidth = 120;
 static const CGFloat kMaxItemWidth = 168;
 // The default amount of internal padding on the leading/trailing edges of each bar item.
-static const CGFloat kDefaultItemHorizontalPadding = 12;
+static const CGFloat kDefaultItemHorizontalPadding = 0;
 static const CGFloat kBarHeightStackedTitle = 56;
 static const CGFloat kBarHeightAdjacentTitle = 40;
 static const CGFloat kItemsHorizontalMargin = 12;
@@ -320,9 +321,9 @@ static NSString *const kOfAnnouncement = @"of";
     CGFloat layoutFrameWidth = maxItemWidth * self.items.count;
     layoutFrameWidth = MIN(bottomNavWidthInset, layoutFrameWidth);
     containerWidth = MIN(bottomNavWidthInset, MAX(containerWidth, layoutFrameWidth));
-    CGFloat clusteredOffsetX = (bottomNavSize.width - containerWidth) / 2;
+    CGFloat clusteredOffsetX = MDCFloor((bottomNavSize.width - containerWidth) / 2);
     self.itemsLayoutView.frame = CGRectMake(clusteredOffsetX, 0, containerWidth, barHeight);
-    CGFloat itemLayoutFrameOffsetX = (containerWidth - layoutFrameWidth) / 2;
+    CGFloat itemLayoutFrameOffsetX = MDCFloor((containerWidth - layoutFrameWidth) / 2);
     self.itemLayoutFrame = CGRectMake(itemLayoutFrameOffsetX, 0, layoutFrameWidth, barHeight);
   }
 }
@@ -339,13 +340,15 @@ static NSString *const kOfAnnouncement = @"of";
     MDCBottomNavigationItemView *itemView = self.itemViews[i];
     itemView.titleBelowIcon = self.isTitleBelowIcon;
     if (layoutDirection == UIUserInterfaceLayoutDirectionLeftToRight) {
-      itemView.frame = CGRectMake(
-          CGRectGetMinX(self.itemLayoutFrame) + i * itemWidth + self.itemsHorizontalPadding, 0,
-          itemWidth - 2 * self.itemsHorizontalPadding, navBarHeight);
+      itemView.frame =
+          CGRectMake(MDCFloor(CGRectGetMinX(self.itemLayoutFrame) + i * itemWidth +
+                              self.itemsHorizontalPadding),
+                     0, MDCFloor(itemWidth - 2 * self.itemsHorizontalPadding), navBarHeight);
     } else {
-      itemView.frame = CGRectMake(
-          CGRectGetMaxX(self.itemLayoutFrame) - (i + 1) * itemWidth + self.itemsHorizontalPadding,
-          0, itemWidth - 2 * self.itemsHorizontalPadding, navBarHeight);
+      itemView.frame =
+          CGRectMake(MDCFloor(CGRectGetMaxX(self.itemLayoutFrame) - (i + 1) * itemWidth +
+                              self.itemsHorizontalPadding),
+                     0, MDCFloor(itemWidth - 2 * self.itemsHorizontalPadding), navBarHeight);
     }
   }
 }
@@ -909,6 +912,21 @@ static NSString *const kOfAnnouncement = @"of";
     return self.lastLargeContentViewerItem;
   }
 
+  MDCBottomNavigationItemView *lastItemView =
+      (MDCBottomNavigationItemView *)self.lastLargeContentViewerItem;
+
+  if (lastItemView && lastItemView != itemView) {
+    if (self.enableRippleBehavior) {
+      [lastItemView.rippleTouchController.rippleView cancelAllRipplesAnimated:NO completion:nil];
+      [itemView.rippleTouchController.rippleView beginRippleTouchDownAtPoint:itemView.center
+                                                                    animated:NO
+                                                                  completion:nil];
+    } else {
+      [lastItemView.inkView cancelAllAnimationsAnimated:NO];
+      [itemView.inkView startTouchBeganAtPoint:itemView.center animated:NO withCompletion:nil];
+    }
+  }
+
   self.lastLargeContentViewerItem = itemView;
   return itemView;
 }
@@ -920,6 +938,11 @@ static NSString *const kOfAnnouncement = @"of";
     for (NSUInteger i = 0; i < self.items.count; i++) {
       MDCBottomNavigationItemView *itemView = self.itemViews[i];
       if (item == itemView) {
+        if (self.enableRippleBehavior) {
+          [itemView.rippleTouchController.rippleView beginRippleTouchUpAnimated:YES completion:nil];
+        } else {
+          [itemView.inkView startTouchEndAtPoint:itemView.center animated:YES withCompletion:nil];
+        }
         [self didTouchUpInsideButton:itemView.button];
       }
     }

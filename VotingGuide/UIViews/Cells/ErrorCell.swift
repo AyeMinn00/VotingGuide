@@ -17,11 +17,7 @@ protocol ErrorCellClickable: class {
 class ErrorCell: UICollectionViewCell {
     static let name = "errorCell"
 
-    weak var errorCellClickable: ErrorCellClickable? {
-        didSet {
-            log(msg: "set error cell clickable")
-        }
-    }
+    weak var errorCellClickable: ErrorCellClickable?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -31,8 +27,10 @@ class ErrorCell: UICollectionViewCell {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Retry", for: .normal)
         button.isUserInteractionEnabled = true
-        button.setElevation(ShadowElevation(rawValue: 2), for: .normal)
-        button.setElevation(ShadowElevation(rawValue: 4), for: .highlighted)
+        button.layer.cornerRadius = 4
+        button.setElevation(ShadowElevation(rawValue: 1), for: .normal)
+        button.setElevation(ShadowElevation(rawValue: 2), for: .highlighted)
+        button.setBackgroundColor(UIColor(named: "Grey_700"))
         button.addTarget(self, action: #selector(didTap), for: .touchUpInside)
         addSubview(button)
         let constraints = [button.widthAnchor.constraint(equalToConstant: 120), button.heightAnchor.constraint(equalToConstant: 48),
@@ -45,7 +43,6 @@ class ErrorCell: UICollectionViewCell {
     }
 
     @objc func didTap() {
-        log(msg: "didTap")
         errorCellClickable?.didTapRetryButton()
     }
 

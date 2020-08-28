@@ -6,22 +6,25 @@
 //  Copyright © 2020 Ko Ko Aye. All rights reserved.
 //
 
+import MaterialComponents.MaterialPageControl
 import UIKit
 
-class ContentDetailViewController: VotingGuideViewController , UICollectionViewDelegate{
+class ContentDetailViewController: VotingGuideViewController, UICollectionViewDelegate {
     weak var scrollView: UIScrollView!
     weak var contentView: UIView!
     weak var titleLabel: UILabel!
     weak var dateLabel: UILabel!
     var collectionView: UICollectionView!
     weak var bodyLabel: UILabel!
-    
-    private var dataSource : UICollectionViewDiffableDataSource<Section, String?>!
+
+    private var pageControl = MDCPageControl()
+
+    private var dataSource: UICollectionViewDiffableDataSource<Section, String?>!
 
     var contentTitle: String?
     var contentDate: String?
     var contentBody: String?
-    var contentImages : [String?]?
+    var contentImages: [String?]?
 
     let _sv: UIScrollView = {
         let sv = UIScrollView()
@@ -63,11 +66,17 @@ class ContentDetailViewController: VotingGuideViewController , UICollectionViewD
         return label
     }()
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Content Detail"
         view.backgroundColor = .white
+
+        configViews()
+        configPageControl()
+        bind()
+    }
+
+    private func configViews() {
         scrollView = _sv
         view.addSubview(scrollView)
 
@@ -104,37 +113,50 @@ class ContentDetailViewController: VotingGuideViewController , UICollectionViewD
         titleLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true
         dateLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true
         collectionView.widthAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true
-        collectionView.heightAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 3/4).isActive = true
+        collectionView.heightAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 3 / 4).isActive = true
         bodyLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true
         bodyLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -36).isActive = true
-        
-        configCollectionView()
 
-        bind()
+        configCollectionView()
     }
 
     private func bind() {
         titleLabel.text = contentTitle
         dateLabel.text = contentDate
         bodyLabel.text = contentBody
-        if let images = contentImages{
+        if let images = contentImages {
             applySnapshot(items: images)
         }
     }
-    
-    private func configCollectionView(){
+
+    private func configCollectionView() {
         collectionView.register(ContentDetailCell.self, forCellWithReuseIdentifier: ContentDetailCell.name)
+        collectionView.delegate = self
         makeDataSource()
     }
-    
-    private func makeDataSource(){
-        dataSource = UICollectionViewDiffableDataSource<Section,String?>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, str) -> UICollectionViewCell? in
+
+    private func configPageControl() {
+        pageControl.translatesAutoresizingMaskIntoConstraints = false
+        pageControl.hidesForSinglePage = true
+        pageControl.currentPageIndicatorTintColor = .white
+        view.addSubview(pageControl)
+        NSLayoutConstraint.activate([
+            pageControl.bottomAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: -32),
+            pageControl.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            pageControl.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            pageControl.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+        ])
+        pageControl.numberOfPages = contentImages?.count ?? 0
+    }
+
+    private func makeDataSource() {
+        dataSource = UICollectionViewDiffableDataSource<Section, String?>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, str) -> UICollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ContentDetailCell.name, for: indexPath) as? ContentDetailCell
             cell?.bind(str)
             return cell
         })
     }
-    
+
     private func createCollectionLayout() -> UICollectionViewLayout {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
@@ -144,20 +166,23 @@ class ContentDetailViewController: VotingGuideViewController , UICollectionViewD
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
 
         let section = NSCollectionLayoutSection(group: group)
+        section.visibleItemsInvalidationHandler = {
+            [weak self] visibleItems, point , env  in
+            self?.pageControl.currentPage = visibleItems.last!.indexPath.row
+        }
         section.orthogonalScrollingBehavior = .paging
         let layout = UICollectionViewCompositionalLayout(section: section)
         return layout
     }
-    
+
     private func applySnapshot(items: [String?], _ animatingDifferences: Bool = true) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, String?>()
         snapshot.appendSections([.main])
         snapshot.appendItems(items)
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
     }
 
     override func viewDidLayoutSubviews() {
@@ -166,5 +191,20 @@ class ContentDetailViewController: VotingGuideViewController , UICollectionViewD
         let height = contentView.bounds.height
         scrollView.contentSize = CGSize(width: width, height: height)
         scrollView.contentInsetAdjustmentBehavior = .never
+    }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        pageControl.scrollViewDidScroll(scrollView)
+        log(msg: "scrollViewDidScroll")
+    }
+
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        pageControl.scrollViewDidEndDecelerating(scrollView)
+        log(msg: "scrollViewDidEndDecelerating")
+//        pageControl.currentPage = Int(scrollView.contentOffset.x) / Int(scrollView.frame.width)
+    }
+
+    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        pageControl.scrollViewDidEndScrollingAnimation(scrollView)
     }
 }
