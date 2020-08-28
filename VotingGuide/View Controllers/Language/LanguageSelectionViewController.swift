@@ -6,143 +6,130 @@
 //  Copyright © 2020 Ko Ko Aye. All rights reserved.
 //
 
-import UIKit
+import MaterialComponents.MaterialAppBar
 import RxSwift
+import UIKit
 
-class LanguageSelectionViewController: VotingGuideViewController {
-    
+class LanguageSelectionViewController: VotingGuideViewController, UICollectionViewDelegate, ErrorCellClickable, LanguageCellClickable {
     weak var message: UILabel!
-    weak var containerView: UIView!
-    weak var scrollView: UIScrollView!
-    
+    var collectionView: UICollectionView!
+    private var dataSource: UICollectionViewDiffableDataSource<Section, LanguageItem>!
+    let vm = LanguageSelectionViewModel(false)
+
     let disposeBag = DisposeBag()
-
-    let _message: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = UIColor(named: "Grey_800")
-        label.font = UIFont.systemFont(ofSize: 22)
-        label.numberOfLines = 0
-        return label
-    }()
-
-    let _containerView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .white
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-
-    let _sv: UIScrollView = {
-        let sv = UIScrollView()
-        sv.backgroundColor = .white
-        sv.translatesAutoresizingMaskIntoConstraints = false
-        sv.showsVerticalScrollIndicator = false 
-        return sv
-    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         configViews()
+        watchData()
         getLanguages()
     }
 
     private func configViews() {
-        scrollView = _sv
-        view.addSubview(scrollView)
+        collectionView = UICollectionView(frame: .zero, collectionViewLayout: createCollectionLayout())
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.backgroundColor = .white
+        view.addSubview(collectionView)
         NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            scrollView.widthAnchor.constraint(equalTo: view.widthAnchor)
+            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            collectionView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.5),
         ])
-
-        containerView = _containerView
-        scrollView.addSubview(containerView)
-        NSLayoutConstraint.activate([
-            containerView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            containerView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            containerView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.9),
-            containerView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)
-        ])
-        
-        message = _message
-//        containerView.addSubview(message)
-//        NSLayoutConstraint.activate([
-//            message.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 46),
-//            message.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.9),
-//        ])
-       
+        collectionView.contentInsetAdjustmentBehavior = .never
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.delegate = self
+        collectionView.register(LoadingCell.self, forCellWithReuseIdentifier: LoadingCell.name)
+        collectionView.register(ErrorCell.self, forCellWithReuseIdentifier: ErrorCell.name)
+        collectionView.register(EndCell.self, forCellWithReuseIdentifier: EndCell.name)
+        collectionView.register(LanguageCell.self, forCellWithReuseIdentifier: LanguageCell.name)
+        makeDataSource()
     }
 
-    private func getLanguages(){
-        ApiService.default.getLanguages()
-        .observeOn(MainScheduler.instance)
-        .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-            .subscribe(onNext: { [weak self](languages) in
-                self?.bind(languages.payload)
-            }, onError: { (error) in
-                
+    private func makeDataSource() {
+        dataSource = UICollectionViewDiffableDataSource<Section, LanguageItem>(collectionView: collectionView, cellProvider: { [weak self] (collectionView, indexPath, item) -> UICollectionViewCell? in
+            switch item.state {
+            case .main:
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LanguageCell.name, for: indexPath) as? LanguageCell
+                cell?.bind(item.value)
+                cell?.languageCellClickable = self
+                return cell
+            case .loading:
+                return collectionView.dequeueReusableCell(withReuseIdentifier: LoadingCell.name, for: indexPath) as? LoadingCell
+            case .error:
+                let errorCell = collectionView.dequeueReusableCell(withReuseIdentifier: ErrorCell.name, for: indexPath) as? ErrorCell
+                errorCell?.errorCellClickable = self
+                return errorCell
+            case .finished:
+                return collectionView.dequeueReusableCell(withReuseIdentifier: EndCell.name, for: indexPath) as? EndCell
+            }
+        })
+    }
+
+    private func createCollectionLayout() -> UICollectionViewLayout {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(200))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(200))
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
+
+        let section = NSCollectionLayoutSection(group: group)
+        let layout = UICollectionViewCompositionalLayout(section: section)
+        return layout
+    }
+
+    private func getLanguages() {
+        vm.loadData()
+    }
+
+    private func watchData() {
+        vm.responses.subscribeOn(MainScheduler.instance)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] languages in
+                self?.applySnapshot(items: languages)
             }).disposed(by: disposeBag)
     }
-    
-    private func bind(_ languages : [Language]) {
-        var views : [UIView] = []
-        if languages.count == 0 { return }
-        let last = languages.count-1
-        for index in 0...languages.count-1{
-            let lang = languages[index]
-            if index == last {
-                let view = UILabel()
-//                view.setText(lang.lang)
-                view.text = lang.lang
-                views.append(view)
-                containerView.addSubview(view)
-                log(msg: "add to container at last")
-            }else {
-                let view = UILabel()
-//                view.setText(lang.lang)
-                view.text = lang.lang
-                views.append(view)
-                containerView.addSubview(view)
-                log(msg: "add to container")
-            }
-        }
-        log(msg: "views \(views.count)")
-        for index in 0...views.count-1{
-            let view = views[index]
-            if index == 0 {
-                view.topAnchor.constraint(equalTo: containerView.topAnchor).isActive = true
-            }else {
-                view.topAnchor.constraint(equalTo: views[index-1].bottomAnchor, constant: 8).isActive = true
-            }
 
-            view.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 1.0).isActive = true
-//            if let v = view as? LanguageView{
-//                v.activateConstraint()
-//            }
-//            if let v = view as? LanguageViewWithOr{
-//                v.activateConstraint()
-//            }
+    private func bind(_ languages: [LanguageItem]) {
+        applySnapshot(items: languages)
+    }
+
+    func didTapRetryButton() {
+        vm.loadData()
+    }
+
+    func didTapLanguageCell(lang: Language?) {
+        if let language = lang {
+            UserDefaultManager.shared.selectLanguage(lang: language.id)
+            let rootViewController = MDCAppBarNavigationController(rootViewController: MainViewController())
+            rootViewController.delegate = self
+            rootViewController.modalPresentationStyle = .fullScreen
+            present(rootViewController, animated: true)
         }
-//        containerView.bottomAnchor.constraint(equalTo: views[views.count-1].bottomAnchor, constant: 16).isActive = true
-//        containerView.heightAnchor.constraint(equalToConstant: 1000).isActive = true
-        setScrollViewContentSize()
     }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        print("viewDidLayoutSubviews")
-        setScrollViewContentSize()
+
+    private func applySnapshot(items: [LanguageItem], _ animatingDifferences: Bool = true) {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, LanguageItem>()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(items)
+        dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }
-    
-    private func setScrollViewContentSize(){
-//        containerView.bottomAnchor.constraint(equalTo: message.bottomAnchor, constant: 26).isActive = true
-        containerView.layoutIfNeeded()
-        let width = containerView.bounds.width
-        let height = containerView.bounds.height
-        print("width is \(width) and height is \(height)")
-        scrollView.contentSize = CGSize(width: width, height: height)
-//        scrollView.contentInsetAdjustmentBehavior = .never
+}
+
+extension LanguageSelectionViewController: MDCAppBarNavigationControllerDelegate {
+    func appBarNavigationController(_ navigationController: MDCAppBarNavigationController, willAdd appBarViewController: MDCAppBarViewController, asChildOf viewController: UIViewController) {
+        appBarViewController.headerView.backgroundColor = UIColor(named: "color_primary")
+        appBarViewController.navigationBar.backgroundColor = UIColor(named: "color_primary")
+        appBarViewController.navigationBar.titleTextColor = .black
+        appBarViewController.navigationBar.titleAlignment = .leading
+        let layer = CAGradientLayer()
+        layer.colors = [UIColor(named: "Grey_200")!]
+        appBarViewController.headerView.shadowLayer = layer
+        appBarViewController.navigationBar.leadingBarItemsTintColor = .black
+        appBarViewController.navigationBar.titleFont = UIFont.systemFont(ofSize: 20)
+        appBarViewController.headerView.shadowLayer = CAGradientLayer()
+        appBarViewController.headerView.canOverExtend = false
+        appBarViewController.headerView.visibleShadowOpacity = 0.2
     }
 }

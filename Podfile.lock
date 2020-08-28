@@ -1,15 +1,15 @@
 PODS:
   - Alamofire (5.2.2)
-  - Kingfisher (5.14.1):
-    - Kingfisher/Core (= 5.14.1)
-  - Kingfisher/Core (5.14.1)
-  - MaterialComponents/ActivityIndicator (112.0.1):
+  - Kingfisher (5.15.0):
+    - Kingfisher/Core (= 5.15.0)
+  - Kingfisher/Core (5.15.0)
+  - MaterialComponents/ActivityIndicator (113.2.0):
     - MaterialComponents/Palettes
     - MaterialComponents/private/Application
     - MDFInternationalization
     - MotionAnimator (~> 2.0)
-  - MaterialComponents/AnimationTiming (112.0.1)
-  - MaterialComponents/AppBar (112.0.1):
+  - MaterialComponents/AnimationTiming (113.2.0)
+  - MaterialComponents/AppBar (113.2.0):
     - MaterialComponents/FlexibleHeader
     - MaterialComponents/HeaderStackView
     - MaterialComponents/NavigationBar
@@ -20,8 +20,8 @@ PODS:
     - MaterialComponents/ShadowLayer
     - MaterialComponents/Typography
     - MDFInternationalization
-  - MaterialComponents/Availability (112.0.1)
-  - MaterialComponents/BottomNavigation (112.0.1):
+  - MaterialComponents/Availability (113.2.0)
+  - MaterialComponents/BottomNavigation (113.2.0):
     - MaterialComponents/Availability
     - MaterialComponents/Elevation
     - MaterialComponents/Ink
@@ -32,11 +32,11 @@ PODS:
     - MaterialComponents/ShadowLayer
     - MaterialComponents/Typography
     - MDFInternationalization
-  - MaterialComponents/ButtonBar (112.0.1):
+  - MaterialComponents/ButtonBar (113.2.0):
     - MaterialComponents/Buttons
     - MaterialComponents/private/Application
     - MDFInternationalization
-  - MaterialComponents/Buttons (112.0.1):
+  - MaterialComponents/Buttons (113.2.0):
     - MaterialComponents/Elevation
     - MaterialComponents/Ink
     - MaterialComponents/private/Math
@@ -48,11 +48,11 @@ PODS:
     - MaterialComponents/Typography
     - MDFInternationalization
     - MDFTextAccessibility
-  - MaterialComponents/Elevation (112.0.1):
+  - MaterialComponents/Elevation (113.2.0):
     - MaterialComponents/Availability
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
-  - MaterialComponents/FlexibleHeader (112.0.1):
+  - MaterialComponents/FlexibleHeader (113.2.0):
     - MaterialComponents/Availability
     - MaterialComponents/Elevation
     - "MaterialComponents/FlexibleHeader+ShiftBehavior"
@@ -63,47 +63,49 @@ PODS:
     - MaterialComponents/ShadowElevations
     - MaterialComponents/ShadowLayer
     - MDFTextAccessibility
-  - "MaterialComponents/FlexibleHeader+ShiftBehavior (112.0.1)"
-  - "MaterialComponents/FlexibleHeader+ShiftBehaviorEnabledWithStatusBar (112.0.1)":
+  - "MaterialComponents/FlexibleHeader+ShiftBehavior (113.2.0)"
+  - "MaterialComponents/FlexibleHeader+ShiftBehaviorEnabledWithStatusBar (113.2.0)":
     - "MaterialComponents/FlexibleHeader+ShiftBehavior"
-  - MaterialComponents/HeaderStackView (112.0.1)
-  - MaterialComponents/Ink (112.0.1):
+  - MaterialComponents/HeaderStackView (113.2.0)
+  - MaterialComponents/Ink (113.2.0):
     - MaterialComponents/Availability
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
-  - MaterialComponents/NavigationBar (112.0.1):
+  - MaterialComponents/NavigationBar (113.2.0):
     - MaterialComponents/ButtonBar
     - MaterialComponents/Elevation
     - MaterialComponents/private/Math
     - MaterialComponents/Typography
     - MDFInternationalization
     - MDFTextAccessibility
-  - MaterialComponents/Palettes (112.0.1)
-  - MaterialComponents/private/Application (112.0.1)
-  - MaterialComponents/private/Color (112.0.1):
+  - MaterialComponents/PageControl (113.2.0):
+    - MDFInternationalization
+  - MaterialComponents/Palettes (113.2.0)
+  - MaterialComponents/private/Application (113.2.0)
+  - MaterialComponents/private/Color (113.2.0):
     - MaterialComponents/Availability
-  - MaterialComponents/private/Icons/Base (112.0.1)
-  - MaterialComponents/private/Icons/ic_arrow_back (112.0.1):
+  - MaterialComponents/private/Icons/Base (113.2.0)
+  - MaterialComponents/private/Icons/ic_arrow_back (113.2.0):
     - MaterialComponents/private/Icons/Base
-  - MaterialComponents/private/Math (112.0.1)
-  - MaterialComponents/private/UIMetrics (112.0.1):
+  - MaterialComponents/private/Math (113.2.0)
+  - MaterialComponents/private/UIMetrics (113.2.0):
     - MaterialComponents/private/Application
-  - MaterialComponents/Ripple (112.0.1):
+  - MaterialComponents/Ripple (113.2.0):
     - MaterialComponents/AnimationTiming
     - MaterialComponents/Availability
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
-  - MaterialComponents/ShadowElevations (112.0.1)
-  - MaterialComponents/ShadowLayer (112.0.1):
+  - MaterialComponents/ShadowElevations (113.2.0)
+  - MaterialComponents/ShadowLayer (113.2.0):
     - MaterialComponents/ShadowElevations
-  - MaterialComponents/ShapeLibrary (112.0.1):
+  - MaterialComponents/ShapeLibrary (113.2.0):
     - MaterialComponents/private/Math
     - MaterialComponents/Shapes
-  - MaterialComponents/Shapes (112.0.1):
+  - MaterialComponents/Shapes (113.2.0):
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
     - MaterialComponents/ShadowLayer
-  - MaterialComponents/Typography (112.0.1):
+  - MaterialComponents/Typography (113.2.0):
     - MaterialComponents/private/Application
     - MaterialComponents/private/Math
     - MDFTextAccessibility
@@ -125,6 +127,7 @@ DEPENDENCIES:
   - MaterialComponents/ActivityIndicator
   - MaterialComponents/AppBar
   - MaterialComponents/BottomNavigation
+  - MaterialComponents/PageControl
   - MaterialComponents/Typography
   - RxCocoa (~> 5)
   - RxSwift (~> 5)
@@ -144,8 +147,8 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: 814429acc853c6c54ff123fc3d2ef66803823ce0
-  Kingfisher: 8050bc6f7f68cbf3908bd04df7ccbac188f6d6d6
-  MaterialComponents: 5be6bf8c20183474a84c9852b5b45703ad49cf3a
+  Kingfisher: 1acb67597a520c2d0310677e66d6e0af455ef757
+  MaterialComponents: 5124df1e5a48f6ae004f8698ad9aa1ce419f6d77
   MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
   MDFTextAccessibility: 85c09a1bd9c321f494348e632a25063bcda35a53
   MotionAnimator: ee16aa30567c5bae0fb2750c132915829cfaaf8a
@@ -154,6 +157,6 @@ SPEC CHECKSUMS:
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
   RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
 
-PODFILE CHECKSUM: a1a019737cb1ef3184d625fef32b5040dc1539d4
+PODFILE CHECKSUM: d3ddb86792846b5840a158378cb448183052dff7
 
 COCOAPODS: 1.9.3

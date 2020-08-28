@@ -35,12 +35,13 @@
 		D556215724E843280081655D /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D556215624E843280081655D /* GalleryViewController.swift */; };
 		D556215A24E8442F0081655D /* ImageSetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D556215924E8442F0081655D /* ImageSetCell.swift */; };
 		D556215C24E8456B0081655D /* GalleryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D556215B24E8456B0081655D /* GalleryViewModel.swift */; };
-		D55FD43924F8126400438CEF /* LanguageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55FD43824F8126400438CEF /* LanguageView.swift */; };
 		D56AD06224ED8268009D59FA /* BaseChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56AD06124ED8268009D59FA /* BaseChildViewController.swift */; };
 		D5A308AE24DC83C0005274B0 /* Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A308AD24DC83C0005274B0 /* Ext.swift */; };
 		D5A3486824F03BA50074B85C /* ContentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A3486724F03BA50074B85C /* ContentDetailViewController.swift */; };
 		D5A3486B24F041360074B85C /* ContentDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A3486A24F041360074B85C /* ContentDetailCell.swift */; };
-		D5AC0BB624F4FD1B003EEE67 /* ScrollViewTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AC0BB524F4FD1B003EEE67 /* ScrollViewTestViewController.swift */; };
+		D5B2D41C24F8AEA2003C8037 /* LanguageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B2D41B24F8AEA2003C8037 /* LanguageCell.swift */; };
+		D5B2D41E24F8B152003C8037 /* LanguageSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B2D41D24F8B152003C8037 /* LanguageSelectionViewModel.swift */; };
+		D5B2D42024F8B1EB003C8037 /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B2D41F24F8B1EB003C8037 /* ListViewModel.swift */; };
 		D5B47BEA24D58CD3002348E7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B47BE924D58CD3002348E7 /* AppDelegate.swift */; };
 		D5B47BEC24D58CD3002348E7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B47BEB24D58CD3002348E7 /* SceneDelegate.swift */; };
 		D5B47BEE24D58CD3002348E7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B47BED24D58CD3002348E7 /* ViewController.swift */; };
@@ -82,12 +83,13 @@
 		D556215624E843280081655D /* GalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 		D556215924E8442F0081655D /* ImageSetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSetCell.swift; sourceTree = "<group>"; };
 		D556215B24E8456B0081655D /* GalleryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewModel.swift; sourceTree = "<group>"; };
-		D55FD43824F8126400438CEF /* LanguageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageView.swift; sourceTree = "<group>"; };
 		D56AD06124ED8268009D59FA /* BaseChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseChildViewController.swift; sourceTree = "<group>"; };
 		D5A308AD24DC83C0005274B0 /* Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ext.swift; sourceTree = "<group>"; };
 		D5A3486724F03BA50074B85C /* ContentDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentDetailViewController.swift; sourceTree = "<group>"; };
 		D5A3486A24F041360074B85C /* ContentDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentDetailCell.swift; sourceTree = "<group>"; };
-		D5AC0BB524F4FD1B003EEE67 /* ScrollViewTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewTestViewController.swift; sourceTree = "<group>"; };
+		D5B2D41B24F8AEA2003C8037 /* LanguageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageCell.swift; sourceTree = "<group>"; };
+		D5B2D41D24F8B152003C8037 /* LanguageSelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSelectionViewModel.swift; sourceTree = "<group>"; };
+		D5B2D41F24F8B1EB003C8037 /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
 		D5B47BE624D58CD3002348E7 /* VotingGuide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VotingGuide.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5B47BE924D58CD3002348E7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D5B47BEB24D58CD3002348E7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -140,8 +142,9 @@
 		D53CAE5D24F7A10B00004F9C /* Language */ = {
 			isa = PBXGroup;
 			children = (
+				D5B2D41B24F8AEA2003C8037 /* LanguageCell.swift */,
 				D53CAE5E24F7A11D00004F9C /* LanguageSelectionViewController.swift */,
-				D55FD43824F8126400438CEF /* LanguageView.swift */,
+				D5B2D41D24F8B152003C8037 /* LanguageSelectionViewModel.swift */,
 			);
 			path = Language;
 			sourceTree = "<group>";
@@ -209,6 +212,7 @@
 				D556214724E840B90081655D /* InfiniteCollectionViewController.swift */,
 				D556214924E840E60081655D /* InfiniteListDelegate.swift */,
 				D556215224E8426F0081655D /* InfiniteListViewModel.swift */,
+				D5B2D41F24F8B1EB003C8037 /* ListViewModel.swift */,
 				D556214524E8409D0081655D /* VotingGuideViewController.swift */,
 			);
 			path = Base;
@@ -316,7 +320,6 @@
 				D556215824E843C80081655D /* Gallery */,
 				D5B47BED24D58CD3002348E7 /* ViewController.swift */,
 				D52AF42224E2F7B9003C9874 /* MainViewController.swift */,
-				D5AC0BB524F4FD1B003EEE67 /* ScrollViewTestViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -501,12 +504,11 @@
 				D5A3486824F03BA50074B85C /* ContentDetailViewController.swift in Sources */,
 				D5B47BEA24D58CD3002348E7 /* AppDelegate.swift in Sources */,
 				D5B47BEC24D58CD3002348E7 /* SceneDelegate.swift in Sources */,
-				D5AC0BB624F4FD1B003EEE67 /* ScrollViewTestViewController.swift in Sources */,
 				D556214F24E841B20081655D /* LoadingCell.swift in Sources */,
 				D556213B24E837DA0081655D /* ApiService.swift in Sources */,
-				D55FD43924F8126400438CEF /* LanguageView.swift in Sources */,
 				D546866124EACFCD00CADCE0 /* ResponseContent.swift in Sources */,
 				D556213924E837B10081655D /* RequestManager.swift in Sources */,
+				D5B2D41C24F8AEA2003C8037 /* LanguageCell.swift in Sources */,
 				D546866724EAD4D400CADCE0 /* ContentCell.swift in Sources */,
 				D556215324E8426F0081655D /* InfiniteListViewModel.swift in Sources */,
 				D52AF42324E2F7B9003C9874 /* MainViewController.swift in Sources */,
@@ -514,6 +516,8 @@
 				D556215524E842850081655D /* Paging.swift in Sources */,
 				D546866B24EAE82B00CADCE0 /* ContentViewController.swift in Sources */,
 				D556213724E835650081655D /* Constants.swift in Sources */,
+				D5B2D41E24F8B152003C8037 /* LanguageSelectionViewModel.swift in Sources */,
+				D5B2D42024F8B1EB003C8037 /* ListViewModel.swift in Sources */,
 				D53CAE5C24F79F8400004F9C /* UserDefaultManager.swift in Sources */,
 				D556213E24E838860081655D /* ResponseImageSet.swift in Sources */,
 				D53CAE5F24F7A11D00004F9C /* LanguageSelectionViewController.swift in Sources */,

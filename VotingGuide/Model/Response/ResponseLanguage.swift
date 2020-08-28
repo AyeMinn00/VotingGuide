@@ -26,11 +26,41 @@ class Language: Codable, Hashable {
     }
 }
 
-struct Languages : Codable {
-    let payload: [Language]
+struct Languages : Codable , List{
     
-    enum CodingKeys: CodingKey {
-        case payload
+    var data: [Language] = []
+    
+    enum CodingKeys: String,  CodingKey {
+        case data = "payload"
+    }
+    
+    func isEmpty() -> Bool {
+        return data.count == 0
+    }
+    
+    func getItems() -> [LanguageItem] {
+        var cells: [LanguageItem] = []
+        for index in 0 ..< data.count {
+            let lang = data[index]
+            cells.append(LanguageItem(value: lang))
+        }
+        return cells
+    }
+    
+}
+
+struct LanguageItem : CollectionItem {
+    var value : Language?
+    var state : CellState
+    
+    init(value: Language?) {
+        self.value = value
+        state = .main
+    }
+    
+    init(state: CellState) {
+        self.state = state
+        value = nil
     }
     
 }
