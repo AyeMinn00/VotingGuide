@@ -141,7 +141,7 @@ class ContentDetailViewController: VotingGuideViewController, UICollectionViewDe
         pageControl.currentPageIndicatorTintColor = .white
         view.addSubview(pageControl)
         NSLayoutConstraint.activate([
-            pageControl.bottomAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: -32),
+            pageControl.bottomAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: -16),
             pageControl.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             pageControl.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             pageControl.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -193,18 +193,4 @@ class ContentDetailViewController: VotingGuideViewController, UICollectionViewDe
         scrollView.contentInsetAdjustmentBehavior = .never
     }
 
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        pageControl.scrollViewDidScroll(scrollView)
-        log(msg: "scrollViewDidScroll")
-    }
-
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        pageControl.scrollViewDidEndDecelerating(scrollView)
-        log(msg: "scrollViewDidEndDecelerating")
-//        pageControl.currentPage = Int(scrollView.contentOffset.x) / Int(scrollView.frame.width)
-    }
-
-    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
-        pageControl.scrollViewDidEndScrollingAnimation(scrollView)
-    }
 }
