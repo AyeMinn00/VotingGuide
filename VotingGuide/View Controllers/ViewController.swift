@@ -62,28 +62,5 @@ class HomeViewDetailController: UIViewController {
     }
 }
 
-class SettingViewController: BaseChildViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.view.backgroundColor = .white
-//        title = "Setting"
-        // Do any additional setup after loading the view.
-        let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 30)
-        label.text = "Setting"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        self.view.addSubview(label)
-        
-        label.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        label.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
-        configAppBarViewController()
-        setTitle("Menu")
-        
-    }
-
-
-}
-
 
 

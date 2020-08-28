@@ -43,7 +43,7 @@ class MainViewController: VotingGuideViewController, UIScrollViewDelegate {
 
     let h = ContentViewController()
     let g = GalleryViewController()
-    let s = SettingViewController()
+    let s = MenuViewController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
