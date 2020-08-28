@@ -25,3 +25,12 @@ class Language: Codable, Hashable {
         return lhs.id == rhs.id
     }
 }
+
+struct Languages : Codable {
+    let payload: [Language]
+    
+    enum CodingKeys: CodingKey {
+        case payload
+    }
+    
+}

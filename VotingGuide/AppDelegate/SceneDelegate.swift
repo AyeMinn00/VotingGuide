@@ -21,7 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         window = UIWindow(frame: UIScreen.main.bounds)
 
-        if UserDefaultManager.shared.getSelectedLanguage() != nil {
+        if UserDefaultManager.shared.getSelectedLanguage() == nil {
             window?.rootViewController = LanguageSelectionViewController()
         } else {
             let rootViewController = MDCAppBarNavigationController(rootViewController: MainViewController())

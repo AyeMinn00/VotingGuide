@@ -7,11 +7,15 @@
 //
 
 import UIKit
+import RxSwift
 
 class LanguageSelectionViewController: VotingGuideViewController {
+    
     weak var message: UILabel!
     weak var containerView: UIView!
     weak var scrollView: UIScrollView!
+    
+    let disposeBag = DisposeBag()
 
     let _message: UILabel = {
         let label = UILabel()
@@ -41,7 +45,7 @@ class LanguageSelectionViewController: VotingGuideViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         configViews()
-        bind()
+        getLanguages()
     }
 
     private func configViews() {
@@ -57,21 +61,72 @@ class LanguageSelectionViewController: VotingGuideViewController {
         scrollView.addSubview(containerView)
         NSLayoutConstraint.activate([
             containerView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            containerView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             containerView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.9),
             containerView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)
         ])
         
         message = _message
-        containerView.addSubview(message)
-        NSLayoutConstraint.activate([
-            message.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 46),
-            message.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.9),
-        ])
+//        containerView.addSubview(message)
+//        NSLayoutConstraint.activate([
+//            message.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 46),
+//            message.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.9),
+//        ])
        
     }
 
-    private func bind() {
-        message.text = "Select Your language to use bar nadlfkasjd;lf ka;dfkj aoskdja osidfjpaosdifj dfj; When you set values like that, they become permanent – you can quit the app then re-launch and they'll still be there, so it's the ideal way to store app configuration data. As an advance warning, you might find some old tutorials recommend calling the synchronize() method to force your data to save, but Apple has asked us not to do that for some years now. The central notion of a UIScrollView object (or, simply, a scroll view) is that it is a view whose origin is adjustable over the content view. It clips the content to its frame, which generally (but not necessarily) coincides with that of the application’s main window. A scroll view tracks the movements of fingers and adjusts the origin accordingly. The view that is showing its content “through” the scroll view draws that portion of itself based on the new origin, which is pinned to an offset in the content view. The scroll view itself does no drawing except for displaying vertical and horizontal scroll indicators. The scroll view must know the size of the content view so it knows when to stop scrolling; by default, it “bounces” back when scrolling exceeds the bounds of the content.The object that manages the drawing of content displayed in a scroll view should tile the content’s subviews so that no view exceeds the size of the screen. As users scroll in the scroll view, this object should add and remove subviews as necessary.Because a scroll view has no scroll bars, it must know whether a touch signals an intent to scroll versus an intent to track a subview in the content. To make this determination, it temporarily intercepts a touch-down event by starting a timer and, before the timer fires, seeing if the touching finger makes any movement."
+    private func getLanguages(){
+        ApiService.default.getLanguages()
+        .observeOn(MainScheduler.instance)
+        .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+            .subscribe(onNext: { [weak self](languages) in
+                self?.bind(languages.payload)
+            }, onError: { (error) in
+                
+            }).disposed(by: disposeBag)
+    }
+    
+    private func bind(_ languages : [Language]) {
+        var views : [UIView] = []
+        if languages.count == 0 { return }
+        let last = languages.count-1
+        for index in 0...languages.count-1{
+            let lang = languages[index]
+            if index == last {
+                let view = UILabel()
+//                view.setText(lang.lang)
+                view.text = lang.lang
+                views.append(view)
+                containerView.addSubview(view)
+                log(msg: "add to container at last")
+            }else {
+                let view = UILabel()
+//                view.setText(lang.lang)
+                view.text = lang.lang
+                views.append(view)
+                containerView.addSubview(view)
+                log(msg: "add to container")
+            }
+        }
+        log(msg: "views \(views.count)")
+        for index in 0...views.count-1{
+            let view = views[index]
+            if index == 0 {
+                view.topAnchor.constraint(equalTo: containerView.topAnchor).isActive = true
+            }else {
+                view.topAnchor.constraint(equalTo: views[index-1].bottomAnchor, constant: 8).isActive = true
+            }
+
+            view.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 1.0).isActive = true
+//            if let v = view as? LanguageView{
+//                v.activateConstraint()
+//            }
+//            if let v = view as? LanguageViewWithOr{
+//                v.activateConstraint()
+//            }
+        }
+//        containerView.bottomAnchor.constraint(equalTo: views[views.count-1].bottomAnchor, constant: 16).isActive = true
+//        containerView.heightAnchor.constraint(equalToConstant: 1000).isActive = true
         setScrollViewContentSize()
     }
     
@@ -82,7 +137,7 @@ class LanguageSelectionViewController: VotingGuideViewController {
     }
     
     private func setScrollViewContentSize(){
-        containerView.bottomAnchor.constraint(equalTo: message.bottomAnchor, constant: 26).isActive = true
+//        containerView.bottomAnchor.constraint(equalTo: message.bottomAnchor, constant: 26).isActive = true
         containerView.layoutIfNeeded()
         let width = containerView.bounds.width
         let height = containerView.bounds.height

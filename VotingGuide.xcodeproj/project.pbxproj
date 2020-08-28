@@ -35,6 +35,7 @@
 		D556215724E843280081655D /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D556215624E843280081655D /* GalleryViewController.swift */; };
 		D556215A24E8442F0081655D /* ImageSetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D556215924E8442F0081655D /* ImageSetCell.swift */; };
 		D556215C24E8456B0081655D /* GalleryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D556215B24E8456B0081655D /* GalleryViewModel.swift */; };
+		D55FD43924F8126400438CEF /* LanguageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55FD43824F8126400438CEF /* LanguageView.swift */; };
 		D56AD06224ED8268009D59FA /* BaseChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56AD06124ED8268009D59FA /* BaseChildViewController.swift */; };
 		D5A308AE24DC83C0005274B0 /* Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A308AD24DC83C0005274B0 /* Ext.swift */; };
 		D5A3486824F03BA50074B85C /* ContentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A3486724F03BA50074B85C /* ContentDetailViewController.swift */; };
@@ -81,6 +82,7 @@
 		D556215624E843280081655D /* GalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 		D556215924E8442F0081655D /* ImageSetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSetCell.swift; sourceTree = "<group>"; };
 		D556215B24E8456B0081655D /* GalleryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewModel.swift; sourceTree = "<group>"; };
+		D55FD43824F8126400438CEF /* LanguageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageView.swift; sourceTree = "<group>"; };
 		D56AD06124ED8268009D59FA /* BaseChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseChildViewController.swift; sourceTree = "<group>"; };
 		D5A308AD24DC83C0005274B0 /* Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ext.swift; sourceTree = "<group>"; };
 		D5A3486724F03BA50074B85C /* ContentDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentDetailViewController.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				D53CAE5E24F7A11D00004F9C /* LanguageSelectionViewController.swift */,
+				D55FD43824F8126400438CEF /* LanguageView.swift */,
 			);
 			path = Language;
 			sourceTree = "<group>";
@@ -501,6 +504,7 @@
 				D5AC0BB624F4FD1B003EEE67 /* ScrollViewTestViewController.swift in Sources */,
 				D556214F24E841B20081655D /* LoadingCell.swift in Sources */,
 				D556213B24E837DA0081655D /* ApiService.swift in Sources */,
+				D55FD43924F8126400438CEF /* LanguageView.swift in Sources */,
 				D546866124EACFCD00CADCE0 /* ResponseContent.swift in Sources */,
 				D556213924E837B10081655D /* RequestManager.swift in Sources */,
 				D546866724EAD4D400CADCE0 /* ContentCell.swift in Sources */,
