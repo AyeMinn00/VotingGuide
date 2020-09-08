@@ -9,6 +9,7 @@
 import UIKit
 import MaterialComponents.MaterialRipple
 
+
 class MenuViewController: BaseChildViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,8 +29,7 @@ class MenuViewController: BaseChildViewController {
         view.addSubview(labelContact)
         NSLayoutConstraint.activate([
             labelContact.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 64),
-            labelContact.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
-            labelContact.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            labelContact.widthAnchor.constraint(equalTo: view.widthAnchor),
             labelContact.heightAnchor.constraint(equalToConstant: itemHeight),
         ])
 
@@ -43,11 +43,11 @@ class MenuViewController: BaseChildViewController {
         ])
 
         let labelSettings = createLabel("Settings")
+        labelSettings.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(labelTapped(_:))))
         view.addSubview(labelSettings)
         NSLayoutConstraint.activate([
             labelSettings.topAnchor.constraint(equalTo: line2.bottomAnchor),
-            labelSettings.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
-            labelSettings.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            labelSettings.widthAnchor.constraint(equalTo: view.widthAnchor),
             labelSettings.heightAnchor.constraint(equalToConstant: itemHeight),
         ])
 
@@ -61,16 +61,28 @@ class MenuViewController: BaseChildViewController {
         ])
     }
 
-    private func createLabel(_ str: String) -> UILabel {
+    private func createLabel(_ str: String) -> UIView {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        let rippleView = MDCRippleView()
+        rippleView.frame = view.bounds
+        rippleView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        rippleView.rippleColor = .lightGray
+        view.addSubview(rippleView)
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.isUserInteractionEnabled = true
+        view.addSubview(label)
+        NSLayoutConstraint.activate([
+            label.heightAnchor.constraint(equalTo: view.heightAnchor),
+            label.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
+            label.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
         label.textColor = UIColor(named: "Grey_800")
         label.text = str
+        label.backgroundColor = .white
         label.font = UIFont.systemFont(ofSize: 18)
-        label.numberOfLines = 2
-        let ripple = MDCRippleView()
-        label.addSubview(ripple)
-        return label
+        return view
     }
 
     private func createLine() -> UIView {
@@ -79,4 +91,9 @@ class MenuViewController: BaseChildViewController {
         line.backgroundColor = UIColor(named: "Grey_100")
         return line
     }
+    
+    @objc func labelTapped(_ sender : UITapGestureRecognizer){
+        navigationController?.pushViewController(SettingViewController(), animated: true)
+    }
+    
 }

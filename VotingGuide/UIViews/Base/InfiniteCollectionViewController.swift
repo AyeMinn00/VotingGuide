@@ -103,7 +103,6 @@ class InfiniteCollectionViewController<ItemIdentifier>: BaseChildViewController,
     }
 
     func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
-//        log(msg: "didHighlightItemAt \(indexPath.row)")
         if let cell = collectionView.cellForItem(at: indexPath) {
             cell.contentView.backgroundColor = UIColor(named: "Grey_200")
         }

@@ -22,9 +22,20 @@ class ContentViewController: InfiniteCollectionViewController<ContentItem> {
         super.viewDidLoad()
         setUpCollectionView()
         collectionView.backgroundColor = .white
+        collectionView.refreshControl = UIRefreshControl()
+        collectionView.refreshControl?.addTarget(self, action:
+            #selector(handleRefreshControl),
+            for: .valueChanged)
         configAppBarViewController()
         appBarViewController.headerView.trackingScrollView = collectionView
+        setUpSearchMenu()
         setTitle("Content")
+    }
+
+    private func setUpSearchMenu() {
+        let searchImage = UIImage(named: "search")
+        let menuSearch = UIBarButtonItem(image: searchImage, style: .plain, target: self, action: #selector(tapMenuSearch(sender:)))
+        appBarViewController.navigationBar.rightBarButtonItem = menuSearch
     }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -37,6 +48,26 @@ class ContentViewController: InfiniteCollectionViewController<ContentItem> {
             vc.contentImages = content.contentImages
             navigationController?.pushViewController(vc, animated: true)
         }
+    }
+
+    @objc func handleRefreshControl() {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
+            self.vm.resetPageConfiguration()
+            self.loadData()
+        }
+    }
+
+    private func disableRefreshControl() {
+        if let refreshController = collectionView.refreshControl {
+            if refreshController.isRefreshing {
+                refreshController.endRefreshing()
+            }
+        }
+    }
+
+    @objc func tapMenuSearch(sender: Any) {
+        log(msg: "tap search")
+        navigationController?.pushViewController(ContentSearchViewController(), animated: true)
     }
 }
 
@@ -88,6 +119,7 @@ extension ContentViewController: InfiniteListDelegate {
         vm.responses.subscribeOn(MainScheduler.instance)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] imageSets in
+                self?.disableRefreshControl()
                 self?.applySnapshot(items: imageSets)
             }).disposed(by: disposeBag)
     }

@@ -13,7 +13,6 @@ protocol ErrorCellClickable: class {
     func didTapRetryButton()
 }
 
-
 class ErrorCell: UICollectionViewCell {
     static let name = "errorCell"
 
@@ -33,8 +32,13 @@ class ErrorCell: UICollectionViewCell {
         button.setBackgroundColor(UIColor(named: "Grey_700"))
         button.addTarget(self, action: #selector(didTap), for: .touchUpInside)
         addSubview(button)
-        let constraints = [button.widthAnchor.constraint(equalToConstant: 120), button.heightAnchor.constraint(equalToConstant: 48),
-                           button.centerYAnchor.constraint(equalTo: self.centerYAnchor), button.centerXAnchor.constraint(equalTo: self.centerXAnchor)]
+        let constraints = [
+            button.widthAnchor.constraint(equalToConstant: 120),
+            button.heightAnchor.constraint(equalToConstant: 48),
+            button.topAnchor.constraint(equalTo: topAnchor, constant: 32),
+            button.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 32),
+            button.centerXAnchor.constraint(equalTo: centerXAnchor),
+        ]
         NSLayoutConstraint.activate(constraints)
     }
 

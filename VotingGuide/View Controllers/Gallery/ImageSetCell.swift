@@ -30,7 +30,7 @@ class ImageSetCell: UICollectionViewCell {
 
     let _title: UILabel = {
         let title = UILabel()
-        title.numberOfLines = 2
+        title.numberOfLines = 4
         title.translatesAutoresizingMaskIntoConstraints = false
         title.font = UIFont.boldSystemFont(ofSize: 20)
         title.textColor = UIColor(named: "Grey_800")
@@ -70,10 +70,11 @@ class ImageSetCell: UICollectionViewCell {
             containerView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             containerView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             containerView.heightAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.75),
-            line.topAnchor.constraint(equalTo: containerView.bottomAnchor, constant: 8),
-            line.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            line.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            line.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
+            line.topAnchor.constraint(equalTo: containerView.bottomAnchor, constant: 16),
+            line.leadingAnchor.constraint(equalTo: leadingAnchor),
+            line.trailingAnchor.constraint(equalTo: trailingAnchor),
+            line.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
+            line.heightAnchor.constraint(equalToConstant: 4)
         ]
 
         NSLayoutConstraint.activate(constraints)
@@ -93,12 +94,12 @@ class ImageSetCell: UICollectionViewCell {
     func createLeftImageCountView(count: String) -> UIView {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor(named: "Grey_400")
+        view.backgroundColor = UIColor(named: "Grey_transparent")
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .white
         label.text = count
-        label.font = UIFont.systemFont(ofSize: 14)
+        label.font = UIFont.systemFont(ofSize: 34)
         view.addSubview(label)
         label.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         label.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
@@ -142,7 +143,7 @@ class ImageSetCell: UICollectionViewCell {
             img2.kf.setImage(with: url2, options: [.cacheOriginalImage])
         }
 
-        if count >= 3 {
+        if count > 2 {
             print("count 3")
             let img1 = createImageView()
             let img2 = createImageView()
@@ -168,6 +169,18 @@ class ImageSetCell: UICollectionViewCell {
             img2.kf.setImage(with: url2, options: [.cacheOriginalImage])
             let url3 = URL(string: IMG_MEDIUM_URL + imageSet!.displayImages[2])
             img3.kf.setImage(with: url3, options: [.cacheOriginalImage])
+            
+            if imageSet!.images.count > 3 {
+                let leftImgCountView = createLeftImageCountView(count: imageSet!.leftImageCount)
+                containerView.addSubview(leftImgCountView)
+                NSLayoutConstraint.activate([
+                    leftImgCountView.topAnchor.constraint(equalTo: img3.topAnchor),
+                    leftImgCountView.bottomAnchor.constraint(equalTo: img3.bottomAnchor),
+                    leftImgCountView.leadingAnchor.constraint(equalTo: img3.leadingAnchor),
+                    leftImgCountView.trailingAnchor.constraint(equalTo: img3.trailingAnchor),
+                ])
+                
+            }
         }
 
     }

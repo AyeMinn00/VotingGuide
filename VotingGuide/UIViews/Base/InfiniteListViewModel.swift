@@ -45,6 +45,11 @@ class InfiniteListViewModel<DataType: CollectionItem>: NSObject {
     func didFinish() -> Bool {
         return paging.finish
     }
+    
+    func resetPageConfiguration(){
+        paging = Paging.create()
+        dataSet.removeAll()
+    }
 
     func loadData() {
         if isFirstRequest {

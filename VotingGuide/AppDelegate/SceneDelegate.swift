@@ -26,7 +26,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         } else {
             let rootViewController = MDCAppBarNavigationController(rootViewController: MainViewController())
             rootViewController.delegate = self
-
             window?.rootViewController = rootViewController
         }
 
@@ -72,7 +71,7 @@ extension SceneDelegate: MDCAppBarNavigationControllerDelegate {
         let layer = CAGradientLayer()
         layer.colors = [UIColor(named: "Grey_200")!]
         appBarViewController.headerView.shadowLayer = layer
-        appBarViewController.navigationBar.leadingBarItemsTintColor = .black
+        appBarViewController.navigationBar.leadingBarItemsTintColor = UIColor(named: "Grey_800")
         appBarViewController.navigationBar.titleFont = UIFont.systemFont(ofSize: 20)
         appBarViewController.headerView.shadowLayer = CAGradientLayer()
         appBarViewController.headerView.canOverExtend = false

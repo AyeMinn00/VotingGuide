@@ -28,9 +28,15 @@ class ApiService {
         let dataRequest = BaseRequest(path: "kaungrwai/content", query: queries).create()
         return requestManager.request(dataRequest)
     }
-    
-    func getLanguages() -> Observable<Languages>{
-        let dataRequest  = BaseRequest(path: "kaungrwai/language").create()
+
+    func searchContent(page: Int, key: String) -> Observable<Contents> {
+        let queries = createContentSearchRequest(page: "\(page)", limit: "10", key: key)
+        let dataRequest = BaseRequest(path: "kaungrwai/content/search", query: queries).create()
+        return requestManager.request(dataRequest)
+    }
+
+    func getLanguages() -> Observable<Languages> {
+        let dataRequest = BaseRequest(path: "kaungrwai/language").create()
         return requestManager.request(dataRequest)
     }
 }

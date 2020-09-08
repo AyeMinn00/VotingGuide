@@ -11,6 +11,7 @@ import Foundation
 class Language: Codable, Hashable {
     let id: String
     let lang: String
+    var isSelected = false
 
     enum CodingKeys: String, CodingKey {
         case id = "_id"
@@ -19,6 +20,7 @@ class Language: Codable, Hashable {
 
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
+        hasher.combine(isSelected)
     }
 
     static func == (lhs: Language, rhs: Language) -> Bool {
@@ -49,16 +51,25 @@ struct Languages : Codable , List{
     
 }
 
-struct LanguageItem : CollectionItem {
+class LanguageItem : CollectionItem {
+    
+    static func == (lhs: LanguageItem, rhs: LanguageItem) -> Bool {
+        return lhs.hashValue == rhs.hashValue
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(value)
+    }
+    
     var value : Language?
     var state : CellState
     
-    init(value: Language?) {
+    required init(value: Language?) {
         self.value = value
         state = .main
     }
     
-    init(state: CellState) {
+    required init(state: CellState) {
         self.state = state
         value = nil
     }

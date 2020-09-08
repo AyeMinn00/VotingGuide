@@ -145,7 +145,7 @@ class ContentCell: UICollectionViewCell {
         if let content = content {
             title.text = content.title
             date.text = content.date
-            imageCount.text = "+12 more"
+            imageCount.text = content.leftImageCountLabel
             if content.contentImages.count > 0 {
                 fetchImage(content.contentImages[0])
             }

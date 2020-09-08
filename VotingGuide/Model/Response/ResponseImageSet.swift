@@ -15,7 +15,6 @@ class ImageSet: Codable, Hashable {
     let title: String
     let lang: Language
     var leftImageCount: String = ""
-    var moreThanTwoImages = false
 
     enum CodingKeys: String, CodingKey {
         case images
@@ -33,34 +32,26 @@ class ImageSet: Codable, Hashable {
     }
 
     func display() {
-        debugPrint("id is \(id)")
         for image in images {
             debugPrint("img name is \(image)")
         }
     }
 
     func format() {
-        images.append("2020_08_12_9_38_50.png")
-        images.append("2020_08_12_9_38_50.png")
         let count = images.count
-        print("format count is \(count)")
         if count == 0 { return }
         if count > 0 {
-            print("check 1")
-            for index in 0...count-1{
-                print("check 1 append \(index)")
+            var max = 3
+            if count < 3{
+                max = count
+            }
+            for index in 0...max-1{
                 displayImages.append(images[index])
             }
         }
-        if count >= 2 {
-            print("check 2")
-            moreThanTwoImages = true 
-            let left = count - 2
-            if left > 1 {
-                leftImageCount = "+\(count - 2) images"
-            } else {
-                leftImageCount = "+\(count - 2) image"
-            }
+        if count > 3 {
+            let left = count - 3
+            leftImageCount = "+\(left)"
         }
     }
 }

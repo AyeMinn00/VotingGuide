@@ -40,6 +40,10 @@ class GalleryViewController: BaseChildViewController, UICollectionViewDelegate {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createCollectionLayout())
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = .white
+        collectionView.refreshControl = UIRefreshControl()
+        collectionView.refreshControl?.addTarget(self, action:
+            #selector(handleRefreshControl),
+            for: .valueChanged)
         view.addSubview(collectionView)
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -48,7 +52,7 @@ class GalleryViewController: BaseChildViewController, UICollectionViewDelegate {
             collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
         ])
         collectionView.contentInsetAdjustmentBehavior = .never
-        collectionView.showsVerticalScrollIndicator = false 
+        collectionView.showsVerticalScrollIndicator = false
         self.collectionView = collectionView
         self.collectionView.delegate = self
     }
@@ -107,13 +111,41 @@ class GalleryViewController: BaseChildViewController, UICollectionViewDelegate {
         vm.responses.subscribeOn(MainScheduler.instance)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] imageSets in
+                self?.disableRefreshControl()
                 self?.applySnapshot(items: imageSets)
             }).disposed(by: disposeBag)
+    }
+
+    @objc func handleRefreshControl() {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
+            self.loadData()
+        }
+    }
+
+    private func disableRefreshControl() {
+        if let refreshController = collectionView.refreshControl {
+            if refreshController.isRefreshing {
+                refreshController.endRefreshing()
+            }
+        }
     }
 }
 
 // Mark
 extension GalleryViewController: ErrorCellClickable {
     func didTapRetryButton() {
+        loadData()
+    }
+}
+
+extension GalleryViewController {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let model = dataSource.snapshot().itemIdentifiers[indexPath.row]
+        if let content = model.value {
+            let vc = PhotoViewController()
+            vc.contentImages = content.images
+            vc.selectedIndex = indexPath.row
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
 }

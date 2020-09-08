@@ -20,6 +20,7 @@ class UserDefaultManager {
     }
     
     func selectLanguage(lang : String){
+        print("select lang \(lang)")
         userDefault.set(lang, forKey: KEY_SELECTED_LANG)
     }
     
