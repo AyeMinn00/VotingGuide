@@ -16,10 +16,11 @@ func createContentRequest(page: String, count: String, langId: String) -> [Strin
     return queries
 }
 
-func createContentSearchRequest(page: String, limit: String, key: String) -> [String: String] {
+func createContentSearchRequest(page: String, limit: String, key: String , lang : String) -> [String: String] {
     var queries: [String: String] = [:]
     queries["page"] = page
     queries["limit"] = limit
     queries["key"] = key
+    queries["lang"] = lang
     return queries
 }

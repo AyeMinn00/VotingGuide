@@ -11,6 +11,7 @@ import RxSwift
 import UIKit
 
 class ContentSearchViewController: VotingGuideViewController, UISearchBarDelegate, UICollectionViewDelegate {
+    var searchBar : UISearchBar!
     var collectionView: UICollectionView!
     var scrollView: UIScrollView?
     let disposeBag = DisposeBag()
@@ -25,31 +26,37 @@ class ContentSearchViewController: VotingGuideViewController, UISearchBarDelegat
         view.backgroundColor = .white
         setUpSearchBar()
         setUpCollectionView()
+        watchData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        searchBar.becomeFirstResponder()
     }
 
     private func setUpSearchBar() {
-        let searchBar = UISearchBar()
+        searchBar = UISearchBar()
         searchBar.delegate = self
         searchBar.tintColor = .white
         searchBar.barTintColor = UIColor(named: "Grey_200")
         searchBar.searchBarStyle = .minimal
+        searchBar.returnKeyType = .done
+        searchBar.enablesReturnKeyAutomatically = true
+        searchBar.searchTextField.delegate = self
         searchBar.searchTextField.textColor = .black
         navigationItem.titleView = searchBar
         searchBar.placeholder = "Search Content..."
         navigationItem.hidesSearchBarWhenScrolling = false
-
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
-            searchBar.becomeFirstResponder()
-        }
     }
 
     private func setUpCollectionView() {
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: createCollectionLayout())
+        collectionView.backgroundColor = .white
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.automaticallyAdjustsScrollIndicatorInsets = false
         view.addSubview(collectionView)
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
+            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 56),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
@@ -61,20 +68,29 @@ class ContentSearchViewController: VotingGuideViewController, UISearchBarDelegat
         collectionView.register(ErrorCell.self, forCellWithReuseIdentifier: ErrorCell.name)
         collectionView.register(ContentCell.self, forCellWithReuseIdentifier: ContentCell.name)
         collectionView.register(EndCell.self, forCellWithReuseIdentifier: EndCell.name)
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard (_:)))
+        self.view.addGestureRecognizer(tapGesture)
         makeDataSource()
     }
 
     private func doesCollectionViewMeetFullScreen() -> Bool {
         var result = true
-        if let sv = scrollView {
-            if sv.contentSize.height < sv.frame.size.height && sv.contentSize.height >= CGFloat(offset) {
-                result = false
-            }
+//        if let sv = scrollView {
+//            if sv.contentSize.height < sv.frame.size.height && sv.contentSize.height >= CGFloat(offset) {
+//                result = false
+//            }
+//        }
+        // use collection view instead of scroll view
+        if collectionView.contentSize.height < collectionView.frame.size.height && collectionView.contentSize.height >= CGFloat(offset) {
+            result = false 
         }
+        
+        log(msg: "doesCollectionViewMeetFullScreen return \(result)")
         return result
     }
 
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        log(msg: "scrollViewDidScroll")
         self.scrollView = scrollView
         let bottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height
         if bottomEdge + CGFloat(offset) >= scrollView.contentSize.height {
@@ -83,6 +99,16 @@ class ContentSearchViewController: VotingGuideViewController, UISearchBarDelegat
     }
 
     private func loadData() {
+        log(msg: "loadData")
+        viewModel.loadData()
+    }
+
+    private func watchData() {
+        viewModel.responses.subscribeOn(MainScheduler.instance)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] items in
+                self?.applySnapshot(items: items)
+            }).disposed(by: disposeBag)
     }
 
     func makeDataSource() {
@@ -129,9 +155,24 @@ class ContentSearchViewController: VotingGuideViewController, UISearchBarDelegat
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         viewModel.setSearchQuery(key: searchText)
     }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        log(msg: "text did ending")
+    }
+    
+    @objc func dismissKeyboard (_ sender: UITapGestureRecognizer) {
+        searchBar.resignFirstResponder()
+    }
+    
 }
 
 extension ContentSearchViewController: ErrorCellClickable {
     func didTapRetryButton() {
+    }
+}
+
+extension ContentSearchViewController: UITextFieldDelegate{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
     }
 }

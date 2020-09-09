@@ -30,7 +30,8 @@ class ApiService {
     }
 
     func searchContent(page: Int, key: String) -> Observable<Contents> {
-        let queries = createContentSearchRequest(page: "\(page)", limit: "10", key: key)
+        let lang = userDefault.getSelectedLanguage() ?? ""
+        let queries = createContentSearchRequest(page: "\(page)", limit: "10", key: key, lang: lang)
         let dataRequest = BaseRequest(path: "kaungrwai/content/search", query: queries).create()
         return requestManager.request(dataRequest)
     }

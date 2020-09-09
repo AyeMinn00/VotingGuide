@@ -10,35 +10,109 @@ import Foundation
 import RxCocoa
 import RxSwift
 
-class ContentSearchViewModel {
+class ContentSearchViewModel : NSObject{
+    
+    var isFirstRequest = true
+    var paging = Paging.create()
+    var dataSet: [ContentItem] = []
+    let responses: PublishRelay<[ContentItem]> = PublishRelay()
     private var disposeBag = DisposeBag()
     private var disposable: Disposable?
-    private var searchQuery: PublishRelay<String> = PublishRelay()
+    private var searchQueryRelay: PublishRelay<String> = PublishRelay()
+    private var searchQuery: String = ""
 
     func setSearchQuery(key: String) {
-        searchQuery.accept(key)
+        log(msg: "setSearchQuery \(key)")
+        searchQueryRelay.accept(key)
     }
 
-    init() {
-        searchQuery.debounce(.milliseconds(500), scheduler: MainScheduler.instance)
+    override init() {
+        super.init()
+        searchQueryRelay.debounce(.milliseconds(500), scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] key in
-                self?.searchContent(key: key)
+                self?.resetPageConfiguration()
+                self?.searchQuery = key
+                self?.loadData()
             }).disposed(by: disposeBag)
     }
+    
+    func loadData(){
+        if searchQuery.isEmpty { return }
+        log(msg: "loadData")
+        if isFirstRequest{
+            isFirstRequest = false
+            dataSet.append(ContentItem(state: .loading))
+            log(msg: "append loading")
+            responses.accept(dataSet)
+        }
+        
+        if paging.shouldLoad() {
+            if paging.hasError{
+                if dataSet.count > 0 {
+                    _ = dataSet.removeLast()
+                    dataSet.append(ContentItem(state: .loading))
+                    responses.accept(dataSet)
+                }
+            }
+            paging.setLoading(true)
+            searchContent()
+        }
+    }
 
-    private func searchContent(key: String) {
+    func resetPageConfiguration() {
+        paging = Paging.create()
+//        if dataSet.count > 0 {
+            dataSet.removeAll()
+//            responses.accept(dataSet)
+//        }
+        
         disposable?.dispose()
-        disposable = ApiService.default.searchContent(page: 0, key: key)
+        isFirstRequest = true
+    }
+
+    private func searchContent() {
+        if searchQuery.isEmpty { return }
+        log(msg: "searchContent with \(searchQuery)")
+        disposable = ApiService.default.searchContent(page: paging.currentPage, key: searchQuery)
             .observeOn(MainScheduler.instance)
             .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-            .subscribe(onNext: { _ in
-//                print("onNext")
-            }, onError: { _ in
-//                print("onError")
-            }, onCompleted: {
-//                print("onCompleted")
-            }, onDisposed: {
-//                print("onDisposed")
+            .subscribe(onNext: { [weak self] response in
+                self?.onDataListResult(response.getItems())
+            }, onError: { [weak self] error in
+                self?.onDataListError(error)
             })
+    }
+
+    private func onDataListResult(_ response: [ContentItem]) {
+        log(msg: "onDataListResult")
+        if dataSet.count > 0 {
+            if dataSet.last?.state != .main {
+                _ = dataSet.removeLast()
+            }
+            log(msg: "remove last item")
+        }
+        dataSet += response
+        paging.increasePage()
+        if response.isEmpty {
+            paging.setFinish(true)
+        } else {
+            dataSet.append(ContentItem(state: .loading))
+        }
+        responses.accept(dataSet)
+    }
+
+    private func onDataListError(_ error: Error) {
+        paging.setError(true)
+        if dataSet.count > 0 {
+            if dataSet.last?.state != .main {
+                _ = dataSet.removeLast()
+            }
+        }
+        dataSet.append(ContentItem(state: .error))
+        responses.accept(dataSet)
+    }
+
+    deinit {
+        disposable?.dispose()
     }
 }

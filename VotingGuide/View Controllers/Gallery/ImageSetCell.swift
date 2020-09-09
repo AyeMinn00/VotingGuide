@@ -73,7 +73,7 @@ class ImageSetCell: UICollectionViewCell {
             line.topAnchor.constraint(equalTo: containerView.bottomAnchor, constant: 16),
             line.leadingAnchor.constraint(equalTo: leadingAnchor),
             line.trailingAnchor.constraint(equalTo: trailingAnchor),
-            line.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
+//            line.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -8),
             line.heightAnchor.constraint(equalToConstant: 4)
         ]
 
