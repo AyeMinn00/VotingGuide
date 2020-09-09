@@ -30,8 +30,8 @@ class ImageSetCell: UICollectionViewCell {
 
     let _title: UILabel = {
         let title = UILabel()
-        title.numberOfLines = 4
         title.translatesAutoresizingMaskIntoConstraints = false
+        title.numberOfLines = 4
         title.font = UIFont.boldSystemFont(ofSize: 20)
         title.textColor = UIColor(named: "Grey_800")
         return title
@@ -67,14 +67,14 @@ class ImageSetCell: UICollectionViewCell {
             title.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             title.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             containerView.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 16),
-            containerView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            containerView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            containerView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.9),
+            containerView.centerXAnchor.constraint(equalTo: centerXAnchor),
             containerView.heightAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.75),
             line.topAnchor.constraint(equalTo: containerView.bottomAnchor, constant: 16),
             line.leadingAnchor.constraint(equalTo: leadingAnchor),
             line.trailingAnchor.constraint(equalTo: trailingAnchor),
-//            line.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -8),
-            line.heightAnchor.constraint(equalToConstant: 4)
+            line.heightAnchor.constraint(equalToConstant: 4),
+            line.bottomAnchor.constraint(equalTo: bottomAnchor),
         ]
 
         NSLayoutConstraint.activate(constraints)
@@ -169,7 +169,7 @@ class ImageSetCell: UICollectionViewCell {
             img2.kf.setImage(with: url2, options: [.cacheOriginalImage])
             let url3 = URL(string: IMG_MEDIUM_URL + imageSet!.displayImages[2])
             img3.kf.setImage(with: url3, options: [.cacheOriginalImage])
-            
+
             if imageSet!.images.count > 3 {
                 let leftImgCountView = createLeftImageCountView(count: imageSet!.leftImageCount)
                 containerView.addSubview(leftImgCountView)
@@ -179,10 +179,9 @@ class ImageSetCell: UICollectionViewCell {
                     leftImgCountView.leadingAnchor.constraint(equalTo: img3.leadingAnchor),
                     leftImgCountView.trailingAnchor.constraint(equalTo: img3.trailingAnchor),
                 ])
-                
+
             }
         }
-
     }
 
     override func prepareForReuse() {

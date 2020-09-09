@@ -16,17 +16,18 @@ class EndCell: UICollectionViewCell {
         isUserInteractionEnabled = false 
         backgroundColor = .white
         let line = UIView()
-        line.backgroundColor = UIColor(named: "Grey_300")
         line.translatesAutoresizingMaskIntoConstraints = false
+        line.backgroundColor = UIColor(named: "Grey_300")
         line.layer.cornerRadius = 2
         addSubview(line)
         
-        var constraints = [NSLayoutConstraint]()
-
-        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-84-[line]-84-|", options: [], metrics: nil, views: ["line": line] as [String: Any])
-               constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|-50@500-[line(4)]-50@500-|", options: [], metrics: nil, views: ["line": line] as [String: Any])
-
-               NSLayoutConstraint.activate(constraints)
+        NSLayoutConstraint.activate([
+            line.topAnchor.constraint(equalTo: topAnchor, constant: 32),
+            line.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.6),
+            line.centerXAnchor.constraint(equalTo: centerXAnchor),
+            line.heightAnchor.constraint(equalToConstant: 4),
+            line.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -32)
+        ])
         
     }
 

@@ -75,22 +75,13 @@ class ContentSearchViewController: VotingGuideViewController, UISearchBarDelegat
 
     private func doesCollectionViewMeetFullScreen() -> Bool {
         var result = true
-//        if let sv = scrollView {
-//            if sv.contentSize.height < sv.frame.size.height && sv.contentSize.height >= CGFloat(offset) {
-//                result = false
-//            }
-//        }
-        // use collection view instead of scroll view
         if collectionView.contentSize.height < collectionView.frame.size.height && collectionView.contentSize.height >= CGFloat(offset) {
             result = false 
         }
-        
-        log(msg: "doesCollectionViewMeetFullScreen return \(result)")
         return result
     }
 
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        log(msg: "scrollViewDidScroll")
         self.scrollView = scrollView
         let bottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height
         if bottomEdge + CGFloat(offset) >= scrollView.contentSize.height {
@@ -99,7 +90,6 @@ class ContentSearchViewController: VotingGuideViewController, UISearchBarDelegat
     }
 
     private func loadData() {
-        log(msg: "loadData")
         viewModel.loadData()
     }
 
@@ -154,10 +144,6 @@ class ContentSearchViewController: VotingGuideViewController, UISearchBarDelegat
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         viewModel.setSearchQuery(key: searchText)
-    }
-    
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        log(msg: "text did ending")
     }
     
     @objc func dismissKeyboard (_ sender: UITapGestureRecognizer) {

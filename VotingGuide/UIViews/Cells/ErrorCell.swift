@@ -33,11 +33,11 @@ class ErrorCell: UICollectionViewCell {
         button.addTarget(self, action: #selector(didTap), for: .touchUpInside)
         addSubview(button)
         let constraints = [
-            button.widthAnchor.constraint(equalToConstant: 120),
-            button.heightAnchor.constraint(equalToConstant: 48),
             button.topAnchor.constraint(equalTo: topAnchor, constant: 32),
-            button.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 32),
+            button.widthAnchor.constraint(equalToConstant: 120),
             button.centerXAnchor.constraint(equalTo: centerXAnchor),
+            button.heightAnchor.constraint(equalToConstant: 48),
+            button.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -32),
         ]
         NSLayoutConstraint.activate(constraints)
     }

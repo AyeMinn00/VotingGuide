@@ -6,8 +6,8 @@
 //  Copyright © 2020 Ko Ko Aye . All rights reserved.
 //
 
-import UIKit
 import MaterialComponents.MaterialActivityIndicator
+import UIKit
 
 class LoadingCell: UICollectionViewCell {
     static let name = "loadingCell"
@@ -23,17 +23,15 @@ class LoadingCell: UICollectionViewCell {
         loading.strokeWidth = 2
         loading.radius = 16.0
         loading.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(loading)
-
-        var constraints = [NSLayoutConstraint]()
-
-        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-16-[loading]-16-|", options: [], metrics: nil, views: ["loading": loading] as [String: Any])
-        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|-50@500-[loading]-50@500-|", options: [], metrics: nil, views: ["loading": loading] as [String: Any])
-
-        NSLayoutConstraint.activate(constraints)
-
         indicator = loading
         indicator.startAnimating()
+        addSubview(loading)
+
+        NSLayoutConstraint.activate([
+            loading.topAnchor.constraint(equalTo: topAnchor, constant: 32),
+            loading.centerXAnchor.constraint(equalTo: centerXAnchor),
+            loading.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -32),
+        ])
     }
 
     required init?(coder: NSCoder) {

@@ -10,8 +10,7 @@ import Foundation
 import RxCocoa
 import RxSwift
 
-class ContentSearchViewModel : NSObject{
-    
+class ContentSearchViewModel: NSObject {
     var isFirstRequest = true
     var paging = Paging.create()
     var dataSet: [ContentItem] = []
@@ -22,7 +21,6 @@ class ContentSearchViewModel : NSObject{
     private var searchQuery: String = ""
 
     func setSearchQuery(key: String) {
-        log(msg: "setSearchQuery \(key)")
         searchQueryRelay.accept(key)
     }
 
@@ -35,19 +33,17 @@ class ContentSearchViewModel : NSObject{
                 self?.loadData()
             }).disposed(by: disposeBag)
     }
-    
-    func loadData(){
+
+    func loadData() {
         if searchQuery.isEmpty { return }
-        log(msg: "loadData")
-        if isFirstRequest{
+        if isFirstRequest {
             isFirstRequest = false
             dataSet.append(ContentItem(state: .loading))
-            log(msg: "append loading")
             responses.accept(dataSet)
         }
-        
+
         if paging.shouldLoad() {
-            if paging.hasError{
+            if paging.hasError {
                 if dataSet.count > 0 {
                     _ = dataSet.removeLast()
                     dataSet.append(ContentItem(state: .loading))
@@ -61,18 +57,13 @@ class ContentSearchViewModel : NSObject{
 
     func resetPageConfiguration() {
         paging = Paging.create()
-//        if dataSet.count > 0 {
-            dataSet.removeAll()
-//            responses.accept(dataSet)
-//        }
-        
+        dataSet.removeAll()
         disposable?.dispose()
         isFirstRequest = true
     }
 
     private func searchContent() {
         if searchQuery.isEmpty { return }
-        log(msg: "searchContent with \(searchQuery)")
         disposable = ApiService.default.searchContent(page: paging.currentPage, key: searchQuery)
             .observeOn(MainScheduler.instance)
             .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
@@ -84,12 +75,10 @@ class ContentSearchViewModel : NSObject{
     }
 
     private func onDataListResult(_ response: [ContentItem]) {
-        log(msg: "onDataListResult")
         if dataSet.count > 0 {
             if dataSet.last?.state != .main {
                 _ = dataSet.removeLast()
             }
-            log(msg: "remove last item")
         }
         dataSet += response
         paging.increasePage()
