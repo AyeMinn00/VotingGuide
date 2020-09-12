@@ -68,8 +68,8 @@ class ContentSearchViewController: VotingGuideViewController, UISearchBarDelegat
         collectionView.register(ErrorCell.self, forCellWithReuseIdentifier: ErrorCell.name)
         collectionView.register(ContentCell.self, forCellWithReuseIdentifier: ContentCell.name)
         collectionView.register(EndCell.self, forCellWithReuseIdentifier: EndCell.name)
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard (_:)))
-        self.view.addGestureRecognizer(tapGesture)
+//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard (_:)))
+//        self.view.addGestureRecognizer(tapGesture)
         makeDataSource()
     }
 
@@ -159,6 +159,7 @@ class ContentSearchViewController: VotingGuideViewController, UISearchBarDelegat
     }
     
     @objc func dismissKeyboard (_ sender: UITapGestureRecognizer) {
+        log(msg: "dismissKeyboard")
         searchBar.resignFirstResponder()
     }
     

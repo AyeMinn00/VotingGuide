@@ -11,7 +11,17 @@ import RxSwift
 import UIKit
 
 class LanguageSelectionViewController: VotingGuideViewController, UICollectionViewDelegate, ErrorCellClickable, LanguageCellClickable {
-    weak var message: UILabel!
+    weak var logo: UIImageView!
+
+    private let _logo: UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.clipsToBounds = true
+        image.contentMode = .scaleAspectFill
+        image.image = UIImage(named: "kaungrwai")
+        return image
+    }()
+
     var collectionView: UICollectionView!
     private var dataSource: UICollectionViewDiffableDataSource<Section, LanguageItem>!
     let vm = LanguageSelectionViewModel(false)
@@ -27,15 +37,22 @@ class LanguageSelectionViewController: VotingGuideViewController, UICollectionVi
     }
 
     private func configViews() {
+        logo = _logo
+        view.addSubview(logo)
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: createCollectionLayout())
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = .white
         view.addSubview(collectionView)
         NSLayoutConstraint.activate([
+            logo.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 64),
+            logo.widthAnchor.constraint(equalToConstant: 300),
+            logo.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            logo.heightAnchor.constraint(equalToConstant: 150),
+            collectionView.topAnchor.constraint(equalTo: logo.bottomAnchor, constant: 16),
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            collectionView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.6),
+//            collectionView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.6),
         ])
         collectionView.contentInsetAdjustmentBehavior = .never
         collectionView.showsVerticalScrollIndicator = false

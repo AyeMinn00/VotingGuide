@@ -82,6 +82,7 @@ class ContentCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .white
+        isUserInteractionEnabled = true
         configUIViews()
         configConstraints()
     }
