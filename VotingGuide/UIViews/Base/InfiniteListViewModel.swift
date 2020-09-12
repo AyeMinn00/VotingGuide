@@ -83,7 +83,7 @@ class InfiniteListViewModel<DataType: CollectionItem>: NSObject {
         paging.increasePage()
         if response.isEmpty {
             paging.setFinish(true)
-            dataSet.append(DataType(state: .finished))
+//            dataSet.append(DataType(state: .finished))
         } else {
             dataSet.append(DataType(state: .loading)) // although data set last item is not in loading state , we have to set last item to loading state to show user
         }

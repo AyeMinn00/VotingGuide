@@ -61,15 +61,15 @@ class LanguageCell2 : UICollectionViewCell{
         imageView.isHidden = true
         NSLayoutConstraint.activate([
             imageView.widthAnchor.constraint(equalToConstant: 22),
-            imageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -32),
+            imageView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -32),
             imageView.heightAnchor.constraint(equalToConstant: 22),
-            label.topAnchor.constraint(equalTo: topAnchor, constant: 18),
-            label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 22),
+            label.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 18),
+            label.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 22),
             label.trailingAnchor.constraint(equalTo: imageView.leadingAnchor, constant: -8),
             line.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 18),
-            line.heightAnchor.constraint(equalToConstant: 2),
-            line.leadingAnchor.constraint(equalTo: leadingAnchor),
-            line.trailingAnchor.constraint(equalTo: trailingAnchor),
+            line.heightAnchor.constraint(equalToConstant: 1),
+            line.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+            line.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
             imageView.centerYAnchor.constraint(equalTo: centerYAnchor),
         ])
     }

@@ -92,6 +92,18 @@ class ContentSearchViewController: VotingGuideViewController, UISearchBarDelegat
     private func loadData() {
         viewModel.loadData()
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let model = dataSource.snapshot().itemIdentifiers[indexPath.row]
+        if let content = model.value {
+            let vc = ContentDetailViewController()
+            vc.contentTitle = content.title
+            vc.contentDate = content.date
+            vc.contentBody = content.body
+            vc.contentImages = content.contentImages
+            navigationController?.pushViewController(vc, animated: true)
+        }
+    }
 
     private func watchData() {
         viewModel.responses.subscribeOn(MainScheduler.instance)
@@ -154,6 +166,7 @@ class ContentSearchViewController: VotingGuideViewController, UISearchBarDelegat
 
 extension ContentSearchViewController: ErrorCellClickable {
     func didTapRetryButton() {
+        loadData()
     }
 }
 

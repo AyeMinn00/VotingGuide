@@ -43,6 +43,9 @@
 		D56AD06224ED8268009D59FA /* BaseChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56AD06124ED8268009D59FA /* BaseChildViewController.swift */; };
 		D56CB98E24F96199009FA5D5 /* ResponseContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56CB98D24F96199009FA5D5 /* ResponseContact.swift */; };
 		D56CB99124F96980009FA5D5 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56CB99024F96980009FA5D5 /* MenuViewController.swift */; };
+		D570E39D250C832100019C4E /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D570E39C250C832100019C4E /* ContactCell.swift */; };
+		D570E39F250C850E00019C4E /* ContactViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D570E39E250C850E00019C4E /* ContactViewModel.swift */; };
+		D570E3A1250C85A300019C4E /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D570E3A0250C85A300019C4E /* ContactViewController.swift */; };
 		D598E3B72507438300C124D8 /* ContentSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D598E3B62507438300C124D8 /* ContentSearchViewModel.swift */; };
 		D5A308AE24DC83C0005274B0 /* Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A308AD24DC83C0005274B0 /* Ext.swift */; };
 		D5A3486824F03BA50074B85C /* ContentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A3486724F03BA50074B85C /* ContentDetailViewController.swift */; };
@@ -99,6 +102,9 @@
 		D56AD06124ED8268009D59FA /* BaseChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseChildViewController.swift; sourceTree = "<group>"; };
 		D56CB98D24F96199009FA5D5 /* ResponseContact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseContact.swift; sourceTree = "<group>"; };
 		D56CB99024F96980009FA5D5 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		D570E39C250C832100019C4E /* ContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
+		D570E39E250C850E00019C4E /* ContactViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewModel.swift; sourceTree = "<group>"; };
+		D570E3A0250C85A300019C4E /* ContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
 		D598E3B62507438300C124D8 /* ContentSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentSearchViewModel.swift; sourceTree = "<group>"; };
 		D5A308AD24DC83C0005274B0 /* Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ext.swift; sourceTree = "<group>"; };
 		D5A3486724F03BA50074B85C /* ContentDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentDetailViewController.swift; sourceTree = "<group>"; };
@@ -159,6 +165,9 @@
 		D5138E872502192900738673 /* Contact */ = {
 			isa = PBXGroup;
 			children = (
+				D570E39C250C832100019C4E /* ContactCell.swift */,
+				D570E39E250C850E00019C4E /* ContactViewModel.swift */,
+				D570E3A0250C85A300019C4E /* ContactViewController.swift */,
 			);
 			path = Contact;
 			sourceTree = "<group>";
@@ -557,9 +566,11 @@
 				D556214624E8409D0081655D /* VotingGuideViewController.swift in Sources */,
 				D556215024E841B20081655D /* EndCell.swift in Sources */,
 				D556214224E83C480081655D /* List.swift in Sources */,
+				D570E3A1250C85A300019C4E /* ContactViewController.swift in Sources */,
 				D556213424E8352F0081655D /* BaseRequest.swift in Sources */,
 				D556215C24E8456B0081655D /* GalleryViewModel.swift in Sources */,
 				D56CB98E24F96199009FA5D5 /* ResponseContact.swift in Sources */,
+				D570E39D250C832100019C4E /* ContactCell.swift in Sources */,
 				D5A3486824F03BA50074B85C /* ContentDetailViewController.swift in Sources */,
 				D598E3B72507438300C124D8 /* ContentSearchViewModel.swift in Sources */,
 				D5B47BEA24D58CD3002348E7 /* AppDelegate.swift in Sources */,
@@ -569,6 +580,7 @@
 				D54D423024FBAF6600D72B19 /* PhotoCell.swift in Sources */,
 				D546866124EACFCD00CADCE0 /* ResponseContent.swift in Sources */,
 				D556213924E837B10081655D /* RequestManager.swift in Sources */,
+				D570E39F250C850E00019C4E /* ContactViewModel.swift in Sources */,
 				D5B2D41C24F8AEA2003C8037 /* LanguageCell.swift in Sources */,
 				D546866724EAD4D400CADCE0 /* ContentCell.swift in Sources */,
 				D556215324E8426F0081655D /* InfiniteListViewModel.swift in Sources */,

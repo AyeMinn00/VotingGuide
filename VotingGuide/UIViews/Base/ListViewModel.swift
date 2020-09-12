@@ -17,7 +17,7 @@ class ListViewModel<DataType: CollectionItem>: NSObject {
     let responses: PublishRelay<[DataType]> = PublishRelay()
     var hasFinishView : Bool = true
     
-    init(_ hasFinishView : Bool = true) {
+    init(_ hasFinishView : Bool = false) {
         self.hasFinishView = hasFinishView
     }
 

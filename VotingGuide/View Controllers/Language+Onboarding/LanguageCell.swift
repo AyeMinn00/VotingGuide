@@ -37,10 +37,10 @@ class LanguageCell: UICollectionViewCell {
         label = _label
         label.addTarget(self, action: #selector(didSelectLanguage), for: .touchUpInside)
         addSubview(label)
-        label.topAnchor.constraint(equalTo: topAnchor, constant: 16).isActive = true
+        label.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16).isActive = true
         label.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 42).isActive = true
-        label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -42).isActive = true
+        label.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 42).isActive = true
+        label.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -42).isActive = true
     }
 
     func bind(_ language: Language?) {

@@ -6,9 +6,8 @@
 //  Copyright © 2020 Ko Ko Aye. All rights reserved.
 //
 
-import UIKit
 import MaterialComponents.MaterialRipple
-
+import UIKit
 
 class MenuViewController: BaseChildViewController {
     override func viewDidLoad() {
@@ -21,14 +20,14 @@ class MenuViewController: BaseChildViewController {
     }
 
     private func configViews() {
-        
         let itemHeight = CGFloat(50)
         let lineHeight = CGFloat(2)
 
         let labelContact = createLabel("Contact Information")
+        labelContact.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(contactTapped(_:))))
         view.addSubview(labelContact)
         NSLayoutConstraint.activate([
-            labelContact.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 64),
+            labelContact.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 64),
             labelContact.widthAnchor.constraint(equalTo: view.widthAnchor),
             labelContact.heightAnchor.constraint(equalToConstant: itemHeight),
         ])
@@ -76,7 +75,7 @@ class MenuViewController: BaseChildViewController {
         NSLayoutConstraint.activate([
             label.heightAnchor.constraint(equalTo: view.heightAnchor),
             label.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
-            label.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            label.centerXAnchor.constraint(equalTo: view.centerXAnchor),
         ])
         label.textColor = UIColor(named: "Grey_800")
         label.text = str
@@ -91,9 +90,12 @@ class MenuViewController: BaseChildViewController {
         line.backgroundColor = UIColor(named: "Grey_100")
         return line
     }
-    
-    @objc func labelTapped(_ sender : UITapGestureRecognizer){
+
+    @objc func labelTapped(_ sender: UITapGestureRecognizer) {
         navigationController?.pushViewController(SettingViewController(), animated: true)
     }
-    
+
+    @objc func contactTapped(_ sender: UITapGestureRecognizer) {
+        navigationController?.pushViewController(ContactViewController(), animated: true)
+    }
 }

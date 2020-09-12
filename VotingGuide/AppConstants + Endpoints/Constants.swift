@@ -8,7 +8,7 @@
 
 import Foundation
 
-let BASE_URL = "https://vkclient.thantzin.pro/api/"
-let IMG_ORIGINAL_URL = "https://vkadmin.thantzin.pro/images/original/"
-let IMG_MEDIUM_URL = "https://vkadmin.thantzin.pro/images/medium/"
-let IMG_SMALL_URL = "https://vkadmin.thantzin.pro/images/small/"
+let BASE_URL = "https://client.kaungrwai.com/api/"
+let IMG_ORIGINAL_URL = "https://client.kaungrwai.com/images/original/"
+let IMG_MEDIUM_URL = "https://client.kaungrwai.com/images/medium/"
+let IMG_SMALL_URL = "https://client.kaungrwai.com/images/small/"

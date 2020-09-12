@@ -40,4 +40,9 @@ class ApiService {
         let dataRequest = BaseRequest(path: "kaungrwai/language").create()
         return requestManager.request(dataRequest)
     }
+
+    func getContacts() -> Observable<Contacts> {
+        let dataRequest = BaseRequest(path: "kaungrwai/contact").create()
+        return requestManager.request(dataRequest)
+    }
 }

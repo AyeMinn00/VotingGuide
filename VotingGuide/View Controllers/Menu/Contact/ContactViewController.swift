@@ -1,8 +1,8 @@
 //
-//  Setting.swift
+//  ContactViewController.swift
 //  VotingGuide
 //
-//  Created by Ko Ko Aye on 04/09/2020.
+//  Created by Ko Ko Aye on 12/09/2020.
 //  Copyright © 2020 Ko Ko Aye. All rights reserved.
 //
 
@@ -10,26 +10,26 @@ import MaterialComponents.MaterialAppBar
 import RxSwift
 import UIKit
 
-class SettingViewController: VotingGuideViewController, UICollectionViewDelegate, ErrorCellClickable {
+class ContactViewController: VotingGuideViewController, UICollectionViewDelegate, ErrorCellClickable {
     var appBarViewController: MDCAppBarViewController!
     private var collectionView: UICollectionView!
-    private var dataSource: UICollectionViewDiffableDataSource<Section, LanguageItem>!
-    private var snapshot = NSDiffableDataSourceSnapshot<Section, LanguageItem>()
+    private var dataSource: UICollectionViewDiffableDataSource<Section, ContactItem>!
+    private var snapshot = NSDiffableDataSourceSnapshot<Section, ContactItem>()
 
-    let vm = LanguageSelectionViewModel()
+    let vm = ContactViewModel()
 
     let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        title = "Select Language"
+        title = "Contact Information"
         configViews()
         watchData()
-        getLanguages()
+        getContacts()
     }
 
-    private func getLanguages() {
+    private func getContacts() {
         vm.loadData()
     }
 
@@ -54,15 +54,15 @@ class SettingViewController: VotingGuideViewController, UICollectionViewDelegate
         collectionView.register(LoadingCell.self, forCellWithReuseIdentifier: LoadingCell.name)
         collectionView.register(ErrorCell.self, forCellWithReuseIdentifier: ErrorCell.name)
         collectionView.register(EndCell.self, forCellWithReuseIdentifier: EndCell.name)
-        collectionView.register(LanguageCell2.self, forCellWithReuseIdentifier: LanguageCell2.name)
+        collectionView.register(ContactCell.self, forCellWithReuseIdentifier: ContactCell.name)
         makeDataSource()
     }
 
     private func makeDataSource() {
-        dataSource = UICollectionViewDiffableDataSource<Section, LanguageItem>(collectionView: collectionView, cellProvider: { [weak self] (collectionView, indexPath, item) -> UICollectionViewCell? in
+        dataSource = UICollectionViewDiffableDataSource<Section, ContactItem>(collectionView: collectionView, cellProvider: { [weak self] (collectionView, indexPath, item) -> UICollectionViewCell? in
             switch item.state {
             case .main:
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LanguageCell2.name, for: indexPath) as? LanguageCell2
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ContactCell.name, for: indexPath) as? ContactCell
                 cell?.bind(item.value)
                 return cell
             case .loading:
@@ -89,7 +89,7 @@ class SettingViewController: VotingGuideViewController, UICollectionViewDelegate
         return layout
     }
 
-    private func applySnapshot(items: [LanguageItem], _ reload: Bool = false) {
+    private func applySnapshot(items: [ContactItem], _ reload: Bool = false) {
         if reload {
             snapshot.reloadItems(items)
         } else {
@@ -108,10 +108,9 @@ class SettingViewController: VotingGuideViewController, UICollectionViewDelegate
             }).disposed(by: disposeBag)
     }
 
-    private func bind(_ languages: [LanguageItem]) {
+    private func bind(_ contacts: [ContactItem]) {
         disableRefreshControl()
-        let newDataSet = changeDataSet(languages)
-        applySnapshot(items: newDataSet)
+        applySnapshot(items: contacts)
     }
 
     func didTapRetryButton() {
@@ -120,7 +119,7 @@ class SettingViewController: VotingGuideViewController, UICollectionViewDelegate
 
     @objc func handleRefreshControl() {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
-            self.getLanguages()
+            self.getContacts()
         }
     }
 
@@ -133,23 +132,6 @@ class SettingViewController: VotingGuideViewController, UICollectionViewDelegate
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let dataSet = dataSource.snapshot().itemIdentifiers
-        let lang = dataSet[indexPath.row]
-        if let language = lang.value {
-            UserDefaultManager.shared.selectLanguage(lang: language.id)
-            let newDataSet = changeDataSet(dataSet)
-            applySnapshot(items: newDataSet, true)
-        }
-    }
-
-    private func changeDataSet(_ items: [LanguageItem]) -> [LanguageItem] {
-        let selectedLangId = UserDefaultManager.shared.getSelectedLanguage() ?? ""
-        items.forEach { item in
-            if let value = item.value {
-                value.isSelected = value.id == selectedLangId
-            }
-        }
-        return items
     }
 
     func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {

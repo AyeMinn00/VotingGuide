@@ -17,6 +17,7 @@ class ImageSetCell: UICollectionViewCell {
     weak var line: UIView!
 
     private var imageSet: ImageSet?
+    let processor = DownsamplingImageProcessor(size: CGSize(width: 512, height: 384))
 
     let _stackView: UIView = {
         let view = UIView()
@@ -111,7 +112,7 @@ class ImageSetCell: UICollectionViewCell {
         title.text = imageSet!.title
 
         let count = imageSet!.displayImages.count
-        print("image count is \(count)")
+        
         if count == 1 {
             let img = createImageView()
             containerView.addSubview(img)
@@ -119,12 +120,11 @@ class ImageSetCell: UICollectionViewCell {
             img.bottomAnchor.constraint(equalTo: containerView.bottomAnchor).isActive = true
             img.leadingAnchor.constraint(equalTo: containerView.leadingAnchor).isActive = true
             img.trailingAnchor.constraint(equalTo: containerView.trailingAnchor).isActive = true
-            let url = URL(string: IMG_ORIGINAL_URL + imageSet!.displayImages[0])
-            img.kf.setImage(with: url, options: [.cacheOriginalImage])
+            let url = URL(string: IMG_MEDIUM_URL + imageSet!.displayImages[0])
+            img.kf.setImage(with: url, options: [.cacheOriginalImage, .processor(processor)])
         }
 
         if count == 2 {
-            print("count 2")
             let img1 = createImageView()
             let img2 = createImageView()
             containerView.addSubview(img1)
@@ -138,13 +138,12 @@ class ImageSetCell: UICollectionViewCell {
             img2.trailingAnchor.constraint(equalTo: containerView.trailingAnchor).isActive = true
             img2.heightAnchor.constraint(equalTo: containerView.heightAnchor, multiplier: 0.5).isActive = true
             let url1 = URL(string: IMG_MEDIUM_URL + imageSet!.displayImages[0])
-            img1.kf.setImage(with: url1, options: [.cacheOriginalImage])
+            img1.kf.setImage(with: url1, options: [.cacheOriginalImage,.processor(processor)])
             let url2 = URL(string: IMG_MEDIUM_URL + imageSet!.displayImages[1])
-            img2.kf.setImage(with: url2, options: [.cacheOriginalImage])
+            img2.kf.setImage(with: url2, options: [.cacheOriginalImage, .processor(processor)])
         }
 
         if count > 2 {
-            print("count 3")
             let img1 = createImageView()
             let img2 = createImageView()
             let img3 = createImageView()
@@ -164,11 +163,11 @@ class ImageSetCell: UICollectionViewCell {
             img3.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.5).isActive = true
             img3.heightAnchor.constraint(equalTo: containerView.heightAnchor, multiplier: 0.5).isActive = true
             let url1 = URL(string: IMG_MEDIUM_URL + imageSet!.displayImages[0])
-            img1.kf.setImage(with: url1, options: [.cacheOriginalImage])
+            img1.kf.setImage(with: url1, options: [.cacheOriginalImage,.processor(processor)])
             let url2 = URL(string: IMG_MEDIUM_URL + imageSet!.displayImages[1])
-            img2.kf.setImage(with: url2, options: [.cacheOriginalImage])
+            img2.kf.setImage(with: url2, options: [.cacheOriginalImage,.processor(processor)])
             let url3 = URL(string: IMG_MEDIUM_URL + imageSet!.displayImages[2])
-            img3.kf.setImage(with: url3, options: [.cacheOriginalImage])
+            img3.kf.setImage(with: url3, options: [.cacheOriginalImage,.processor(processor)])
 
             if imageSet!.images.count > 3 {
                 let leftImgCountView = createLeftImageCountView(count: imageSet!.leftImageCount)

@@ -46,7 +46,7 @@ class ContentDetailCell : UICollectionViewCell{
         if url == nil {
             photo.image = UIImage(named: "sample1")
         } else {
-            let url = URL(string: IMG_MEDIUM_URL + url!)
+            let url = URL(string: IMG_ORIGINAL_URL + url!)
             photo.kf.setImage(with: url, options: [
                 .processor(processor),
                 .cacheOriginalImage])

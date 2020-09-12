@@ -66,7 +66,6 @@ class ContentViewController: InfiniteCollectionViewController<ContentItem> {
     }
 
     @objc func tapMenuSearch(sender: Any) {
-        log(msg: "tap search")
         navigationController?.pushViewController(ContentSearchViewController(), animated: true)
     }
 }
@@ -105,10 +104,10 @@ extension ContentViewController: InfiniteListDelegate {
     }
 
     func createCollectionLayout() -> UICollectionViewLayout {
-        let layoutSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(100))
-        let item = NSCollectionLayoutItem(layoutSize: layoutSize)
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(100))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
 
-        let group = NSCollectionLayoutGroup.vertical(layoutSize: layoutSize, subitems: [item])
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: itemSize, subitems: [item])
 
         let section = NSCollectionLayoutSection(group: group)
         let layout = UICollectionViewCompositionalLayout(section: section)
