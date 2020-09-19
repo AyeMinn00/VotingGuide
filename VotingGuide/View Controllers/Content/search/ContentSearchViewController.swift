@@ -159,7 +159,6 @@ class ContentSearchViewController: VotingGuideViewController, UISearchBarDelegat
     }
     
     @objc func dismissKeyboard (_ sender: UITapGestureRecognizer) {
-        log(msg: "dismissKeyboard")
         searchBar.resignFirstResponder()
     }
     

@@ -71,7 +71,7 @@ extension SceneDelegate: MDCAppBarNavigationControllerDelegate {
         let layer = CAGradientLayer()
         layer.colors = [UIColor(named: "Grey_200")!]
         appBarViewController.headerView.shadowLayer = layer
-        appBarViewController.navigationBar.leadingBarItemsTintColor = UIColor(named: "Grey_800")
+        appBarViewController.navigationBar.leadingBarItemsTintColor = UIColor(named: "color_accent")
         appBarViewController.navigationBar.titleFont = UIFont.systemFont(ofSize: 20)
         appBarViewController.headerView.shadowLayer = CAGradientLayer()
         appBarViewController.headerView.canOverExtend = false

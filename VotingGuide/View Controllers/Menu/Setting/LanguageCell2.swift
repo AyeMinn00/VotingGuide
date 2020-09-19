@@ -37,7 +37,8 @@ class LanguageCell2 : UICollectionViewCell{
         imgView.translatesAutoresizingMaskIntoConstraints = false
         imgView.clipsToBounds = true
         imgView.contentMode = .scaleAspectFit
-        imgView.image = UIImage(named: "correct")
+        imgView.image = UIImage(named: "correct")?.withRenderingMode(.alwaysTemplate)
+        imgView.tintColor = UIColor(named: "color_accent")
         return imgView
     }()
     

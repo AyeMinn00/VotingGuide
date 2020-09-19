@@ -19,8 +19,6 @@
 
 #import "MDCBottomNavigationItemBadge.h"
 #import "MaterialAvailability.h"
-#import "MaterialBottomNavigationStrings.h"
-#import "MaterialBottomNavigationStrings_table.h"
 #import "MaterialMath.h"
 
 // A number large enough to be larger than any reasonable screen dimension but small enough that
@@ -43,10 +41,6 @@ static const CGFloat kBadgeXOffsetFromIconEdgeEmptyLTR = -1;
 // The duration of the selection transition animation.
 static const NSTimeInterval kMDCBottomNavigationItemViewTransitionDuration = 0.180;
 
-// The Bundle for string resources.
-static NSString *const kMaterialBottomNavigationBundle = @"MaterialBottomNavigation.bundle";
-static NSString *const kMDCBottomNavigationItemViewTabString = @"tab";
-
 // The amount to inset pointerEffectHoverRect.
 // These values were chosen to achieve visual parity with UITabBar's highlight effect.
 const CGSize MDCButtonNavigationItemViewPointerEffectHighlightRectInset = {-24, -12};
@@ -56,7 +50,6 @@ const CGSize MDCButtonNavigationItemViewPointerEffectHighlightRectInset = {-24, 
 @property(nonatomic, strong) MDCBottomNavigationItemBadge *badge;
 @property(nonatomic, strong) UIImageView *iconImageView;
 @property(nonatomic, strong) UILabel *label;
-@property(nonatomic) BOOL shouldPretendToBeATab;
 - (CGPoint)badgeCenterFromIconFrame:(CGRect)iconFrame isRTL:(BOOL)isRTL;
 
 @end
@@ -66,17 +59,6 @@ const CGSize MDCButtonNavigationItemViewPointerEffectHighlightRectInset = {-24, 
 - (instancetype)initWithFrame:(CGRect)frame {
   self = [super initWithFrame:frame];
   if (self) {
-#if MDC_AVAILABLE_SDK_IOS(10_0)
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wunguarded-availability"
-#pragma clang diagnostic ignored "-Wtautological-pointer-compare"
-    if (&UIAccessibilityTraitTabBar == NULL) {
-      _shouldPretendToBeATab = YES;
-    }
-#pragma clang diagnostic pop
-#else
-    _shouldPretendToBeATab = YES;
-#endif  // MDC_AVAILABLE_SDK_IOS(10_0)
     _titleBelowIcon = YES;
     [self commonMDCBottomNavigationItemViewInit];
   }
@@ -90,8 +72,11 @@ const CGSize MDCButtonNavigationItemViewPointerEffectHighlightRectInset = {-24, 
 
     NSUInteger totalViewsProcessed = 0;
     for (UIView *view in self.subviews) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
       if ([view isKindOfClass:[MDCInkView class]]) {
         _inkView = (MDCInkView *)view;
+#pragma clang diagnostic pop
         ++totalViewsProcessed;
       } else if ([view isKindOfClass:[UIImageView class]]) {
         _iconImageView = (UIImageView *)view;
@@ -156,7 +141,10 @@ const CGSize MDCButtonNavigationItemViewPointerEffectHighlightRectInset = {-24, 
   }
 
   if (!_inkView) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     _inkView = [[MDCInkView alloc] initWithFrame:self.bounds];
+#pragma clang diagnostic pop
     _inkView.autoresizingMask =
         (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
     _inkView.usesLegacyInkRipple = NO;
@@ -173,7 +161,6 @@ const CGSize MDCButtonNavigationItemViewPointerEffectHighlightRectInset = {-24, 
     _button = [[UIButton alloc] initWithFrame:self.bounds];
     _button.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
     _button.accessibilityLabel = [self accessibilityLabelWithTitle:_title];
-    _button.accessibilityTraits &= ~UIAccessibilityTraitButton;
     _button.accessibilityValue = self.accessibilityValue;
     [self addSubview:_button];
   }
@@ -423,15 +410,6 @@ const CGSize MDCButtonNavigationItemViewPointerEffectHighlightRectInset = {-24, 
     [labelComponents addObject:title];
   }
 
-  if (self.shouldPretendToBeATab) {
-    NSString *key = kMaterialBottomNavigationStringTable
-        [kStr_MaterialBottomNavigationTabElementAccessibilityLabel];
-    NSString *tabString = NSLocalizedStringFromTableInBundle(
-        key, kMaterialBottomNavigationStringsTableName, [[self class] bundle],
-        kMDCBottomNavigationItemViewTabString);
-    [labelComponents addObject:tabString];
-  }
-
   // Speak components with a pause in between.
   return [labelComponents componentsJoinedByString:@", "];
 }
@@ -678,26 +656,6 @@ const CGSize MDCButtonNavigationItemViewPointerEffectHighlightRectInset = {-24, 
 - (void)setTitleBelowIcon:(BOOL)titleBelowIcon {
   _titleBelowIcon = titleBelowIcon;
   self.label.numberOfLines = [self renderedTitleNumberOfLines];
-}
-
-#pragma mark - Resource bundle
-
-+ (NSBundle *)bundle {
-  static NSBundle *bundle = nil;
-  static dispatch_once_t onceToken;
-  dispatch_once(&onceToken, ^{
-    bundle = [NSBundle bundleWithPath:[self bundlePathWithName:kMaterialBottomNavigationBundle]];
-  });
-  return bundle;
-}
-
-+ (NSString *)bundlePathWithName:(NSString *)bundleName {
-  // In iOS 8+, we could be included by way of a dynamic framework, and our resource bundles may
-  // not be in the main .app bundle, but rather in a nested framework, so figure out where we live
-  // and use that as the search location.
-  NSBundle *bundle = [NSBundle bundleForClass:[MDCBottomNavigationBar class]];
-  NSString *resourcePath = [(nil == bundle ? [NSBundle mainBundle] : bundle) resourcePath];
-  return [resourcePath stringByAppendingPathComponent:bundleName];
 }
 
 #pragma mark - UILargeContentViewerItem

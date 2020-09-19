@@ -20,8 +20,6 @@
 
 #import "private/MDCBottomNavigationBar+Private.h"
 #import "private/MDCBottomNavigationItemView.h"
-#import "private/MaterialBottomNavigationStrings.h"
-#import "private/MaterialBottomNavigationStrings_table.h"
 #import "MaterialAvailability.h"
 #import "MDCBottomNavigationBarDelegate.h"
 #import "MaterialPalettes.h"
@@ -30,9 +28,6 @@
 #import "MaterialShadowLayer.h"
 #import "MaterialTypography.h"
 #import "MaterialMath.h"
-
-// The Bundle for string resources.
-static NSString *const kBundleName = @"MaterialBottomNavigation.bundle";
 
 // KVO context
 static char *const kKVOContextMDCBottomNavigationBar = "kKVOContextMDCBottomNavigationBar";
@@ -61,7 +56,6 @@ static NSString *const kOfAnnouncement = @"of";
 @property(nonatomic, strong) UIVisualEffectView *blurEffectView;
 @property(nonatomic, strong) UIView *itemsLayoutView;
 @property(nonatomic, strong) NSMutableArray *inkControllers;
-@property(nonatomic) BOOL shouldPretendToBeATabBar;
 @property(nonatomic, strong) UILayoutGuide *barItemsLayoutGuide NS_AVAILABLE_IOS(9_0);
 @property(nonatomic, assign) BOOL enableRippleBehavior;
 
@@ -109,7 +103,6 @@ static NSString *const kOfAnnouncement = @"of";
   _itemsDistributed = YES;
   _barTintColor = [UIColor whiteColor];
   _truncatesLongTitles = YES;
-  _sizeThatFitsIncludesSafeArea = NO;
   _titlesNumberOfLines = 1;
   _mdc_overrideBaseElevation = -1;
   _itemBadgeTextColor = UIColor.whiteColor;
@@ -147,19 +140,7 @@ static NSString *const kOfAnnouncement = @"of";
   _itemsLayoutView.clipsToBounds = NO;
   [_barView addSubview:_itemsLayoutView];
 
-#if MDC_AVAILABLE_SDK_IOS(10_0)
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wunguarded-availability"
-#pragma clang diagnostic ignored "-Wtautological-pointer-compare"
-  if (&UIAccessibilityTraitTabBar != NULL) {
-    _itemsLayoutView.accessibilityTraits = UIAccessibilityTraitTabBar;
-  } else {
-    _shouldPretendToBeATabBar = YES;
-  }
-#pragma clang diagnostic pop
-#else
-  _shouldPretendToBeATabBar = YES;
-#endif  // MDC_AVAILABLE_SDK_IOS(10_0)
+  _itemsLayoutView.accessibilityTraits = UIAccessibilityTraitTabBar;
   _elevation = MDCShadowElevationBottomNavigationBar;
   [(MDCShadowLayer *)self.layer setElevation:_elevation];
   UIColor *defaultShadowColor = UIColor.blackColor;
@@ -205,7 +186,7 @@ static NSString *const kOfAnnouncement = @"of";
 }
 
 - (CGSize)intrinsicContentSize {
-  CGFloat height = self.isTitleBelowIcon ? kBarHeightStackedTitle : kBarHeightAdjacentTitle;
+  CGFloat height = [self calculateBarHeight];
   CGFloat itemWidth = [self widthForItemsWhenCenteredWithAvailableWidth:CGFLOAT_MAX height:height];
   CGSize size = CGSizeMake(itemWidth * self.items.count, height);
   return size;
@@ -216,19 +197,14 @@ static NSString *const kOfAnnouncement = @"of";
 }
 
 - (CGSize)sizeThatFits:(CGSize)size {
-  CGFloat height = kBarHeightStackedTitle;
-  if (self.alignment == MDCBottomNavigationBarAlignmentJustifiedAdjacentTitles &&
-      self.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClassRegular) {
-    height = kBarHeightAdjacentTitle;
-  }
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-  if (@available(iOS 11.0, *)) {
-    if (self.sizeThatFitsIncludesSafeArea) {
-      height += self.safeAreaInsets.bottom;
+  CGFloat height = self.barHeight;
+  if (self.barHeight <= 0) {
+    height = kBarHeightStackedTitle;
+    if (self.alignment == MDCBottomNavigationBarAlignmentJustifiedAdjacentTitles &&
+        self.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClassRegular) {
+      height = kBarHeightAdjacentTitle;
     }
   }
-#pragma clang diagnostic pop
 
   return CGSizeMake(size.width, height);
 }
@@ -264,6 +240,14 @@ static NSString *const kOfAnnouncement = @"of";
       return YES;
       break;
   }
+}
+
+- (CGFloat)calculateBarHeight {
+  CGFloat height = self.isTitleBelowIcon ? kBarHeightStackedTitle : kBarHeightAdjacentTitle;
+  if (self.barHeight > 0) {
+    height = self.barHeight;
+  }
+  return height;
 }
 
 - (void)layoutLandscapeModeWithBottomNavSize:(CGSize)bottomNavSize
@@ -309,7 +293,7 @@ static NSString *const kOfAnnouncement = @"of";
 - (void)sizeItemsLayoutViewItemsDistributed:(BOOL)itemsDistributed
                           withBottomNavSize:(CGSize)bottomNavSize
                              containerWidth:(CGFloat)containerWidth {
-  CGFloat barHeight = self.isTitleBelowIcon ? kBarHeightStackedTitle : kBarHeightAdjacentTitle;
+  CGFloat barHeight = [self calculateBarHeight];
   UIEdgeInsets insets = self.mdc_safeAreaInsets;
   CGFloat bottomNavWidthInset = bottomNavSize.width - insets.left - insets.right;
   if (itemsDistributed) {
@@ -591,26 +575,14 @@ static NSString *const kOfAnnouncement = @"of";
     itemView.titlePositionAdjustment = item.titlePositionAdjustment;
     itemView.badgeColor = self.itemBadgeBackgroundColor;
     itemView.badgeTextColor = self.itemBadgeTextColor;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     MDCInkTouchController *controller = [[MDCInkTouchController alloc] initWithView:itemView];
+#pragma clang diagnostic pop
     controller.delegate = self;
     [self.inkControllers addObject:controller];
     itemView.rippleTouchController.delegate = self;
 
-    if (self.shouldPretendToBeATabBar) {
-      NSString *key = kMaterialBottomNavigationStringTable
-          [kStr_MaterialBottomNavigationItemCountAccessibilityHint];
-      NSString *itemOfTotalString = NSLocalizedStringFromTableInBundle(
-          key, kMaterialBottomNavigationStringsTableName, [[self class] bundle], kOfString);
-      NSString *localizedPosition =
-          [NSString localizedStringWithFormat:itemOfTotalString, (i + 1), (int)items.count];
-      // Allow a custom `accessibilityHint` to be assigned even if "faking" a tab bar is enabled.
-      if (itemView.button.accessibilityHint.length) {
-        itemView.button.accessibilityHint =
-            [NSString stringWithFormat:@"%@. %@", localizedPosition, itemView.accessibilityHint];
-      } else {
-        itemView.button.accessibilityHint = localizedPosition;
-      }
-    }
     if (item.image) {
       itemView.image = item.image;
     }
@@ -620,17 +592,9 @@ static NSString *const kOfAnnouncement = @"of";
     if (item.badgeValue) {
       itemView.badgeValue = item.badgeValue;
     }
-#if MDC_AVAILABLE_SDK_IOS(10_0)
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wpartial-availability"
-    NSOperatingSystemVersion iOS10Version = {10, 0, 0};
-    if ([NSProcessInfo.processInfo isOperatingSystemAtLeastVersion:iOS10Version]) {
-      if (item.badgeColor) {
-        itemView.badgeColor = item.badgeColor;
-      }
+    if (item.badgeColor) {
+      itemView.badgeColor = item.badgeColor;
     }
-#pragma clang diagnostic pop
-#endif  // MDC_AVAILABLE_SDK_IOS(10_0)
     itemView.selected = NO;
 
 #if MDC_AVAILABLE_SDK_IOS(13_0)
@@ -799,11 +763,8 @@ static NSString *const kOfAnnouncement = @"of";
   _itemBadgeBackgroundColor = itemBadgeBackgroundColor;
   for (NSUInteger i = 0; i < self.items.count; ++i) {
     UITabBarItem *item = self.items[i];
-    if (@available(iOS 10.0, *)) {
-      // Skip items with a custom color
-      if (item.badgeColor) {
-        continue;
-      }
+    if (item.badgeColor) {
+      continue;
     }
     MDCBottomNavigationItemView *itemView = self.itemViews[i];
     itemView.badgeColor = itemBadgeBackgroundColor;
@@ -839,28 +800,10 @@ static NSString *const kOfAnnouncement = @"of";
   [self setNeedsLayout];
 }
 
-#pragma mark - Resource bundle
-
-+ (NSBundle *)bundle {
-  static NSBundle *bundle = nil;
-  static dispatch_once_t onceToken;
-  dispatch_once(&onceToken, ^{
-    bundle = [NSBundle bundleWithPath:[self bundlePathWithName:kBundleName]];
-  });
-  return bundle;
-}
-
-+ (NSString *)bundlePathWithName:(NSString *)bundleName {
-  // In iOS 8+, we could be included by way of a dynamic framework, and our resource bundles may
-  // not be in the main .app bundle, but rather in a nested framework, so figure out where we live
-  // and use that as the search location.
-  NSBundle *bundle = [NSBundle bundleForClass:[MDCBottomNavigationBar class]];
-  NSString *resourcePath = [(nil == bundle ? [NSBundle mainBundle] : bundle) resourcePath];
-  return [resourcePath stringByAppendingPathComponent:bundleName];
-}
-
 #pragma mark - MDCInkTouchControllerDelegate methods
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 - (MDCInkView *)inkTouchController:(MDCInkTouchController *)inkTouchController
             inkViewAtTouchLocation:(CGPoint)location {
   if ([inkTouchController.view isKindOfClass:[MDCBottomNavigationItemView class]]) {
@@ -876,6 +819,7 @@ static NSString *const kOfAnnouncement = @"of";
   }
   return YES;
 }
+#pragma clang diagnostic pop
 
 #pragma mark - MDCRippleTouchControllerDelegate methods
 

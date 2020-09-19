@@ -41,7 +41,7 @@ class MenuViewController: BaseChildViewController {
             line2.topAnchor.constraint(equalTo: labelContact.bottomAnchor),
         ])
 
-        let labelSettings = createLabel("Settings")
+        let labelSettings = createLabel("Select Language")
         labelSettings.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(labelTapped(_:))))
         view.addSubview(labelSettings)
         NSLayoutConstraint.activate([

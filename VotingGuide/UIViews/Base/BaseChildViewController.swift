@@ -26,6 +26,7 @@ class BaseChildViewController : VotingGuideViewController{
         appBarViewController.headerView.canOverExtend = false 
         appBarViewController.headerView.shadowLayer = layer
         appBarViewController.headerView.visibleShadowOpacity = 0.2
+        appBarViewController.navigationBar.leadingBarItemsTintColor = UIColor(named: "color_accent")
         appBarViewController.navigationBar.titleAlignment = .leading
         appBarViewController.navigationBar.backgroundColor = UIColor(named: "color_primary")
         appBarViewController.headerView.backgroundColor = UIColor(named: "color_primary")

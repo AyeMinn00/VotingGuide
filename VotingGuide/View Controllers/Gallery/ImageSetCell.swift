@@ -47,7 +47,6 @@ class ImageSetCell: UICollectionViewCell {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-
         title = _title
         addSubview(title)
         containerView = _stackView
@@ -115,6 +114,7 @@ class ImageSetCell: UICollectionViewCell {
         
         if count == 1 {
             let img = createImageView()
+            img.image = nil
             containerView.addSubview(img)
             img.topAnchor.constraint(equalTo: containerView.topAnchor).isActive = true
             img.bottomAnchor.constraint(equalTo: containerView.bottomAnchor).isActive = true
@@ -127,6 +127,8 @@ class ImageSetCell: UICollectionViewCell {
         if count == 2 {
             let img1 = createImageView()
             let img2 = createImageView()
+            img1.image = nil
+            img2.image = nil
             containerView.addSubview(img1)
             containerView.addSubview(img2)
             img1.topAnchor.constraint(equalTo: containerView.topAnchor).isActive = true
@@ -147,6 +149,9 @@ class ImageSetCell: UICollectionViewCell {
             let img1 = createImageView()
             let img2 = createImageView()
             let img3 = createImageView()
+            img1.image = nil
+            img2.image = nil
+            img3.image = nil
             containerView.addSubview(img1)
             containerView.addSubview(img2)
             containerView.addSubview(img3)

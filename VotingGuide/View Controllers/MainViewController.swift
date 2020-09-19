@@ -94,6 +94,7 @@ class MainViewController: VotingGuideViewController, UIScrollViewDelegate {
 
         bottomNavBar.items = [homeTabBar, galleryTabBar, settingTabBar]
         bottomNavBar.titleVisibility = .never
+        bottomNavBar.selectedItemTintColor = UIColor(named: "color_accent")!
         
         
         bottomNavBar.selectedItem = homeTabBar

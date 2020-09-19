@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 53;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -339,7 +339,6 @@
 				D5B47C1C24D5969C002348E7 /* Model */,
 				D556213224E834D90081655D /* Remote */,
 				D5B47C1924D59673002348E7 /* Resource */,
-				D5B47C1E24D596D2002348E7 /* Storyboards */,
 				D556214324E840680081655D /* UIViews */,
 				D53CAE5A24F79F6300004F9C /* UserDefault */,
 				D5B47C1A24D5967E002348E7 /* View Controllers */,
@@ -418,13 +417,6 @@
 			path = AppDelegate;
 			sourceTree = "<group>";
 		};
-		D5B47C1E24D596D2002348E7 /* Storyboards */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Storyboards;
-			sourceTree = "<group>";
-		};
 		F22FE5F371090C82F6D552E7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -464,7 +456,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1160;
-				LastUpgradeCheck = 1160;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Ko Ko Aye";
 				TargetAttributes = {
 					D5B47BE524D58CD3002348E7 = {
@@ -473,7 +465,7 @@
 				};
 			};
 			buildConfigurationList = D5B47BE124D58CD3002348E7 /* Build configuration list for PBXProject "VotingGuide" */;
-			compatibilityVersion = "Xcode 11.4";
+			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -640,6 +632,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -700,6 +693,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -736,11 +730,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3CB3MPS7GA;
 				INFOPLIST_FILE = VotingGuide/Resource/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.hexamass.votingguide1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hexamass.votingguide;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -755,11 +750,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3CB3MPS7GA;
 				INFOPLIST_FILE = VotingGuide/Resource/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.hexamass.votingguide1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hexamass.votingguide;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -19,7 +19,9 @@ class LoadingCell: UICollectionViewCell {
         backgroundColor = .white
         isUserInteractionEnabled = false
         let loading = MDCActivityIndicator()
-        loading.cycleColors = [.blue]
+        var color = [UIColor]()
+        color.append(UIColor(named: "color_accent") ?? .green)
+        loading.cycleColors = color
         loading.strokeWidth = 2
         loading.radius = 16.0
         loading.translatesAutoresizingMaskIntoConstraints = false

@@ -69,6 +69,7 @@ class ContentCell: UICollectionViewCell {
         image.layer.borderColor = UIColor(named: "Grey_100")?.cgColor
         image.contentMode = .scaleAspectFill
         image.backgroundColor = UIColor(named: "Grey_200")
+        image.image = nil
         return image
     }()
 
@@ -133,7 +134,7 @@ class ContentCell: UICollectionViewCell {
     private func fetchImage(_ url: String?) {
         let processor = DownsamplingImageProcessor(size: CGSize(width: 256, height: 192))
         if url == nil {
-            photo.image = UIImage(named: "sample1")
+            photo.image = nil
         } else {
             let url = URL(string: IMG_MEDIUM_URL + url!)
             photo.kf.setImage(with: url, options: [
@@ -149,7 +150,17 @@ class ContentCell: UICollectionViewCell {
             imageCount.text = content.leftImageCountLabel
             if content.contentImages.count > 0 {
                 fetchImage(content.contentImages[0])
+            }else {
+                fetchImage(nil)
             }
         }
     }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        if let p = photo{
+            p.image = nil
+        }
+    }
+
 }
