@@ -14,6 +14,14 @@ class PhotoCell: UICollectionViewCell {
 
     weak var photo: UIImageView!
 
+    let activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView()
+        indicator.color = .white
+        indicator.style = .large
+        indicator.translatesAutoresizingMaskIntoConstraints = false 
+        return indicator
+    }()
+
     let _photo: UIImageView = {
         let p = UIImageView()
         p.translatesAutoresizingMaskIntoConstraints = false
@@ -34,11 +42,17 @@ class PhotoCell: UICollectionViewCell {
 
     private func config() {
         photo = _photo
+        activityIndicator.startAnimating()
         addSubview(photo)
+        addSubview(activityIndicator)
         NSLayoutConstraint.activate([
             photo.centerYAnchor.constraint(equalTo: centerYAnchor),
             photo.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor),
             photo.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, multiplier: 3 / 4),
+            activityIndicator.centerYAnchor.constraint(equalTo: centerYAnchor),
+            activityIndicator.centerXAnchor.constraint(equalTo: centerXAnchor),
+            activityIndicator.heightAnchor.constraint(equalToConstant: 64),
+            activityIndicator.widthAnchor.constraint(equalToConstant: 64)
         ])
     }
 
@@ -47,14 +61,17 @@ class PhotoCell: UICollectionViewCell {
     }
 
     private func fetchImage(_ url: String?) {
-        let processor = DownsamplingImageProcessor(size: CGSize(width: 512, height: 384))
+        let processor = DownsamplingImageProcessor(size: CGSize(width: 1024, height: 1024))
         if url == nil {
             photo.image = UIImage(named: "sample1")
+            activityIndicator.stopAnimating()
         } else {
-            let url = URL(string: IMG_ORIGINAL_URL + url!)
+            let url = URL(string: IMG_MEDIUM_URL + url!)
             photo.kf.setImage(with: url, options: [
                 .processor(processor),
-                .cacheOriginalImage])
+                .cacheOriginalImage], completionHandler: { [weak self] _ in
+                self?.activityIndicator.stopAnimating()
+            })
         }
     }
 }

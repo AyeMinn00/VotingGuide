@@ -121,9 +121,16 @@ class ContentDetailViewController: VotingGuideViewController, UICollectionViewDe
     }
 
     private func bind() {
-        titleLabel.text = contentTitle
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 3
+        let titleAttributeString = NSMutableAttributedString(string: contentTitle ?? "")
+        titleAttributeString.addAttribute(NSAttributedString.Key.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, titleAttributeString.length))
+        titleLabel.attributedText = titleAttributeString
         dateLabel.text = contentDate
-        bodyLabel.text = contentBody
+        
+        let bodyAttributeString = NSMutableAttributedString(string: contentBody ?? "")
+        bodyAttributeString.addAttribute(NSAttributedString.Key.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, bodyAttributeString.length))
+        bodyLabel.attributedText = bodyAttributeString
         if let images = contentImages {
             applySnapshot(items: images)
         }

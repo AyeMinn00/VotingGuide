@@ -144,7 +144,7 @@ class ContentSearchViewController: VotingGuideViewController, UISearchBarDelegat
         return layout
     }
 
-    func applySnapshot(items: [ContentItem], _ animatingDifferences: Bool = true) {
+    func applySnapshot(items: [ContentItem], _ animatingDifferences: Bool = false) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, ContentItem>()
         snapshot.appendSections([.main])
         snapshot.appendItems(items)

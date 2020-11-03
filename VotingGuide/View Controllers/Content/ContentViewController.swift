@@ -40,13 +40,15 @@ class ContentViewController: InfiniteCollectionViewController<ContentItem> {
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let model = dataSource.snapshot().itemIdentifiers[indexPath.row]
-        if let content = model.value {
-            let vc = ContentDetailViewController()
-            vc.contentTitle = content.title
-            vc.contentDate = content.date
-            vc.contentBody = content.body
-            vc.contentImages = content.contentImages
-            navigationController?.pushViewController(vc, animated: true)
+        DispatchQueue.main.async {
+            if let content = model.value {
+                let vc = ContentDetailViewController()
+                vc.contentTitle = content.title
+                vc.contentDate = content.date
+                vc.contentBody = content.body
+                vc.contentImages = content.contentImages
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
         }
     }
 
@@ -66,7 +68,9 @@ class ContentViewController: InfiniteCollectionViewController<ContentItem> {
     }
 
     @objc func tapMenuSearch(sender: Any) {
-        navigationController?.pushViewController(ContentSearchViewController(), animated: true)
+        DispatchQueue.main.async {
+            self.navigationController?.pushViewController(ContentSearchViewController(), animated: true)
+        }
     }
 }
 
@@ -76,7 +80,7 @@ extension ContentViewController: InfiniteListDelegate {
     }
 
     func getOffSet() -> Int {
-        return 300
+        return 200
     }
 
     func loadData() {

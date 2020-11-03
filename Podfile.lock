@@ -1,15 +1,15 @@
 PODS:
   - Alamofire (5.2.2)
-  - Kingfisher (5.15.1):
-    - Kingfisher/Core (= 5.15.1)
-  - Kingfisher/Core (5.15.1)
-  - MaterialComponents/ActivityIndicator (116.0.0):
+  - Kingfisher (5.15.4):
+    - Kingfisher/Core (= 5.15.4)
+  - Kingfisher/Core (5.15.4)
+  - MaterialComponents/ActivityIndicator (116.0.1):
     - MaterialComponents/Palettes
     - MaterialComponents/private/Application
     - MDFInternationalization
     - MotionAnimator (~> 2.0)
-  - MaterialComponents/AnimationTiming (116.0.0)
-  - MaterialComponents/AppBar (116.0.0):
+  - MaterialComponents/AnimationTiming (116.0.1)
+  - MaterialComponents/AppBar (116.0.1):
     - MaterialComponents/FlexibleHeader
     - MaterialComponents/HeaderStackView
     - MaterialComponents/NavigationBar
@@ -20,8 +20,8 @@ PODS:
     - MaterialComponents/ShadowLayer
     - MaterialComponents/Typography
     - MDFInternationalization
-  - MaterialComponents/Availability (116.0.0)
-  - MaterialComponents/BottomNavigation (116.0.0):
+  - MaterialComponents/Availability (116.0.1)
+  - MaterialComponents/BottomNavigation (116.0.1):
     - MaterialComponents/Availability
     - MaterialComponents/Elevation
     - MaterialComponents/Ink
@@ -32,11 +32,11 @@ PODS:
     - MaterialComponents/ShadowLayer
     - MaterialComponents/Typography
     - MDFInternationalization
-  - MaterialComponents/ButtonBar (116.0.0):
+  - MaterialComponents/ButtonBar (116.0.1):
     - MaterialComponents/Buttons
     - MaterialComponents/private/Application
     - MDFInternationalization
-  - MaterialComponents/Buttons (116.0.0):
+  - MaterialComponents/Buttons (116.0.1):
     - MaterialComponents/Elevation
     - MaterialComponents/Ink
     - MaterialComponents/private/Math
@@ -48,11 +48,11 @@ PODS:
     - MaterialComponents/Typography
     - MDFInternationalization
     - MDFTextAccessibility
-  - MaterialComponents/Elevation (116.0.0):
+  - MaterialComponents/Elevation (116.0.1):
     - MaterialComponents/Availability
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
-  - MaterialComponents/FlexibleHeader (116.0.0):
+  - MaterialComponents/FlexibleHeader (116.0.1):
     - MaterialComponents/Availability
     - MaterialComponents/Elevation
     - "MaterialComponents/FlexibleHeader+ShiftBehavior"
@@ -63,49 +63,49 @@ PODS:
     - MaterialComponents/ShadowElevations
     - MaterialComponents/ShadowLayer
     - MDFTextAccessibility
-  - "MaterialComponents/FlexibleHeader+ShiftBehavior (116.0.0)"
-  - "MaterialComponents/FlexibleHeader+ShiftBehaviorEnabledWithStatusBar (116.0.0)":
+  - "MaterialComponents/FlexibleHeader+ShiftBehavior (116.0.1)"
+  - "MaterialComponents/FlexibleHeader+ShiftBehaviorEnabledWithStatusBar (116.0.1)":
     - "MaterialComponents/FlexibleHeader+ShiftBehavior"
-  - MaterialComponents/HeaderStackView (116.0.0)
-  - MaterialComponents/Ink (116.0.0):
+  - MaterialComponents/HeaderStackView (116.0.1)
+  - MaterialComponents/Ink (116.0.1):
     - MaterialComponents/Availability
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
-  - MaterialComponents/NavigationBar (116.0.0):
+  - MaterialComponents/NavigationBar (116.0.1):
     - MaterialComponents/ButtonBar
     - MaterialComponents/Elevation
     - MaterialComponents/private/Math
     - MaterialComponents/Typography
     - MDFInternationalization
     - MDFTextAccessibility
-  - MaterialComponents/PageControl (116.0.0):
+  - MaterialComponents/PageControl (116.0.1):
     - MDFInternationalization
-  - MaterialComponents/Palettes (116.0.0)
-  - MaterialComponents/private/Application (116.0.0)
-  - MaterialComponents/private/Color (116.0.0):
+  - MaterialComponents/Palettes (116.0.1)
+  - MaterialComponents/private/Application (116.0.1)
+  - MaterialComponents/private/Color (116.0.1):
     - MaterialComponents/Availability
-  - MaterialComponents/private/Icons/Base (116.0.0)
-  - MaterialComponents/private/Icons/ic_arrow_back (116.0.0):
+  - MaterialComponents/private/Icons/Base (116.0.1)
+  - MaterialComponents/private/Icons/ic_arrow_back (116.0.1):
     - MaterialComponents/private/Icons/Base
-  - MaterialComponents/private/Math (116.0.0)
-  - MaterialComponents/private/UIMetrics (116.0.0):
+  - MaterialComponents/private/Math (116.0.1)
+  - MaterialComponents/private/UIMetrics (116.0.1):
     - MaterialComponents/private/Application
-  - MaterialComponents/Ripple (116.0.0):
+  - MaterialComponents/Ripple (116.0.1):
     - MaterialComponents/AnimationTiming
     - MaterialComponents/Availability
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
-  - MaterialComponents/ShadowElevations (116.0.0)
-  - MaterialComponents/ShadowLayer (116.0.0):
+  - MaterialComponents/ShadowElevations (116.0.1)
+  - MaterialComponents/ShadowLayer (116.0.1):
     - MaterialComponents/ShadowElevations
-  - MaterialComponents/ShapeLibrary (116.0.0):
+  - MaterialComponents/ShapeLibrary (116.0.1):
     - MaterialComponents/private/Math
     - MaterialComponents/Shapes
-  - MaterialComponents/Shapes (116.0.0):
+  - MaterialComponents/Shapes (116.0.1):
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
     - MaterialComponents/ShadowLayer
-  - MaterialComponents/Typography (116.0.0):
+  - MaterialComponents/Typography (116.0.1):
     - MaterialComponents/private/Application
     - MaterialComponents/private/Math
     - MDFTextAccessibility
@@ -147,8 +147,8 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: 814429acc853c6c54ff123fc3d2ef66803823ce0
-  Kingfisher: 3260a05e78a17fdbeb2f14dd8e66ffc768491231
-  MaterialComponents: a6cf920307c2864f71e37972620f24c4d14fae8d
+  Kingfisher: 657dc1077e5bbbfff864194c79f29e35b722d062
+  MaterialComponents: a8759fa4dd253b6026648730ec0252c428dee589
   MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
   MDFTextAccessibility: 85c09a1bd9c321f494348e632a25063bcda35a53
   MotionAnimator: ee16aa30567c5bae0fb2750c132915829cfaaf8a
@@ -157,6 +157,6 @@ SPEC CHECKSUMS:
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
   RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
 
-PODFILE CHECKSUM: 2717982a650556e01aef721452b083e9cd33dec3
+PODFILE CHECKSUM: 19a710e1489c598790f3a3321ec998f0b4dae616
 
 COCOAPODS: 1.9.3

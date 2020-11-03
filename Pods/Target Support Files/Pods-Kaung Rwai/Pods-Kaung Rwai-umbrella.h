@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_VotingGuideVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_VotingGuideVersionString[];
+FOUNDATION_EXPORT double Pods_Kaung_RwaiVersionNumber;
+FOUNDATION_EXPORT const unsigned char Pods_Kaung_RwaiVersionString[];
 

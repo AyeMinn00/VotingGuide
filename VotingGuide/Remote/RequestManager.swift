@@ -29,9 +29,9 @@ class RequestManager{
                 case .success(let value):
                     observer.onNext(value)
                     observer.onCompleted()
-                    debugPrint("request success \(dataRequest)")
+//                    debugPrint("request success \(dataRequest)")
                 case .failure(let error):
-                    debugPrint("request fail \(dataRequest) with Status Code \(response.response?.statusCode ?? -1)")
+//                    debugPrint("request fail \(dataRequest) with Status Code \(response.response?.statusCode ?? -1)")
                     switch response.response?.statusCode {
                     case 0:
                         observer.onError(NetworkError.connection(error))

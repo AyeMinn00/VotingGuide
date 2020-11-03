@@ -97,7 +97,7 @@ class SettingViewController: VotingGuideViewController, UICollectionViewDelegate
             snapshot.appendSections([.main])
             snapshot.appendItems(items)
         }
-        dataSource.apply(snapshot, animatingDifferences: true)
+        dataSource.apply(snapshot, animatingDifferences: false)
     }
 
     private func watchData() {

@@ -58,6 +58,20 @@ class MenuViewController: BaseChildViewController {
             line3.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             line3.topAnchor.constraint(equalTo: labelSettings.bottomAnchor),
         ])
+        
+        let poweredByHexamass = UILabel()
+        poweredByHexamass.translatesAutoresizingMaskIntoConstraints = false
+        poweredByHexamass.text = "Powered By Hexa Mass"
+        poweredByHexamass.textColor = UIColor(named: "Grey_700")
+        poweredByHexamass.font = UIFont.systemFont(ofSize: 15)
+        poweredByHexamass.textAlignment = .center
+        view.addSubview(poweredByHexamass)
+        NSLayoutConstraint.activate([
+            poweredByHexamass.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -8),
+            poweredByHexamass.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            poweredByHexamass.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            poweredByHexamass.heightAnchor.constraint(equalToConstant: 50)
+        ])
     }
 
     private func createLabel(_ str: String) -> UIView {

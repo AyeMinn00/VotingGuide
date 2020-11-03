@@ -65,7 +65,7 @@ class PhotoViewController: VotingGuideViewController, UICollectionViewDelegate {
         return layout
     }
 
-    private func applySnapshot(items: [String?], _ animatingDifferences: Bool = true) {
+    private func applySnapshot(items: [String?], _ animatingDifferences: Bool = false) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, String?>()
         snapshot.appendSections([.main])
         snapshot.appendItems(items)

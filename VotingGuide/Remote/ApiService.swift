@@ -18,31 +18,31 @@ class ApiService {
 
     func getAllImageSets() -> Observable<ImageSets> {
         let lang = userDefault.getSelectedLanguage() ?? ""
-        let dataRequest = BaseRequest(path: "kaungrwai/imgSet/lang/\(lang)").create()
+        let dataRequest = BaseRequest(path: "api/kaungrwai/imgSet/lang/\(lang)").create()
         return requestManager.request(dataRequest)
     }
 
     func getAllContents(page: Int) -> Observable<Contents> {
         let lang = userDefault.getSelectedLanguage() ?? ""
         let queries = createContentRequest(page: "\(page)", count: "10", langId: lang)
-        let dataRequest = BaseRequest(path: "kaungrwai/content", query: queries).create()
+        let dataRequest = BaseRequest(path: "api/kaungrwai/content", query: queries).create()
         return requestManager.request(dataRequest)
     }
 
     func searchContent(page: Int, key: String) -> Observable<Contents> {
         let lang = userDefault.getSelectedLanguage() ?? ""
         let queries = createContentSearchRequest(page: "\(page)", limit: "10", key: key, lang: lang)
-        let dataRequest = BaseRequest(path: "kaungrwai/content/search", query: queries).create()
+        let dataRequest = BaseRequest(path: "api/kaungrwai/content/search", query: queries).create()
         return requestManager.request(dataRequest)
     }
 
     func getLanguages() -> Observable<Languages> {
-        let dataRequest = BaseRequest(path: "kaungrwai/language").create()
+        let dataRequest = BaseRequest(path: "api/kaungrwai/language").create()
         return requestManager.request(dataRequest)
     }
 
     func getContacts() -> Observable<Contacts> {
-        let dataRequest = BaseRequest(path: "kaungrwai/contact").create()
+        let dataRequest = BaseRequest(path: "api/kaungrwai/contact").create()
         return requestManager.request(dataRequest)
     }
 }

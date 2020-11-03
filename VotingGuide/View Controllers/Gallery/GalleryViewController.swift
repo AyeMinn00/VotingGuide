@@ -99,7 +99,7 @@ class GalleryViewController: BaseChildViewController, UICollectionViewDelegate {
         vm.loadData()
     }
 
-    private func applySnapshot(items: [ImageSetItem], _ animatingDifferences: Bool = true) {
+    private func applySnapshot(items: [ImageSetItem], _ animatingDifferences: Bool = false) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, ImageSetItem>()
         snapshot.appendSections([.main])
         snapshot.appendItems(items)
@@ -140,11 +140,13 @@ extension GalleryViewController: ErrorCellClickable {
 extension GalleryViewController {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let model = dataSource.snapshot().itemIdentifiers[indexPath.row]
-        if let content = model.value {
-            let vc = PhotoViewController()
-            vc.contentImages = content.images
-            vc.selectedIndex = indexPath.row
-            navigationController?.pushViewController(vc, animated: true)
+        DispatchQueue.main.async {
+            if let content = model.value {
+                let vc = PhotoViewController()
+                vc.contentImages = content.images
+                vc.selectedIndex = indexPath.row
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
         }
     }
 }

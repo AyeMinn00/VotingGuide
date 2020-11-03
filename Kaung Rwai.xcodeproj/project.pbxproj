@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1E2404F6040A495CD3BAB1C3 /* Pods_VotingGuide.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98013217765F2EA00C00CDB1 /* Pods_VotingGuide.framework */; };
+		7382A08EE84E97E7DA11EA56 /* Pods_Kaung_Rwai.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42227D76B9F5C80A0D89D852 /* Pods_Kaung_Rwai.framework */; };
 		D5138E892502193700738673 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5138E882502193700738673 /* SettingViewController.swift */; };
 		D5138E8B25021AA000738673 /* LanguageCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5138E8A25021AA000738673 /* LanguageCell2.swift */; };
 		D51CBE67250542F200D1E4DE /* ContentSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51CBE66250542F200D1E4DE /* ContentSearchViewController.swift */; };
@@ -61,12 +61,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		165AE78728769D5D76C73324 /* Pods-VotingGuideTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VotingGuideTests.release.xcconfig"; path = "Target Support Files/Pods-VotingGuideTests/Pods-VotingGuideTests.release.xcconfig"; sourceTree = "<group>"; };
-		1C20FE3E4E1074EEA031C007 /* Pods-VotingGuide.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VotingGuide.release.xcconfig"; path = "Target Support Files/Pods-VotingGuide/Pods-VotingGuide.release.xcconfig"; sourceTree = "<group>"; };
+		05A668DA64B8F02E6D829084 /* Pods-Kaung Rwai.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kaung Rwai.debug.xcconfig"; path = "Target Support Files/Pods-Kaung Rwai/Pods-Kaung Rwai.debug.xcconfig"; sourceTree = "<group>"; };
 		2235F2CFEC21FEA3B88DBE63 /* Pods_VotingGuideTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VotingGuideTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2C84F8EEF46363D18DE42336 /* Pods-VotingGuideTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VotingGuideTests.debug.xcconfig"; path = "Target Support Files/Pods-VotingGuideTests/Pods-VotingGuideTests.debug.xcconfig"; sourceTree = "<group>"; };
-		98013217765F2EA00C00CDB1 /* Pods_VotingGuide.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VotingGuide.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		CC70F9CAE517A91796B80237 /* Pods-VotingGuide.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VotingGuide.debug.xcconfig"; path = "Target Support Files/Pods-VotingGuide/Pods-VotingGuide.debug.xcconfig"; sourceTree = "<group>"; };
+		42227D76B9F5C80A0D89D852 /* Pods_Kaung_Rwai.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kaung_Rwai.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF2A8DB3D16C0E95C2B2DBA6 /* Pods-Kaung Rwai.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kaung Rwai.release.xcconfig"; path = "Target Support Files/Pods-Kaung Rwai/Pods-Kaung Rwai.release.xcconfig"; sourceTree = "<group>"; };
 		D5138E882502193700738673 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		D5138E8A25021AA000738673 /* LanguageCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageCell2.swift; sourceTree = "<group>"; };
 		D51CBE66250542F200D1E4DE /* ContentSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentSearchViewController.swift; sourceTree = "<group>"; };
@@ -112,7 +110,7 @@
 		D5B2D41B24F8AEA2003C8037 /* LanguageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageCell.swift; sourceTree = "<group>"; };
 		D5B2D41D24F8B152003C8037 /* LanguageSelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSelectionViewModel.swift; sourceTree = "<group>"; };
 		D5B2D41F24F8B1EB003C8037 /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
-		D5B47BE624D58CD3002348E7 /* VotingGuide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VotingGuide.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5B47BE624D58CD3002348E7 /* Kaung Rwai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Kaung Rwai.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5B47BE924D58CD3002348E7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D5B47BEB24D58CD3002348E7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		D5B47BED24D58CD3002348E7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -124,8 +122,6 @@
 		D5B47C0B24D58CD7002348E7 /* VotingGuideUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingGuideUITests.swift; sourceTree = "<group>"; };
 		D5B47C0D24D58CD7002348E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E222334AAEA4D7E61CA43B3B /* Pods_VotingGuide_VotingGuideUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VotingGuide_VotingGuideUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E4DA95DE1DCA327BC0B666C7 /* Pods-VotingGuide-VotingGuideUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VotingGuide-VotingGuideUITests.release.xcconfig"; path = "Target Support Files/Pods-VotingGuide-VotingGuideUITests/Pods-VotingGuide-VotingGuideUITests.release.xcconfig"; sourceTree = "<group>"; };
-		FDF84E5640EA84442C46047E /* Pods-VotingGuide-VotingGuideUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VotingGuide-VotingGuideUITests.debug.xcconfig"; path = "Target Support Files/Pods-VotingGuide-VotingGuideUITests/Pods-VotingGuide-VotingGuideUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,7 +129,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1E2404F6040A495CD3BAB1C3 /* Pods_VotingGuide.framework in Frameworks */,
+				7382A08EE84E97E7DA11EA56 /* Pods_Kaung_Rwai.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,12 +139,8 @@
 		803546757726F8DD53EE552A /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				CC70F9CAE517A91796B80237 /* Pods-VotingGuide.debug.xcconfig */,
-				1C20FE3E4E1074EEA031C007 /* Pods-VotingGuide.release.xcconfig */,
-				FDF84E5640EA84442C46047E /* Pods-VotingGuide-VotingGuideUITests.debug.xcconfig */,
-				E4DA95DE1DCA327BC0B666C7 /* Pods-VotingGuide-VotingGuideUITests.release.xcconfig */,
-				2C84F8EEF46363D18DE42336 /* Pods-VotingGuideTests.debug.xcconfig */,
-				165AE78728769D5D76C73324 /* Pods-VotingGuideTests.release.xcconfig */,
+				05A668DA64B8F02E6D829084 /* Pods-Kaung Rwai.debug.xcconfig */,
+				BF2A8DB3D16C0E95C2B2DBA6 /* Pods-Kaung Rwai.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -325,7 +317,7 @@
 		D5B47BE724D58CD3002348E7 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D5B47BE624D58CD3002348E7 /* VotingGuide.app */,
+				D5B47BE624D58CD3002348E7 /* Kaung Rwai.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -420,9 +412,9 @@
 		F22FE5F371090C82F6D552E7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				98013217765F2EA00C00CDB1 /* Pods_VotingGuide.framework */,
 				E222334AAEA4D7E61CA43B3B /* Pods_VotingGuide_VotingGuideUITests.framework */,
 				2235F2CFEC21FEA3B88DBE63 /* Pods_VotingGuideTests.framework */,
+				42227D76B9F5C80A0D89D852 /* Pods_Kaung_Rwai.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -430,9 +422,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D5B47BE524D58CD3002348E7 /* VotingGuide */ = {
+		D5B47BE524D58CD3002348E7 /* Kaung Rwai */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D5B47C1024D58CD7002348E7 /* Build configuration list for PBXNativeTarget "VotingGuide" */;
+			buildConfigurationList = D5B47C1024D58CD7002348E7 /* Build configuration list for PBXNativeTarget "Kaung Rwai" */;
 			buildPhases = (
 				3E11524409192867525E26E7 /* [CP] Check Pods Manifest.lock */,
 				D5B47BE224D58CD3002348E7 /* Sources */,
@@ -444,9 +436,9 @@
 			);
 			dependencies = (
 			);
-			name = VotingGuide;
+			name = "Kaung Rwai";
 			productName = VotingGuide;
-			productReference = D5B47BE624D58CD3002348E7 /* VotingGuide.app */;
+			productReference = D5B47BE624D58CD3002348E7 /* Kaung Rwai.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -464,7 +456,7 @@
 					};
 				};
 			};
-			buildConfigurationList = D5B47BE124D58CD3002348E7 /* Build configuration list for PBXProject "VotingGuide" */;
+			buildConfigurationList = D5B47BE124D58CD3002348E7 /* Build configuration list for PBXProject "Kaung Rwai" */;
 			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -477,7 +469,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D5B47BE524D58CD3002348E7 /* VotingGuide */,
+				D5B47BE524D58CD3002348E7 /* Kaung Rwai */,
 			);
 		};
 /* End PBXProject section */
@@ -510,7 +502,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-VotingGuide-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Kaung Rwai-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -523,15 +515,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-VotingGuide/Pods-VotingGuide-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Kaung Rwai/Pods-Kaung Rwai-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-VotingGuide/Pods-VotingGuide-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Kaung Rwai/Pods-Kaung Rwai-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-VotingGuide/Pods-VotingGuide-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Kaung Rwai/Pods-Kaung Rwai-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -715,6 +707,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -724,17 +717,19 @@
 		};
 		D5B47C1124D58CD7002348E7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CC70F9CAE517A91796B80237 /* Pods-VotingGuide.debug.xcconfig */;
+			baseConfigurationReference = 05A668DA64B8F02E6D829084 /* Pods-Kaung Rwai.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 3CB3MPS7GA;
 				INFOPLIST_FILE = VotingGuide/Resource/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hexamass.votingguide;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -744,17 +739,19 @@
 		};
 		D5B47C1224D58CD7002348E7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1C20FE3E4E1074EEA031C007 /* Pods-VotingGuide.release.xcconfig */;
+			baseConfigurationReference = BF2A8DB3D16C0E95C2B2DBA6 /* Pods-Kaung Rwai.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 3CB3MPS7GA;
 				INFOPLIST_FILE = VotingGuide/Resource/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hexamass.votingguide;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -765,7 +762,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D5B47BE124D58CD3002348E7 /* Build configuration list for PBXProject "VotingGuide" */ = {
+		D5B47BE124D58CD3002348E7 /* Build configuration list for PBXProject "Kaung Rwai" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D5B47C0E24D58CD7002348E7 /* Debug */,
@@ -774,7 +771,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D5B47C1024D58CD7002348E7 /* Build configuration list for PBXNativeTarget "VotingGuide" */ = {
+		D5B47C1024D58CD7002348E7 /* Build configuration list for PBXNativeTarget "Kaung Rwai" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D5B47C1124D58CD7002348E7 /* Debug */,

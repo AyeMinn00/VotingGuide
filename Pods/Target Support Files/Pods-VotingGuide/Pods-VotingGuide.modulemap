@@ -1,6 +1,0 @@
-framework module Pods_VotingGuide {
-  umbrella header "Pods-VotingGuide-umbrella.h"
-
-  export *
-  module * { export * }
-}

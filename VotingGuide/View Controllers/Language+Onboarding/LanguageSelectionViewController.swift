@@ -126,7 +126,7 @@ class LanguageSelectionViewController: VotingGuideViewController, UICollectionVi
         }
     }
 
-    private func applySnapshot(items: [LanguageItem], _ animatingDifferences: Bool = true) {
+    private func applySnapshot(items: [LanguageItem], _ animatingDifferences: Bool = false) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, LanguageItem>()
         snapshot.appendSections([.main])
         snapshot.appendItems(items)

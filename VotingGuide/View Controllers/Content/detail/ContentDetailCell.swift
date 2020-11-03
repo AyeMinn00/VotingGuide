@@ -42,7 +42,7 @@ class ContentDetailCell : UICollectionViewCell{
     }
     
     private func fetchImage(_ url: String?) {
-        let processor = DownsamplingImageProcessor(size: CGSize(width: 512, height: 384))
+        let processor = DownsamplingImageProcessor(size: CGSize(width: 1024, height: 1024))
         if url == nil {
             photo.image = UIImage(named: "sample1")
         } else {

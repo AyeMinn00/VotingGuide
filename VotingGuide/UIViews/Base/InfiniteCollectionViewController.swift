@@ -28,7 +28,7 @@ class InfiniteCollectionViewController<ItemIdentifier>: BaseChildViewController,
         if let delegate = infiniteListDelegate {
             let collectionView = UICollectionView(frame: .zero, collectionViewLayout: delegate.createCollectionLayout())
             collectionView.translatesAutoresizingMaskIntoConstraints = false
-            collectionView.automaticallyAdjustsScrollIndicatorInsets = false 
+            collectionView.automaticallyAdjustsScrollIndicatorInsets = false
             view.addSubview(collectionView)
             NSLayoutConstraint.activate([
                 collectionView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -37,7 +37,7 @@ class InfiniteCollectionViewController<ItemIdentifier>: BaseChildViewController,
                 collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             ])
             collectionView.contentInsetAdjustmentBehavior = .never
-            collectionView.showsVerticalScrollIndicator = false 
+            collectionView.showsVerticalScrollIndicator = false
             self.collectionView = collectionView
             self.collectionView.delegate = self
         }
@@ -65,7 +65,7 @@ class InfiniteCollectionViewController<ItemIdentifier>: BaseChildViewController,
         }
     }
 
-    func applySnapshot(items: [ItemIdentifier], _ animatingDifferences: Bool = true) {
+    func applySnapshot(items: [ItemIdentifier], _ animatingDifferences: Bool = false) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, ItemIdentifier>()
         snapshot.appendSections([.main])
         snapshot.appendItems(items)
@@ -79,10 +79,8 @@ class InfiniteCollectionViewController<ItemIdentifier>: BaseChildViewController,
     // this function is to check manually for list such as position list.
     private func doesCollectionViewMeetFullScreen() -> Bool {
         var result = true
-        if let sv = scrollView {
-            if sv.contentSize.height < sv.frame.size.height && sv.contentSize.height >= CGFloat(offset) {
-                result = false
-            }
+        if collectionView.contentSize.height < collectionView.frame.size.height && collectionView.contentSize.height >= CGFloat(offset) {
+            result = false
         }
         return result
     }
@@ -99,7 +97,6 @@ class InfiniteCollectionViewController<ItemIdentifier>: BaseChildViewController,
 
     // set public and override to let override subclass
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
     }
 
     func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
